@@ -1,0 +1,2 @@
+2021-06-20 17:47:10.923  WARN 15100 --- [main] com.zaxxer.hikari.HikariConfig           : yeoboya-master - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2021-06-20 17:47:11.692  WARN 15100 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.

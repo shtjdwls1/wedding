@@ -1,0 +1,121 @@
+[
+  {
+	"description" :  "성별",
+	"id": "sex",
+	"codeList": [
+	  {"code": "f","codeName": "여"},
+	  {"code": "m","codeName": "남"}
+	]
+  },
+  {
+	"description" :  "성별 - 영문",
+	"id": "gender",
+	"codeList": [
+	  {"code": "f","codeName": "woman"},
+	  {"code": "m","codeName": "man"}
+	]
+  },
+  {
+	"description" :  "희망만남",
+	"id": "want",
+	"codeList": [
+	  {"code": "w","codeName": "결혼"},
+	  {"code": "r","codeName": "재혼"}
+	]
+  },
+  {
+	"description" :  "스타일[여]",
+	"id": "style_f",
+	"codeList": [
+	  {"code": "1" , "codeName": "평범함"},
+	  {"code": "2" , "codeName": "청순함"},
+	  {"code": "3" , "codeName": "귀여움"},
+	  {"code": "4" , "codeName": "섹시함"},
+	  {"code": "5" , "codeName": "날씬함"},
+	  {"code": "6" , "codeName": "통통함"},
+	  {"code": "7" , "codeName": "뚱뚱함"},
+	  {"code": "8" , "codeName": "깔끔함"},
+	  {"code": "9" , "codeName": "털털함"},
+	  {"code": "10", "codeName": "꽃미녀"},
+	  {"code": "11", "codeName": "패션왕"},
+	  {"code": "12", "codeName": "시크함"},
+	  {"code": "13", "codeName": "뇌순녀"},
+	  {"code": "14", "codeName": "뇌섹녀"}
+	]
+  },
+  {
+	"description" :  "스타일[남] - (10 => 꽃미남 중복이라 제거 라고 php에 적혀있어서 여기도 빼고 만들었음.)",
+	"id": "style_m",
+	"codeList": [
+	  {"code":  "1"  , "codeName": "평범함"},
+	  {"code":  "2"  , "codeName": "귀여움"},
+	  {"code":  "3"  , "codeName": "섹시함"},
+	  {"code":  "4"  , "codeName": "꽃미남"},
+	  {"code":  "5"  , "codeName": "날씬함"},
+	  {"code":  "6"  , "codeName": "듬직함"},
+	  {"code":  "7"  , "codeName": "뚱뚱함"},
+	  {"code":  "8"  , "codeName": "깔끔함"},
+	  {"code":  "9"  , "codeName": "털털함"},
+
+	  {"code":  "11" , "codeName": "패션왕"},
+	  {"code":  "12" , "codeName": "시크함"},
+	  {"code":  "13" , "codeName": "뇌순남"},
+	  {"code":  "14" , "codeName": "뇌섹남"},
+	  {"code":  "15" , "codeName": "근육질"},
+	  {"code":  "16" , "codeName": "건장함"}
+	]
+  },
+  {
+	"description" :  "성격[여]",
+	"id": "character_f",
+	"codeList": [
+	  {"code":  "1"  , "codeName": "조용함"},
+	  {"code":  "2"  , "codeName": "도도함"},
+	  {"code":  "3"  , "codeName": "유머/재치"},
+	  {"code":  "4"  , "codeName": "다정다감"},
+	  {"code":  "5"  , "codeName": "애교넘침"},
+	  {"code":  "6"  , "codeName": "매사긍정"},
+	  {"code":  "7"  , "codeName": "이해심깊음"},
+	  {"code":  "8"  , "codeName": "자유분방"},
+	  {"code":  "9"  , "codeName": "천상여자"},
+	  {"code":  "10" , "codeName": "낙천적"},
+	  {"code":  "11" , "codeName": "내성적"},
+	  {"code":  "12" , "codeName": "감성적"},
+	  {"code":  "13" , "codeName": "열정적"},
+	  {"code":  "14" , "codeName": "상냥함"},
+	  {"code":  "15" , "codeName": "유쾌함"},
+	  {"code":  "16" , "codeName": "까칠함"},
+	  {"code":  "17" , "codeName": "터프함"},
+	  {"code":  "18" , "codeName": "왕고집"},
+	  {"code":  "19" , "codeName": "4차원적"},
+	  {"code":  "20" , "codeName": "솔직함"},
+	  {"code":  "21" , "codeName": "직설적"},
+	  {"code":  "22" , "codeName": "신중함"}
+	]
+  },
+  {
+	"description" :  "성격[남]",
+	"id": "character_m",
+	"codeList": [
+	  {"code": "1"  , "codeName":  "조용함"},
+	  {"code": "2"  , "codeName":  "터프함"},
+	  {"code": "3"  , "codeName":  "유머/재치"},
+	  {"code": "4"  , "codeName":  "다정다감"},
+	  {"code": "5"  , "codeName":  "매사긍정"},
+	  {"code": "6"  , "codeName":  "이해심깊음"},
+	  {"code": "7"  , "codeName":  "자유분방"},
+	  {"code": "8"  , "codeName":  "남자다움"},
+	  {"code": "9"  , "codeName":  "낙천적"},
+	  {"code": "10" , "codeName":  "내성적"},
+	  {"code": "11" , "codeName":  "감성적"},
+	  {"code": "12" , "codeName":  "열정적"},
+	  {"code": "13" , "codeName":  "유쾌함"},
+	  {"code": "14" , "codeName":  "까칠함"},
+	  {"code": "15" , "codeName":  "왕고집"},
+	  {"code": "16" , "codeName":  "4차원적"},
+	  {"code": "17" , "codeName":  "솔직함"},
+	  {"code": "18" , "codeName":  "직설적"},
+	  {"code": "19" , "codeName":  "신중함"}
+	]
+  }
+]
