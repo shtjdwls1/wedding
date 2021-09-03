@@ -5,18 +5,13 @@
 		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- 공통 헤더-->
 <th:block th:replace="fragments/head :: headFragment"></th:block>
-<body class="hold-transition sidebar-mini layout-fixed nav-compact" data-panel-auto-height-mode="height">
+<body class="pc__bg">
+<!-- content -->
+<section layout:fragment="content">
+	<p>Page content goes here</p>
+</section>
 
-<div class="wrapper">
-
-	<!-- content -->
-	<section layout:fragment="content">
-		<p>Page content goes here</p>
-	</section>
-
-</div>
-
-<th:block th:replace="fragments/bottomScript :: bottomScriptFragment"></th:block>
+	<th:block th:replace="fragments/bottomScript :: bottomScriptFragment"></th:block>
 
 <section layout:fragment="contentScriptFragment"></section>
 </body>

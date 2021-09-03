@@ -69,7 +69,7 @@ public class MvcConfig implements WebMvcConfigurer {
         return builder.build();
     }
 
-    @Bean
+    /*@Bean
     public LoginUserCookieInterceptor loginUserCookieInterceptor(){
         return new LoginUserCookieInterceptor();
     }
@@ -80,22 +80,22 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginUserCookieInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        /* 멤버 */
+                        *//* 멤버 *//*
                 "/member/logout/**",
                 "/member/join/**",
                 "/member/social/**",
                 "/member/login/loginV",
                 "/member/login/loginA",
-                /* 정적 자원 */
+                *//* 정적 자원 *//*
                 "/favicon**",
                 "/resources/**",
                 "/js/*",
                 "/json",
-                /* 공통 */
+                *//* 공통 *//*
                 "/error/**",
                 "/common/**",
                 "/api/**");
-    }
+    }*/
 
     // cookie 설정
     @Bean

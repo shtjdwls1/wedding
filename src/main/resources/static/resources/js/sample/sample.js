@@ -6,7 +6,7 @@ $(()=>{
 
 export class Sample{
 	constructor() {
-		console.log('aaaaaaa')
+		console.log('bbbbbb')
 	}
 
 }

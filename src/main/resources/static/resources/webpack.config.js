@@ -6,6 +6,7 @@ const context = path.join(__dirname, '');
 module.exports = {
     entry: {
         sample: path.join(context, '/js/sample/sample.js'),
+        join: path.join(context, '/js/join/join.js'),
     },
     devtool: 'eval',//inline-source-map, eval
     devServer: {
