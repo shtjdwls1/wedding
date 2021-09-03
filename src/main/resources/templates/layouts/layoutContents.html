@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html	lang="ko"
+		 xmlns="http://www.w3.org/1999/xhtml"
+		 xmlns:th="http://www.thymeleaf.org"
+		 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- 공통 헤더-->
+<th:block th:replace="fragments/head :: headFragment"></th:block>
+<body class="hold-transition sidebar-mini layout-fixed nav-compact" data-panel-auto-height-mode="height">
+
+<div class="wrapper">
+
+	<!-- content -->
+	<section layout:fragment="content">
+		<p>Page content goes here</p>
+	</section>
+
+</div>
+
+<th:block th:replace="fragments/bottomScript :: bottomScriptFragment"></th:block>
+
+<section layout:fragment="contentScriptFragment"></section>
+</body>
+</html>
+
