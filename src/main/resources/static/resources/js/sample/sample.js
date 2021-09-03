@@ -1,11 +1,12 @@
 "use strict";
 
 $(()=>{
-	Sample();
+	new Sample();
 })
 
 export class Sample{
 	constructor() {
 		console.log('aaaaaaa')
 	}
+
 }

@@ -64,7 +64,24 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //path 패턴을 추가할 수 있음.
-        registry.addInterceptor(loginUserCookieInterceptor()).addPathPatterns("/**").excludePathPatterns("/login");
+        registry.addInterceptor(loginUserCookieInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        /* 멤버 */
+                "/member/logout/**",
+                "/member/join/**",
+                "/member/social/**",
+                "/member/login/loginV",
+                "/member/login/loginA",
+                /* 정적 자원 */
+                "/favicon**",
+                "/resources/**",
+                "/js/*",
+                "/json",
+                /* 공통 */
+                "/error/**",
+                "/common/**",
+                "/api/**");
     }
 
     // cookie 설정

@@ -47,6 +47,13 @@ dependencies {
 
     implementation 'org.apache.commons:commons-lang3:3.4'
     implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.0.M3'
+
+
+
+    compile fileTree(dir:'libs', include:['*.jar'])
 }
 
 test {
