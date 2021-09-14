@@ -6,7 +6,13 @@ $(()=>{
 
 export class Sample{
 	constructor() {
-		console.log('bbbbbb')
+		this.eventBind();
+	}
+
+	eventBind(){
+		$('.base_info').on('click', ()=>{
+			bridge.startWin('/');
+		})
 	}
 
 }

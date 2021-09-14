@@ -14,6 +14,7 @@ export class Join
 
 	eventBindgin(){
 		$('.btn_slct_area').on('click', (e)=>{
+			let data = require("loc.html")
 			$('.normal_pop_wrap').removeClass('hidden');
 		})
 	}

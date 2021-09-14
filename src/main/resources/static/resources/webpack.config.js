@@ -5,6 +5,13 @@ const context = path.join(__dirname, '');
 
 module.exports = {
     entry: {
+        onLoad : [
+            path.join(context, '/js/module/common/config.js'),				// config값들 window에 붙이는 모듈
+            path.join(context, '/js/module/common/customize.js'),			// js내장객체 확장및 변경 모듈
+            path.join(context, '/js/bridge/bridgeFactory.js'),				// bridge
+            path.join(context, '/js/module/common/socketReceive.js'),		// 소켓
+            path.join(context, '/js/module/common/historyUtil.js')			// HistoryUtil
+        ],
         sample: path.join(context, '/js/sample/sample.js'),
         join: path.join(context, '/js/join/join.js'),
     },
