@@ -17,8 +17,6 @@ import java.util.Map;
 @Slf4j
 public class CookieAutoLoginFilter extends HandlerInterceptorAdapter {
 
-    static private String SERVER_ACTIVE;
-
     // 무조건 로그인이 되어 있어야 접근 가능한 경로 중 예외 경로
     final static String[] COERCION_ACCESS_URLS = {
     };
@@ -28,37 +26,12 @@ public class CookieAutoLoginFilter extends HandlerInterceptorAdapter {
 
     };
 
-    /*
-     *   서비스 adminMap.put 페이지 관련 체크 변수
-     *   0: 점검 안함
-     *   1: 실서버 점검
-     *   2: 모두 점검
-     *   3: 실서버 점검이나 사내에서만 접근 가능 모드
-     */
-
-
-    @Value("${spring.profiles.active}")
-    public void setSERVER_ACTIVE(String active) {
-        this.SERVER_ACTIVE = active;
-    }
-
     private double preTime = 0.0;
     private double afterTime = 0.0;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String SERVICE_CHECK_VALUE = "0";
-        // 기본점검false / 정기정검 true
-        Boolean SERVICE_YBY_CHECK_VALUE = false;
         preTime = new Date().getTime();//시작시간
-        boolean isCompany = ClientUtil.isCompany(request);
-        String reqUrl = request.getRequestURI();
-        String sDomain = "https://" + request.getServerName();
-        String chkUrl = sDomain + "/etc/serverCheck.html";
-
-        if(SERVICE_YBY_CHECK_VALUE){
-
-        }
         if(!checkUrlPermission(request, response)){
             String protocol = request.isSecure() ? "https://" : "http://";
             response.sendRedirect(protocol + request.getServerName() + "/member/login/index");

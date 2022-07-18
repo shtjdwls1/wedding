@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.inforex.yeoboya_admin.proc.Test" >
-    <select id="sqlMenu2" resultType="com.smart.project.common.vo.MenuVO" parameterType="java.lang.Integer">
-        SELECT a.menu_no, a.parent_no, b.menu_nm, a.ord_no, b.use_yn, trim(b.link_url) as link_url, a.depth_no
-        FROM i_hr.adm_usr_menu a, i_hr.adm_menu b
-        WHERE a.emp_no=#{memNo} AND a.menu_no=b.menu_no AND b.use_yn='y'
+<mapper namespace="com.smart.project.proc.Test" >
+    <select id="sqlMenu2" resultType="com.smart.project.web.home.vo.TestVO" parameterType="java.lang.String">
+        SELECT * FROM test;
     </select>
 </mapper>

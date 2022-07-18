@@ -25,13 +25,11 @@ public class DataBaseInfoMasterConfig extends HikariConfig{
 
 
     @Bean(name = "masterDataSource", destroyMethod = "close")
-    @Primary
     public HikariDataSource masterDataSource() {
         return new HikariDataSource(this);
     }
 
     @Bean(name = "infoMasterSqlSessionFactory")
-    @Primary
     public SqlSessionFactory infoMasterSqlSessionFactory(@Qualifier("masterDataSource") DataSource masterDataSource) throws Exception {
         return new InforexSqlSessionlFactory().getSqlFactory(masterDataSource, mapperLocation);
     }

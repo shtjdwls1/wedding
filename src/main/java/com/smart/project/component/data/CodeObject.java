@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 public class CodeObject implements Serializable {
-
+	private String description;
 	private String id;
 	private List<Code> codeList = new ArrayList<>();
 
@@ -17,7 +17,7 @@ public class CodeObject implements Serializable {
 
 		private String code = "";
 		private String codeName = "";
-		private Integer pKey = 0;
+		private String pKey = "";
 		private String url = "";
 		private String active = "";
 		private String calendarKind = "";
@@ -25,5 +25,6 @@ public class CodeObject implements Serializable {
 			return code == null ? "" : code;
 		}
 		private String auth ="";
+		private boolean checked = false;
 	}
 }

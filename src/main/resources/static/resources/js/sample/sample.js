@@ -10,8 +10,15 @@ export class Sample{
 	}
 
 	eventBind(){
-		$('.base_info').on('click', ()=>{
-			bridge.startWin('/');
+		$('.base_info').on('click', (e)=>{
+			console.log('aaa');
+			location.href='/join';
+		})
+
+		$('#data > span').on('click', (e)=>{
+			console.log('eeee')
+			console.log('eeeeddd')
+			console.log(e);
 		})
 	}
 

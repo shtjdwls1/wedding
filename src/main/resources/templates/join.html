@@ -120,8 +120,8 @@
 						</li>
 						<li>
 							<div class="btn_slct_area">
-								<input type="hidden">
-								<input type="hidden">
+								<input type="hidden" name="locWantKey" id="locWantKey">
+								<input type="hidden" name="locWant" id="locWant">
 								<a>지역&nbsp;&nbsp;&nbsp;&nbsp;국내/해외</a>
 							</div>
 						</li>
@@ -130,7 +130,7 @@
 				<div class="join_box">
 					<div class="btn_hope_area">
 						<a class="">배우자 희망지역</a>
-						<input type="hidden">
+						<input type="hidden" id="wantLoc" name="wantLoc" value="g,f,h">
 					</div>
 					<p class="join_txt error"></p>
 				</div>
@@ -248,44 +248,6 @@
 
 	<!-- 배우자 희망지역 모달 -->
 	<div class="normal_pop_wrap want_loc hidden">
-		<div class="full_modal"></div>
-		<div class="pop_hope_area">
-			<div class="pop_header">
-				<h2>배우자 희망지역 선택</h2>
-				<a class="pop_cls"><span class="blind">닫기</span></a>
-			</div>
-			<div class="pop_content">
-				<div class="hope_area_txt">선택지역에 결혼·재혼을 원하는 이성의 프로필이 등록되면 알림을 받으실 수 있습니다!</div>
-				<ul class="flex_container hope_list">
-					<li><a class="chk_area">전체</a></li>
-					<li><a class="chk_area">서울</a></li>
-					<li><a class="chk_area">경기</a></li>
-					<li><a class="chk_area">인천</a></li>
-					<li><a class="chk_area">대전</a></li>
-					<li><a class="chk_area">대구</a></li>
-					<li><a class="chk_area">부산</a></li>
-					<li><a class="chk_area">광주</a></li>
-					<li><a class="chk_area">세종</a></li>
-					<li><a class="chk_area">울산</a></li>
-					<li><a class="chk_area">충북</a></li>
-					<li><a class="chk_area">충남</a></li>
-					<li><a class="chk_area">전북</a></li>
-					<li><a class="chk_area">전남</a></li>
-					<li><a class="chk_area">경북</a></li>
-					<li><a class="chk_area">경남</a></li>
-					<li><a class="chk_area">강원</a></li>
-					<li><a class="chk_area">제주</a></li>
-					<li><a class="chk_area">북한</a></li>
-					<li><a class="chk_area">해외</a></li>
-				</ul>
-			</div>
-			<div class="pop_btn_box">
-				<ul class="flex_container">
-					<li class="btn_reset"><a>초기화</a></li>
-					<li class="btn_complete"><a>확인</a></li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </div>
 <section layout:fragment="contentScriptFragment">

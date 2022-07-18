@@ -1,5 +1,6 @@
 package com.smart.project.config;
 
+import com.smart.project.filter.CookieAutoLoginFilter;
 import com.smart.project.security.InternCookieResolver;
 import com.smart.project.security.LoginUserCookieInterceptor;
 import org.apache.catalina.Context;
@@ -69,33 +70,30 @@ public class MvcConfig implements WebMvcConfigurer {
         return builder.build();
     }
 
-    /*@Bean
-    public LoginUserCookieInterceptor loginUserCookieInterceptor(){
-        return new LoginUserCookieInterceptor();
+    @Bean
+    public CookieAutoLoginFilter cookieFilter() {
+        return new CookieAutoLoginFilter();
     }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //path 패턴을 추가할 수 있음.
-        registry.addInterceptor(loginUserCookieInterceptor())
+        registry.addInterceptor(cookieFilter())
                 .addPathPatterns("/**")
+                // excludePathPatterns 묶어서 가독성 신경점..
                 .excludePathPatterns(
-                        *//* 멤버 *//*
-                "/member/logout/**",
-                "/member/join/**",
-                "/member/social/**",
-                "/member/login/loginV",
-                "/member/login/loginA",
-                *//* 정적 자원 *//*
-                "/favicon**",
-                "/resources/**",
-                "/js/*",
-                "/json",
-                *//* 공통 *//*
-                "/error/**",
-                "/common/**",
-                "/api/**");
-    }*/
+                        /* 멤버 */
+                        "/member/login/**",
+                        /* 정적 자원 */
+                        "/favicon**",
+                        "/resources/**",
+                        "/js/*",
+                        "/json",
+                        /* 공통 */
+                        "/error/**",
+                        "/common/**",
+                        "/api/**"
+                );
+    }
+
 
     // cookie 설정
     @Bean

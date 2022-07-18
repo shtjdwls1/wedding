@@ -7,6 +7,7 @@
 <head>
 	<!--    thymeleaf layout dialect가 contents페이지의 head태그를 layout의 head태그에 자동으로 추가해준다. -->
 	<!--    필요힌 css, script 추가영역 -->
+	<link rel="stylesheet" type="text/css" href="../css/m_yby_member.css">
 </head>
 <div layout:fragment="content" class="pc__container">
 	<header class="header">
@@ -23,6 +24,23 @@
 		</button>
 	</header>
 	<div class="container">
+		<div id="data">
+			<th:block th:each="row : ${data}">
+				<span th:data-key="${row.code}" th:text="${row.codeName}">
+				</span>
+			</th:block>
+
+		</div>
+		<div id="data2">
+		<span th:each="row : ${data2}">
+			<th:block th:Text="${row.codeName}"></th:block>
+		</span>
+		</div>
+		<div id="want">
+		<span th:each="row : ${gender}">
+			<th:block th:Text="${row.codeName}"></th:block>
+		</span>
+		</div>
 		<input type="hidden">
 		<!-- #5693 브랜드 스토리 더보기 아이콘 추가 및 순서 변경 -->
 		<ul class="more_ul" id="moreUL">
