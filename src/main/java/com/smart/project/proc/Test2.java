@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Master2
+@Master
 @Component
 public interface Test2 {
 	/**********************************************************************************************

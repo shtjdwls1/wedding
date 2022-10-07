@@ -86,6 +86,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/favicon**",
                         "/resources/**",
                         "/js/*",
+                        "/css/*",
                         "/json",
                         /* 공통 */
                         "/error/**",

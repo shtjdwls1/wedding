@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
-@Service
 public class StudyCookieService {
-	private static final String CONTEXT_DOMAIN = ".yeoboya.com";
+	private static final String CONTEXT_DOMAIN = "localhost";
 	private static final int CONTEXT_AGE = 60 * 60 * 24 * 30; // 한달 간 인증
 	private static final String COOKIE_PATH = "/";
 

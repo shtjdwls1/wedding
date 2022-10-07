@@ -570,11 +570,13 @@ public class ClientUtil extends ClientUtilParent {
 		cookieKeylist.add("EMP_NO");
 		try {
 			Cookie[] cookies = request.getCookies();
-			for (int i = 0; i < cookies.length; i++) {
-				for(String sCookieKey : cookieKeylist){
-					if (cookies[i].getName().equals(sCookieKey)) {
-						if (!cookies[i].getValue().equals("")) {
-							resultMap.put(sCookieKey, cookies[i].getValue());
+			if(cookies != null && cookies.length > 0){
+				for (int i = 0; i < cookies.length; i++) {
+					for(String sCookieKey : cookieKeylist){
+						if (cookies[i].getName().equals(sCookieKey)) {
+							if (!cookies[i].getValue().equals("")) {
+								resultMap.put(sCookieKey, cookies[i].getValue());
+							}
 						}
 					}
 				}

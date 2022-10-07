@@ -1,7 +1,9 @@
 package com.smart.project.web.home.act;
 
 import com.smart.project.component.CommonCodeComponent;
+import com.smart.project.component.LocCodeComponent;
 import com.smart.project.component.data.CodeObject;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,13 @@ import java.util.*;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 public class HomeDataAct {
 
-	@Autowired
+	final private
 	CommonCodeComponent commonCodeComponent;
+
+	final private LocCodeComponent locCodeComponent;
 
 	@PostMapping("/data/wantLoc")
 	public Map<String, Object> getWantLoc(@RequestBody Map param){
@@ -51,6 +56,26 @@ public class HomeDataAct {
 			log.error("{}", wishLocData);
 		}
 		data.put("wishLoc", wishLocData);
+
+		return data;
+	}
+
+	@PostMapping("/data/loc")
+	public Map<String, Object> getLoc(@RequestBody Map param){
+		Map<String, Object> data = new HashMap<>();
+
+
+		locCodeComponent.getCodeList("m002");
+
+		return data;
+	}
+
+	@PostMapping("/data/locMiddle")
+	public Map<String, Object> getLocMiddle(@RequestBody Map param){
+		Map<String, Object> data = new HashMap<>();
+
+
+		locCodeComponent.getCodeList("m003e");
 
 		return data;
 	}

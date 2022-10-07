@@ -48,6 +48,7 @@ public class InternCookieResolver implements HandlerMethodArgumentResolver {
                                     break;
                                 case "EMP_NO":
                                     try{
+                                        //emp_no=1111|emp_name=chat
                                         Arrays.stream(URLDecoder.decode(c.getValue(), "UTF-8").split("\\|"))
                                                 .forEach((v) -> {
                                                     String _array[] = v.split("=");
