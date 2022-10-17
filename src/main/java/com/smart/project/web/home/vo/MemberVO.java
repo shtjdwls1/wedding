@@ -16,6 +16,6 @@ public class MemberVO {
     private String u_tel;
     private String u_location;
     private String u_auth;
-    private Provider join_path;
+    private String join_path;
     private String join_date;
 }

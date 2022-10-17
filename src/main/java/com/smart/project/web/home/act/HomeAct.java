@@ -34,7 +34,7 @@ public class HomeAct {
 	final private Test test;
 
 
-	@RequestMapping("/")
+	@RequestMapping("/index")
 	public String home(Model model, InternCookie cookie, HttpServletRequest request){
 		if(StringUtils.isNotEmpty(cookie.getUserId())){
 			log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
@@ -79,7 +79,6 @@ public class HomeAct {
 
 	@RequestMapping("/join")
 	public String join(){
-		log.error("{}",commonCodeComponent.getCodeList("style_f"));
 		return "join";
 	}
 

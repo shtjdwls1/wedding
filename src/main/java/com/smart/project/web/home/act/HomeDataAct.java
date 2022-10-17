@@ -87,9 +87,9 @@ public class HomeDataAct {
 	public int MemberJoin(@RequestBody MemberVO vo){
 		String tel_full = vo.getU_tel_front()+"-"+vo.getU_tel_mid()+"-"+vo.getU_tel_end();
 		vo.setU_tel(tel_full);
-		log.info("vo===>{}",vo);
+		log.error("vo===>{}",vo);
 		int data = join.save(vo);
-		log.info("joindata===>{}",data);
+		log.error("joindata===>{}",data);
 		return data;
 	}
 }
