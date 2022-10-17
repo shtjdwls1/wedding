@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html
+		layout:decorate="~{layouts/mainpageLayout.html}"
 		xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:th="http://www.thymeleaf.org"
 		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-		layout:decorate="~{layouts/layoutContents.html}">
+		xmlns:th="http://www.thymeleaf.org">
 <head>
 	<!--    thymeleaf layout dialect가 contents페이지의 head태그를 layout의 head태그에 자동으로 추가해준다. -->
 	<!--    필요힌 css, script 추가영역 -->
-	<link rel="stylesheet" type="text/css" href="../css/m_yby_member.css">
+	<link href="../css/m_yby_member.css" rel="stylesheet" type="text/css">
 </head>
-<div layout:fragment="content" class="pc__container">
+<div class="pc__container" layout:fragment="content">
 	<header class="header">
 		<button class="btn_back_area">
 			<div class="btn_back">
@@ -61,28 +61,34 @@
 		<!-- // #5693 -->
 		<div class="cf_wrap">
 			<div class="cf_header">
-				<img src="https://image.yeoboya.com/imgs/new_wedding/mobile/img4/video_new_title.png" alt="여보야 홍보영상" class="cf_title">
+				<img alt="여보야 홍보영상" class="cf_title"
+				     src="https://image.yeoboya.com/imgs/new_wedding/mobile/img4/video_new_title.png">
 				<div class="view_cf">영상조회수 : <span class="cf_num">123,278</span>회</div>
 			</div>
 			<div class="cf_content">
 				<div class="cf_iframe">
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/C4jHnoWQZpw?autoplay=1&amp;controls=0&amp;rel=0&amp;enablejsapi=1&amp;origin=http%3A%2F%2Fm.yeoboya.com&amp;widgetid=1"></iframe>
+					<iframe height="315" src="https://www.youtube.com/embed/C4jHnoWQZpw?autoplay=1&amp;controls=0&amp;rel=0&amp;enablejsapi=1&amp;origin=http%3A%2F%2Fm.yeoboya.com&amp;widgetid=1"
+					        width="560"></iframe>
 				</div>
 			</div>
 			<div class="cf_share">
 				<div class="share_kko">
-					<img src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_kko.png" width="30px" height="32px" alt="카카오톡공유">
+					<img alt="카카오톡공유"
+					     height="32px" src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_kko.png" width="30px">
 				</div>
 				<div class="share_kks">
-					<img src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_kks.png" width="30px" height="32px" alt="카카오스토리공유">
+					<img alt="카카오스토리공유"
+					     height="32px" src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_kks.png" width="30px">
 				</div>
 				<div class="share_fcb">
-					<img src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_fcb.png" width="90px" height="32px" alt="페이스북공유">
+					<img alt="페이스북공유"
+					     height="32px" src="https://image.yeoboya.com/imgs/new_wedding/mobile/evnt_page/btn_share_fcb.png" width="90px">
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <section layout:fragment="contentScriptFragment">
-	<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/sample.bundle.js')}"></script>
+	<script th:src="${@versionComponent.getVersion('/resources/build/sample.bundle.js')}"
+	        type="text/javascript"></script>
 </section>

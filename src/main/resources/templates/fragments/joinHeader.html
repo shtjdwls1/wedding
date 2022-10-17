@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<th:block th:replace="fragments/head :: headFragment"></th:block>
+</head>
+<body>
+<div th:fragment="joinHeader">
+	<nav class="navbar navbar-light bg-light">
+		<div class="container mx-3">
+			<a class="navbar-brand backBtn">
+				<i class="bi bi-arrow-left"></i>
+			</a>
+			<a class="navbar-brand ">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 3rem">
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+</div>
+
+
+</body>
+
+</html>

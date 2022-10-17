@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.footerIcon {
+			font-size: 50rem;
+		}
+
+
+	</style>
+</head>
+<body>
+<div th:fragment="footerFragment">
+	<ul class="nav nav-fill fixed-bottom" style="height: 8vh; ">
+		<li class="nav-item">
+			<a aria-current="page" class="nav-link active" href="/">
+				<i class="bi bi-house footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/myCounsel">
+				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/myReserve">
+				<i class="bi bi-calendar-check footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<!--		<li class="nav-item">-->
+		<!--			<a class="nav-link" href="#">-->
+		<!--				<i class="bi bi-pencil-square footerIcon" style="font-size: 30px; color: black;"></i>-->
+		<!--			</a>-->
+		<!--		</li>-->
+		<li class="nav-item">
+			<a class="nav-link" href="/login">
+				<i class="bi bi-power footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+	</ul>
+</div>
+</body>
+</html>
