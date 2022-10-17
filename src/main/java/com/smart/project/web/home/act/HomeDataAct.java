@@ -3,6 +3,9 @@ package com.smart.project.web.home.act;
 import com.smart.project.component.CommonCodeComponent;
 import com.smart.project.component.LocCodeComponent;
 import com.smart.project.component.data.CodeObject;
+import com.smart.project.oauth.Role;
+import com.smart.project.proc.JoinMapper;
+import com.smart.project.web.home.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +25,7 @@ public class HomeDataAct {
 	CommonCodeComponent commonCodeComponent;
 
 	final private LocCodeComponent locCodeComponent;
-
+	final private JoinMapper join;
 	@PostMapping("/data/wantLoc")
 	public Map<String, Object> getWantLoc(@RequestBody Map param){
 		Map<String, Object> data = new HashMap<>();
@@ -77,6 +80,16 @@ public class HomeDataAct {
 
 		locCodeComponent.getCodeList("m003e");
 
+		return data;
+	}
+
+	@PostMapping("/data/join")
+	public int MemberJoin(@RequestBody MemberVO vo){
+		String tel_full = vo.getU_tel_front()+"-"+vo.getU_tel_mid()+"-"+vo.getU_tel_end();
+		vo.setU_tel(tel_full);
+		log.info("vo===>{}",vo);
+		int data = join.save(vo);
+		log.info("joindata===>{}",data);
 		return data;
 	}
 }
