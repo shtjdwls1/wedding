@@ -81,25 +81,43 @@ public class HomeAct {
         log.error("aaaaaa");
     }
 
+    //로컬 회원가입
     @RequestMapping("/localJoin")
     public String localJoin() {
         return "localJoinPage";
     }
 
+    //소셜 회원가입
     @RequestMapping("/socialJoin")
     public String socialJoin() {
         return "pages/socialJoinPage";
     }
 
-
+    //내상담페이지
     @RequestMapping("/myCounsel")
     public String myCounsel() {
         return "pages/myCounselPage";
     }
 
+    //내 예약페이지
     @RequestMapping("/myReserve")
     public String myReserve() {
         return "pages/myReservePage";
+    }
+
+    @RequestMapping("/changeMyInfo")
+    public String changeMyInfo() {
+        return "pages/changeMyInfoPage";
+    }
+
+    @RequestMapping("/changeMyInfoForm")
+    public String changeMyInfoForm() {
+        return "pages/changeMyInfoFormPage";
+    }
+
+    @RequestMapping("/weddingDetail")
+    public String weddingDetail() {
+        return "pages/weddingDetailPage";
     }
 
     @RequestMapping("/data")

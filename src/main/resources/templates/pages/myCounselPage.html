@@ -8,12 +8,12 @@
 	<title>Title</title>
 	<link href="/css/wedding/myCounselPage.css" rel="stylesheet" type="text/css">
 	<link href="/css/wedding/star.css" rel="stylesheet" type="text/css">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div layout:fragment="myCounsel">
 	<!-- 헤더 -->
-	<nav class="navbar navbar-light bg-light">
+	<nav class="navbar navbar-light bg-light sticky-top">
 		<div class="container mx-3">
 			<a class="navbar-brand" href="/">
 				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
@@ -75,7 +75,7 @@
 					<span class="star text">
 					  ★★★★★
 					  <span>★★★★★</span>
-					  <input max="10" min="0" oninput="drawStar(this)" step="1" type="range" value="1">
+					  <input max="10" min="0" name="star1" oninput="drawStar(this)" step="1" type="range" value="1">
 					</span>
 				</div>
 				<!--여기까지-->

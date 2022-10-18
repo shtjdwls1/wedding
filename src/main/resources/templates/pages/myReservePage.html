@@ -13,7 +13,85 @@
 <body>
 <!-- content -->
 <div layout:fragment="myReserve">
-	내 예약페이지
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light">
+		<div class="container mx-3">
+			<a class="navbar-brand" href="/">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>예약 확인</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+	<!--예약 확인 카드-->
+	<div class="reserveCard mx-2 my-2">
+		<div class="Photosec mx-2 my-2">
+			<div>
+				<img class="wedPhoto" src="/imgs/ReserveWed.jpg">
+			</div>
+		</div>
+		<div class="reserveInfo mx-2">
+			<table class="table table-borderless my-2">
+				<tbody>
+				<tr>
+					<th scope="row">웨딩홀명</th>
+					<td>드메르 웨딩홀</td>
+				</tr>
+				<tr>
+					<th scope="row">예약홀명</th>
+					<td>A홀</td>
+
+				</tr>
+				<tr>
+					<th scope="row">예약일자</th>
+					<td>2023-01-15</td>
+				</tr>
+				<tr>
+					<th scope="row">예약시간</th>
+					<td>14-16</td>
+				</tr>
+				<tr>
+					<th scope="row">연락처</th>
+					<td>062-123-4567</td>
+				</tr>
+				<tr>
+					<th scope="row">금액</th>
+					<td>200만원</td>
+				</tr>
+				<tr>
+					<th scope="row"></th>
+					<td>
+						<button class="btn btn-sm btn-light border-dark" data-bs-target="#cancelModal"
+						        data-bs-toggle="modal"
+						        type="button">
+							예약 취소
+						</button>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<!-- 모달	-->
+	<div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade" id="cancelModal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+			<div class="modal-content text-center">
+				<div class="modal-body mx-4 mt-4">
+					<strong>
+						<p>OOO님,</p>
+						예약 취소하시겠습니까?
+					</strong>
+					<div class="d-grid gap-2 col-4 mx-auto mt-4">
+						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button">확인</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 </body>
