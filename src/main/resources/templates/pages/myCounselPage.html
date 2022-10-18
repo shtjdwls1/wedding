@@ -2,6 +2,7 @@
 <html lang="en"
       layout:decorate="~{layouts/myCounselLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
 >
 <head>
 	<meta charset="UTF-8">
@@ -25,6 +26,9 @@
 			</a>
 		</div>
 	</nav>
+			<th:block ></th:block>
+
+	<div th:each="myCounsel : ${myCounsels}">
 	<!-- 상담 카드 -->
 	<div class="outer  mt-2 mx-3">
 		<div class="plannerCard">
@@ -36,31 +40,47 @@
 			<div class="plannerInfo mx-2">
 				<table class="table table-borderless my-2">
 					<tbody>
+					<tr hidden>
+						<th scope="row">상담사명</th>
+						<td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getPIdx()}">김땡땡</td>
+					</tr>
 					<tr>
 						<th scope="row">상담사명</th>
-						<td>김땡땡</td>
+						<td th:Text="${myCounsel.getUName()}">김땡땡</td>
 					</tr>
 					<tr>
 						<th scope="row">상담일자</th>
-						<td>2022-12-31</td>
+						<td th:Text="${myCounsel.getCounselDate()}">2022-12-31</td>
 
 					</tr>
 					<tr>
 						<th scope="row">견적</th>
-						<td>400만~</td>
+						<td th:Text="${myCounsel.getPPrice()} + 원">400만~</td>
 					</tr>
 					<tr>
 						<th scope="row">연락처</th>
-						<td>010-9876-5432</td>
+						<td th:Text="${myCounsel.getUTel()}">010-9876-5432</td>
 					</tr>
 					<tr>
 						<th scope="row"></th>
-						<td>
+						<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ( ${#strings.isEmpty(myCounsel.getPReview())} or ${#strings.isEmpty(myCounsel.getPGrade())})">
 							<button aria-controls="collapseExample" aria-expanded="false"
 							        class="btn btn-sm btn-light border-dark"
-							        data-bs-target="#collapseExample" data-bs-toggle="collapse" type="button">
-								후기 등록
-							</button>
+									th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}" data-bs-toggle="collapse" type="button"
+									th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)">후기 작성</button>
+						</td>
+						<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ${not #strings.isEmpty(myCounsel.getPReview())} and ${not #strings.isEmpty(myCounsel.getPGrade())}">
+							<button aria-controls="collapseExample" aria-expanded="false"
+									class="btn btn-sm btn-light border-dark"
+									th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}" data-bs-toggle="collapse" type="button"
+									th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)">후기 보기</button>
+						</td>
+
+						<td th:unless="${myCounsel.getPCounselingCk() == 'T'}">
+							<button aria-controls="collapseExample" aria-expanded="false"
+									class="btn btn-sm btn-light border-dark"
+									th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}" data-bs-toggle="collapse" type="button"
+									th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)" disabled>확인 대기</button>
 						</td>
 					</tr>
 					</tbody>
@@ -69,13 +89,13 @@
 		</div>
 		<div class="commentSection mx-3">
 
-			<form class="collapse" id="collapseExample">
+			<form class="collapse" th:id="'collapseExample'+ ${myCounselStat.index}">
 				<!--별점기능-->
 				<div class="outerStar">
 					<span class="star text">
 					  ★★★★★
-					  <span>★★★★★</span>
-					  <input max="10" min="0" oninput="drawStar(this)" step="1" type="range" value="1">
+					  <span th:style="'width:'+${myCounsel.getPGrade()*10}+'%'" th:class="'star'+${myCounselStat.index}">★★★★★</span>
+					  <input max="10" min="0" oninput="drawStar(this)" step="1" type="range" th:id="'star'+${myCounselStat.index}" th:value="${myCounsel.getPGrade()}">
 					</span>
 				</div>
 				<!--여기까지-->
@@ -88,16 +108,17 @@
 						<td>
 							<form id="frm_textArea" name="frm_textArea">
                 <textarea class="form-control"
-                          id="textArea_byteLimit"
+						  th:id="'textArea_byteLimit'+ ${myCounselStat.index}"
                           name="textArea_byteLimit"
                           onkeyup="fn_checkByte(this)"
-                          rows="10"></textarea>
+                          rows="10" th:text="${myCounsel.getPReview()}"></textarea>
 							</form>
 						</td>
 					</tr>
 				</table>
 			</form>
 		</div>
+	</div>
 	</div>
 
 </div>

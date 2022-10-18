@@ -91,12 +91,6 @@ public class HomeAct {
         return "pages/socialJoinPage";
     }
 
-
-    @RequestMapping("/myCounsel")
-    public String myCounsel() {
-        return "pages/myCounselPage";
-    }
-
     @RequestMapping("/myReserve")
     public String myReserve() {
         return "pages/myReservePage";

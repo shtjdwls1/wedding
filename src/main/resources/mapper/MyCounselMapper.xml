@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.MyCounselService" >
+    <select id="myCounsel" resultType="com.smart.project.web.counseling.vo.MyCounselVO" parameterType="int">
+        SELECT pc.p_counseling_idx, pc.p_idx, pc.p_counseling_ck, pc.p_grade, pc.p_review, pc.counsel_idx, DATE_FORMAT(pc.counsel_date, '%Y-%m-%d') AS counselDate, FORMAT(p.p_price , 0) AS p_price, u.u_name, u.u_tel FROM planner_counseling AS pc Left join planner AS p on pc.p_idx = p.u_idx Left join `user` AS u on p.u_idx = u.u_idx where pc.counsel_idx =#{u_idx};
+    </select>
+<!--    <update id="myCounselUpdate" parameterType="com.smart.project.web.counseling.vo.MyCounselVO">-->
+<!--        SELECT pc.p_counseling_idx, pc.p_idx, pc.p_counseling_ck, pc.p_grade, pc.p_review, pc.counsel_idx, DATE_FORMAT(pc.counsel_date, '%Y-%m-%d') AS counselDate, FORMAT(p.p_price , 0) AS p_price, u.u_name, u.u_tel FROM planner_counseling AS pc Left join planner AS p on pc.p_idx = p.u_idx Left join `user` AS u on p.u_idx = u.u_idx where pc.counsel_idx =#{u_idx};-->
+<!--    </update>-->
+</mapper>

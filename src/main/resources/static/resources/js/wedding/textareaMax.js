@@ -20,10 +20,10 @@ function fn_checkByte(obj) {
     if (totalByte > maxByte) {
         document.getElementById("textArea_byteLimit").value = document.getElementById("textArea_byteLimit").value.substring(0, 500)
         alert('최대 1000Byte까지만 입력가능합니다.');
-        document.getElementById("nowByte").innerText = totalByte;
+        document.getElementById("nowByte").innerText = totalByte.toString();
         document.getElementById("nowByte").style.color = "red";
     } else {
-        document.getElementById("nowByte").innerText = totalByte;
+        document.getElementById("nowByte").innerText = totalByte.toString();
         document.getElementById("nowByte").style.color = "green";
     }
 }
