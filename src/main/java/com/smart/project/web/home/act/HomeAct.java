@@ -28,10 +28,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class HomeAct {
 
-	final private
-	CommonCodeComponent commonCodeComponent;
+    final private
+    CommonCodeComponent commonCodeComponent;
 
-	final private Test test;
+    final private Test test;
 
 
 	@RequestMapping("/index")
@@ -42,40 +42,45 @@ public class HomeAct {
 		model.addAttribute("data", commonCodeComponent.getCodeList("style_f"));
 		model.addAttribute("data2", commonCodeComponent.getCodeList("character_f"));
 
-		Map<String, CodeObject> data = commonCodeComponent.getAll();
+        Map<String, CodeObject> data = commonCodeComponent.getAll();
 
-		log.error("***************************************");
-		List<TestVO> list = test.sqlMenu2("");
-		for(TestVO dt : list){
-			log.error("{}//{}", dt.getUserId(), dt.getUserName());
-		}
-		//log.error("{}", list);
-		log.error("***************************************");
+        log.error("***************************************");
+        List<TestVO> list = test.sqlMenu2("");
+        for (TestVO dt : list) {
+            log.error("{}//{}", dt.getUserId(), dt.getUserName());
+        }
+        //log.error("{}", list);
+        log.error("***************************************");
 
-		Iterator<String> keys = data.keySet().iterator();
-		while( keys.hasNext() ){
-			String key = keys.next();
-			//log.error("key==>{}, list==>{}", key, data.get(key));
-			model.addAttribute(key, data.get(key).getCodeList());
-		}
+        Iterator<String> keys = data.keySet().iterator();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            //log.error("key==>{}, list==>{}", key, data.get(key));
+            model.addAttribute(key, data.get(key).getCodeList());
+        }
 
-		//log.error("{}",data);
-		return "index";
-	}
+        //log.error("{}",data);
+        return "index";
+    }
 
-	@RequestMapping("/cookie/add2")
-	public String cookieAdd(HttpServletResponse response) throws java.io.UnsupportedEncodingException {
-		StudyCookieService.createCookie(response, "USER_ID", "mygod76");
-		StudyCookieService.createCookie(response, "NAME", URLEncoder.encode("김남현", "EUC-KR"));
-		StudyCookieService.createCookie(response, "EMP_NO", URLEncoder.encode("emp_no=1234", "UTF-8"));
-		return "cookie";
-	}
+    @RequestMapping("/login")
+    public String login(Model model, InternCookie cookie, HttpServletRequest request) {
+        return "pages/login";
+    }
 
-	@GetMapping(value = "cookie3")
-	public void cookieAdd2(HttpServletResponse response, Model model){
-		model.addAttribute("aaa", "aaa");
-		log.error("aaaaaa");
-	}
+    @RequestMapping("/cookie/add2")
+    public String cookieAdd(HttpServletResponse response) throws java.io.UnsupportedEncodingException {
+        StudyCookieService.createCookie(response, "USER_ID", "mygod76");
+        StudyCookieService.createCookie(response, "NAME", URLEncoder.encode("김남현", "EUC-KR"));
+        StudyCookieService.createCookie(response, "EMP_NO", URLEncoder.encode("emp_no=1234", "UTF-8"));
+        return "cookie";
+    }
+
+    @GetMapping(value = "cookie3")
+    public void cookieAdd2(HttpServletResponse response, Model model) {
+        model.addAttribute("aaa", "aaa");
+        log.error("aaaaaa");
+    }
 
 	@RequestMapping("/join")
 	public String join(){
@@ -83,10 +88,48 @@ public class HomeAct {
 	}
 
 	// 로컬회원가입
+    //로컬 회원가입
+    @RequestMapping("/localJoin")
+    public String localJoin() {
+        return "localJoinPage";
+    }
 
-	@RequestMapping("/data")
-	@ResponseBody
-	public String homeData(){
-		return "index";
-	}
+    //소셜 회원가입
+    @RequestMapping("/socialJoin")
+    public String socialJoin() {
+        return "pages/socialJoinPage";
+    }
+
+    //내상담페이지
+    @RequestMapping("/myCounsel")
+    public String myCounsel() {
+        return "pages/myCounselPage";
+    }
+
+    //내 예약페이지
+    @RequestMapping("/myReserve")
+    public String myReserve() {
+        return "pages/myReservePage";
+    }
+
+    @RequestMapping("/changeMyInfo")
+    public String changeMyInfo() {
+        return "pages/changeMyInfoPage";
+    }
+
+    @RequestMapping("/changeMyInfoForm")
+    public String changeMyInfoForm() {
+        return "pages/changeMyInfoFormPage";
+    }
+
+    @RequestMapping("/weddingDetail")
+    public String weddingDetail() {
+        return "pages/weddingDetailPage";
+    }
+
+    @RequestMapping("/data")
+    @ResponseBody
+    public String homeData() {
+        return "index";
+    }
 }

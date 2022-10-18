@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<!-- 공통 헤더-->
+<th:block th:replace="fragments/head :: headFragment"></th:block>
+<body>
+<!-- content -->
+<section layout:fragment="changeMyInfoForm" style="padding-bottom: 8vh">
+	<p>Page content goes here</p>
+</section>
+
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<script th:src="@{/resources/js/wedding/localJoin.js}"
+        type="text/javascript"></script>
+</body>
+</html>

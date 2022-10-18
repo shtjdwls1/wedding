@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+	      name="viewport">
+	<meta content="ie=edge" http-equiv="X-UA-Compatible">
+	<title>Document</title>
+</head>
+<body>
+<div th:fragment="headerFragment">
+	<nav class="navbar navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand mx-3">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+			</a>
+			<form class="d-flex">
+				<input aria-label="Search" class="form-control me-2" placeholder="Search" type="search">
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+</div>
+</body>
+</html>

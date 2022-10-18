@@ -1,0 +1,102 @@
+.searchHeader {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.carousel-inner {
+  height: 20vh;
+}
+
+
+.outerMyCityWedding {
+  //width: 100vh;
+  //height: 100vw;
+  //transform: rotate(-90deg);
+  //transform-origin: top left;
+  //overflow-y: scroll;
+  //overflow-x: hidden;
+  //position: absolute;
+  //transform: rotate(-90deg) translateX(-100vh);
+  //scrollbar-width: none;
+  //-ms-overflow-style: none;
+  ::-webkit-scrollbar {
+    //display: none;
+    width: 3px;
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e2e4e5 /*스크롤바의 색상*/
+  }
+
+  .myCityWedding {
+    //display: flex;
+    //flex-direction: row;
+    //width: 350vw;
+    //transform: rotate(90deg);
+    //transform-origin: top left;
+    //transform: rotate(90deg) translateY(-100vh);
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    .slide {
+      height: 20vh;
+      border: 0px;
+      flex: 0 0 auto;
+
+      .card-body {
+        //display: flex;
+        //justify-content: center;
+        text-align: center;
+
+      }
+
+      img {
+        width: 100%;
+        height: 80%;
+      }
+    }
+  }
+
+
+}
+
+.outerMyCityPlanner {
+
+  ::-webkit-scrollbar {
+
+    width: 3px;
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e2e4e5 /*스크롤바의 색상*/
+  }
+
+  .myCityPlanner {
+
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    .slide {
+      height: 20vh;
+      border: 0px;
+      flex: 0 0 auto;
+
+      .card-body {
+
+        text-align: center;
+
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}

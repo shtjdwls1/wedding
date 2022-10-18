@@ -1,0 +1,50 @@
+.testModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1050;
+
+  .testModalShape {
+    position: absolute;
+    width: 100vw;
+    height: 300px;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: rgb(244, 243, 243);
+    border-radius: 50px 50px 0 0;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    overflow: scroll;
+
+    .modalCloseBtn {
+      position: absolute;
+      //top: 25px;
+      right: 40px;
+      border: none;
+      color: rgba(0, 0, 0, 0.7);
+      background-color: transparent;
+      font-size: 20px;
+    }
+
+    #modalCloseBtn:hover {
+      cursor: pointer;
+    }
+
+    .modalOption {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin: 28px;
+    }
+
+
+    .clicked {
+      color: #4f6dc1;
+    }
+  }
+}

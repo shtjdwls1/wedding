@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/socialJoinLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+
+</head>
+<body>
+<div layout:fragment="socialJoin">
+	<div>
+		<form class="mx-5 mt-5">
+			<label class="form-label" for="clasify">회원분류</label>
+			<div class="input-group mb-3">
+				<input aria-describedby="button-addon2" aria-label="Recipient's username"
+				       class="form-control text-center clasifyInput"
+				       id="clasify" readonly type="text" value="일반회원">
+				<button class="btn btn-outline-secondary" id="clasifyBtn" type="button">
+					<i class="bi bi-caret-down" onclick="controllClasifyModal()"></i>
+				</button>
+			</div>
+			<div class="mb-3">
+
+			<div class="mb-3">
+				<label class="form-label" for="inputName">이름</label>
+				<input aria-describedby="emailHelp" class="form-control" id="inputName" placeholder="실명을 입력해주세요"
+				       type="text">
+			</div>
+			<div class="row mb-3">
+				<label class="mb-2" for="tel1">연락처</label>
+				<div class="col">
+					<input aria-label="First name" class="form-control" id="tel1" placeholder="010"
+					       type="tel" maxlength="3">
+				</div>
+				-
+				<div class="col">
+					<input aria-label="Last name" class="form-control" id="tel2" placeholder="1234" type="tel" maxlength="4">
+				</div>
+				-
+				<div class="col">
+					<input aria-label="Last name" class="form-control" id="tel3" placeholder="5678" type="tel" maxlength="4">
+				</div>
+			</div>
+			<label class="form-label" for="checkCity">지역</label>
+			<div class="input-group mb-3">
+				<input aria-describedby="button-addon2" aria-label="Recipient's username"
+				       class="text-center form-control"
+				       id="checkCity" readonly type="text" value="서울">
+				<button class="btn btn-outline-secondary" id="checkCityBtn" onclick="controllLocationModal()"
+				        type="button">
+					<i class="bi bi-caret-down"></i>
+				</button>
+			</div>
+			<div class="d-grid gap-2 col-6 mx-auto mt-5">
+				<button class="btn btn-light btn-outline-dark" type="submit">
+					회원가입
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<!-- 회원 분류 모달 -->
+	<div class="testModal hidden clasifyModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption clasifyOption">일반회원</div>
+				<div class="modalOption clasifyOption">플래너</div>
+				<div class="modalOption clasifyOption">웨딩홀업주</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 지역 선택 모달 -->
+	<div class="testModal hidden locationModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllLocationModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption locationOption">서울</div>
+				<div class="modalOption locationOption">인천</div>
+				<div class="modalOption locationOption">대전</div>
+				<div class="modalOption locationOption">부산</div>
+				<div class="modalOption locationOption">광주</div>
+				<div class="modalOption locationOption">대구</div>
+				<div class="modalOption locationOption">울산</div>
+				<div class="modalOption locationOption">제주</div>
+				<div class="modalOption locationOption">경기</div>
+				<div class="modalOption locationOption">강원</div>
+				<div class="modalOption locationOption">충북</div>
+				<div class="modalOption locationOption">충남</div>
+				<div class="modalOption locationOption">경북</div>
+				<div class="modalOption locationOption">경남</div>
+				<div class="modalOption locationOption">전북</div>
+				<div class="modalOption locationOption">전남</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+</body>
+</html>

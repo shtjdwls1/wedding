@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/myCounselLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="/css/wedding/myCounselPage.css" rel="stylesheet" type="text/css">
+	<link href="/css/wedding/star.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div layout:fragment="myCounsel">
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand" href="/">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>내 상담</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+	<!-- 상담 카드 -->
+	<div class="outer  mt-2 mx-3">
+		<div class="plannerCard">
+			<div class="Photosec mx-2 my-2">
+				<div>
+					<img class="plannerPhoto mt-2" src="/imgs/PlannerPhoto.jpg">
+				</div>
+			</div>
+			<div class="plannerInfo mx-2">
+				<table class="table table-borderless my-2">
+					<tbody>
+					<tr>
+						<th scope="row">상담사명</th>
+						<td>김땡땡</td>
+					</tr>
+					<tr>
+						<th scope="row">상담일자</th>
+						<td>2022-12-31</td>
+
+					</tr>
+					<tr>
+						<th scope="row">견적</th>
+						<td>400만~</td>
+					</tr>
+					<tr>
+						<th scope="row">연락처</th>
+						<td>010-9876-5432</td>
+					</tr>
+					<tr>
+						<th scope="row"></th>
+						<td>
+							<button aria-controls="collapseExample" aria-expanded="false"
+							        class="btn btn-sm btn-light border-dark"
+							        data-bs-target="#collapseExample" data-bs-toggle="collapse" type="button">
+								후기 등록
+							</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="commentSection mx-3">
+
+			<form class="collapse" id="collapseExample">
+				<!--별점기능-->
+				<div class="outerStar">
+					<span class="star text">
+					  ★★★★★
+					  <span>★★★★★</span>
+					  <input max="10" min="0" name="star1" oninput="drawStar(this)" step="1" type="range" value="1">
+					</span>
+				</div>
+				<!--여기까지-->
+				<table class="table border">
+					<tr>
+						<th style="vertical-align: middle;">
+							TextArea<br/>
+							<sup>(<span id="nowByte">0</span>/1000bytes)</sup>
+						</th>
+						<td>
+							<form id="frm_textArea" name="frm_textArea">
+                <textarea class="form-control"
+                          id="textArea_byteLimit"
+                          name="textArea_byteLimit"
+                          onkeyup="fn_checkByte(this)"
+                          rows="10"></textarea>
+							</form>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+</div>
+
+
+</body>
+</html>
