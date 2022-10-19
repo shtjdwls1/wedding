@@ -1,0 +1,23 @@
+.reserveCard {
+  border-radius: 2vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  border: 1px solid black;
+}
+.reserveCard .Photosec {
+  width: 30vw;
+  height: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.reserveCard .Photosec .wedPhoto {
+  width: 30vw;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 2vw;
+  margin-top: 3.5rem;
+}
+
+/*# sourceMappingURL=MyReserve.css.map */
