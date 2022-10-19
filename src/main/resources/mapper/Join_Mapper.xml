@@ -8,11 +8,13 @@
     <select id="findByEmail" resultType="com.smart.project.web.home.vo.MemberVO">
         SELECT * FROM user WHERE u_id = #{email};
     </select>
-    <select id="chkIdPw" resultType="com.smart.project.web.home.vo.MemberVO">
-        SELECT * FROM user WHERE u_id=#{u_id} AND u_pw=#{u_pw};
+    <select id="login" resultType="com.smart.project.web.home.vo.MemberVO">
+        SELECT * FROM user WHERE u_id=#{uId} AND u_pw=#{uPw};
     </select>
     <insert id="saveTest" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO test VALUES (#{u_id},#{u_name});
     </insert>
-
+    <select id="chkId" resultType="com.smart.project.web.home.vo.MemberVO">
+        SELECT * FROM user WHERE u_id=#{uId};
+    </select>
 </mapper>

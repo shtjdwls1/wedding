@@ -13,21 +13,12 @@ export class Join
 		this.eventBindgin();
 	}
 	eventBindgin(){
+		// 회원가입 유효성 풀체크
 		$('.btn_wedding_join').on('click',(e)=>{
-			// 입력안한 값 있는지 확인
-			let isNull = 0;
-			$('input').each((idx, obj) => {
-				console.log(obj)
-				let $obj = $(obj);
-				if (!$obj.val()) {
-					isNull = 1;
-				}
-			})
-
 			let joinFormData = SerializeObject.run('wedding_joinForm');
 			console.log("wjfd==>{}",joinFormData)
 			console.log(joinFormData)
-			if(isNull===0){
+			if(checkAll()){
 				axios.post('/data/join',joinFormData).then((result)=> {
 					if(result.data>0){
 						alert("가입성공")
@@ -37,11 +28,30 @@ export class Join
 						location.href="localJoin";
 					}
 				})
-			}else {
-				alert("fdsafdsa")
 			}
 		})
-
+		/*
+		 * 아이디 중복여부 체크
+		 */
+		$('#checkId').on("focus",(e)=>{
+			$(e.currentTarget).val('')
+			$('#idc').addClass("hidden").removeAttr("color")
+		})
+		$('#checkId').on('blur',(e)=>{
+			let data = {"uid":$('#checkId').val()}
+			console.log(data)
+			if($(e.currentTarget).val()!==''){
+				axios.post('/data/checkId',data).then((result)=>{
+						console.log(result)
+						if(result.data!==1){
+							$('#idc').removeClass("hidden").html("이미 사용중인 아이디입니다.").css("color","red")
+						}else{
+							$('#idc').removeClass("hidden").html("사용 가능한 아이디입니다.").css("color","green")
+						}
+					}
+				)
+			}
+		})
 		/*
 		 * 이름 입력시 한글만 입력되도록
 		 */

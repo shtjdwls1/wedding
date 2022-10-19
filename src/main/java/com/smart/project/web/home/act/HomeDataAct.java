@@ -98,9 +98,20 @@ public class HomeDataAct {
 	@PostMapping("/data/login")
 	public int MemberLogin(@RequestBody MemberVO vo){
 		log.error("value ==> {}",vo);
-		MemberVO result = join.chkIdPw(vo);
+		MemberVO result = join.login(vo);
 		log.error("result ==> {}",result);
 		if(result!=null){
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+	@PostMapping("/data/checkId")
+	public int CheckId(@RequestBody MemberVO vo){
+		log.error("value ==> {}",vo);
+		MemberVO result = join.chkId(vo);
+		log.error("result ==> {}",result);
+		if(result==null){
 			return 1;
 		}else {
 			return 0;

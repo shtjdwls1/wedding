@@ -19,8 +19,8 @@ export class Login{
             let id = $('#inputId').val();
             let pw = $('#inputPassword').val();
             let data ={
-                "u_id" : id,
-                "u_pw" : pw };
+                "uid" : id,
+                "upw" : pw };
             console.log(data)
             if (id !== '' && pw !==''){
                 axios.post('/data/login',data).then((result)=>{
