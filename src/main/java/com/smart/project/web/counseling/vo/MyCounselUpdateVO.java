@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MyCounselUpdateVO {
 
-    private int pIdx;
-    private int pGrade;
+    private String pIdx;
+    private String pGrade;
     private String pReview;
     private int counselIdx;
 

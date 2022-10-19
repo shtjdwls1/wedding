@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +23,18 @@ import java.util.Map;
 public class MyCounselAct {
 
     final private MyCounselService myCounselService;
-    private Object data;
 
-    @RequestMapping ("/myCounsel/{u_idx}")
-    public String main(Model model, @PathVariable int u_idx){
+    @RequestMapping("/myCounsel")
+    public String myCounsel(HttpServletRequest request,Model model) {
+        HttpSession session = request.getSession();
+        session.setAttribute("u_idx", 4);
+
+        int u_idx = (int) session.getAttribute("u_idx");
+        log.error("세션1 : {}", u_idx);
+
         List<MyCounselVO> list = myCounselService.myCounsel(u_idx);
         log.error("결과1 : {}", myCounselService.myCounsel(u_idx));
-        for(MyCounselVO vo : list){
+        for (MyCounselVO vo : list) {
             log.error("플래너 : {}", vo.getPGrade());
         }
         model.addAttribute("myCounsels", list);
@@ -35,28 +42,16 @@ public class MyCounselAct {
         return "pages/myCounselPage";
     }
 
-    @PostMapping("/myCounsel/reviewWrite/{u_idx}")
-    public String reviewWrite(@PathVariable String u_idx, @RequestBody ){
-//        Map<String, Object> list = new HashMap<>();
-//        MyCounselUpdateVO vo;
-        String jsonString = request.getParameter("data");
-        log.error("결과1 : {}", jsonString);
-//         = myCounselService.myCounselUpdate(u_idx,reviewObj);
-//        log.error("결과1 : {}", myCounselService.myCounsel(u_idx));
-//
-//            log.error("플래너번호 : {}", vo.getPIdx());
-//            log.error("상담자번호 : {}", vo.getPGrade());
-//            log.error(" : {}", vo.getPGrade());
-//
-////        private int pIdx;
-////        private int pGrade;
-////        private String pReview;
-////        private int counselIdx;
-
-        return "redirect:/myCounsel/{u_idx}";
+    @PostMapping("/myCounsel/reviewWrite")
+    @ResponseBody
+    public MyCounselUpdateVO reviewWrite(HttpServletRequest request,@RequestBody MyCounselUpdateVO vo) {
+        log.error("입력===>{}", vo);
+        HttpSession session = request.getSession();
+        int u_idx = (int) session.getAttribute("u_idx");
+        vo.setCounselIdx(u_idx);
+        log.error("최종===>{}", vo);
+        myCounselService.myCounselUpdate(vo);
+        return vo;
     }
-
-
-
 
 }
