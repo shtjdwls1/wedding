@@ -97,6 +97,21 @@ public class HomeAct {
         return "pages/myReservePage";
     }
 
+    @RequestMapping("/changeMyInfo")
+    public String changeMyInfo() {
+        return "pages/changeMyInfoPage";
+    }
+
+    @RequestMapping("/changeMyInfoForm")
+    public String changeMyInfoForm() {
+        return "pages/changeMyInfoFormPage";
+    }
+
+    @RequestMapping("/weddingDetail")
+    public String weddingDetail() {
+        return "pages/weddingDetailPage";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public String homeData() {

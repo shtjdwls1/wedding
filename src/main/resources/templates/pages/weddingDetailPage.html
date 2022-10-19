@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/weddingDetailLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="/css/wedding/weddingDetail.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/imgToBig.css}">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div layout:fragment="weddingDetail">
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand" href="/">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>드메르 웨딩홀</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+	<!-- 웨딩홀 카드 - 타임리프로 데이터 꺼내와서 인덱스 아이디 주고 data-bs-target에 집어넣어야 되요.-->
+	<div class="weddingCard  mt-3 mx-3">
+		<div class="my-2 text-center hallTitle">A홀</div>
+		<!-- 웨딩홀 캐러셀 -->
+		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding1">
+			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
+				<div class="carousel-item active" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed3.jpg">
+				</div>
+			</div>
+			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding1"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding1"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-next-icon"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div class="hallChoice">
+			<div class="minMax">
+				<div>인원수 : 최소 ~ 최대</div>
+				<div>금액 : 1,000,000</div>
+			</div>
+			<div class="choiceBtn">
+				<button class="btn btn-light border-dark" onclick="controllClasifyModal('A홀')" type="button">시간 선택
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 웨딩홀 카드 - 타임리프로 데이터 꺼내와서 인덱스 아이디 주고 data-bs-target에 집어넣어야 되요.-->
+	<div class="weddingCard  mt-3 mx-3">
+		<div class="my-2 text-center hallTitle">B홀</div>
+		<!-- 웨딩홀 캐러셀 -->
+		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding2">
+			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
+				<div class="carousel-item active" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100  img" src="/imgs/thumbWed3.jpg">
+				</div>
+			</div>
+			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding2"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding2"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-next-icon"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div class="hallChoice">
+			<div class="minMax">
+				<div>인원수 : 최소 ~ 최대</div>
+				<div>금액 : 1,000,000</div>
+			</div>
+			<div class="choiceBtn">
+				<button class="btn btn-light border-dark" onclick="controllClasifyModal('B홀')" type="button">시간 선택
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 웨딩홀 카드 -->
+	<div class="weddingCard  mt-3 mx-3">
+		<div class="my-2 text-center hallTitle">C홀</div>
+		<!-- 웨딩홀 캐러셀 -->
+		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding3">
+			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
+				<div class="carousel-item active" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
+				</div>
+				<div class="carousel-item" style="width: 70vw">
+					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed3.jpg">
+				</div>
+			</div>
+			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding3"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding3"
+			        type="button">
+				<span aria-hidden="true" class="carousel-control-next-icon"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div class="hallChoice">
+			<div class="minMax">
+				<div>인원수 : 최소 ~ 최대</div>
+				<div>금액 : 1,000,000</div>
+			</div>
+			<div class="choiceBtn">
+				<button class="btn btn-light border-dark" onclick="controllClasifyModal('C홀')" type="button">시간 선택
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- 예약 확인 영역과 간격을 위한 div-->
+	<div style="height: 8vh"></div>
+	<!--예약 확인 영역 -->
+	<div class="checkTime fixed-bottom">
+		<div class="checkTimeInput">선택 안됨</div>
+		<button class="btn btn-sm btn-light border-dark" type="button">예약하기</button>
+	</div>
+
+	<!-- 시간 선택 모달 -->
+	<div class="testModal hidden clasifyModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					시간선택
+				</h5>
+				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption clasifyOption">10-12</div>
+				<div class="modalOption clasifyOption">12-14</div>
+				<div class="modalOption clasifyOption">14-16</div>
+				<div class="modalOption clasifyOption">16-18</div>
+				<div class="modalOption clasifyOption">18-20</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 이미지 크게보기 모달 -->
+	<div class="modal">
+		<span class="close">&times;</span>
+		<img class="modal_content">
+	</div>
+
+</div>
+
+
+</body>
+</html>

@@ -20,7 +20,6 @@ function fn_checkByte(obj) {
             totalByte += 1;
         }
     }
-
     if (totalByte > maxByte) {
         document.getElementById(obj.id).value = document.getElementById(obj.id).value.substring(0, 500)
         alert('최대 1000Byte까지만 입력가능합니다.');
