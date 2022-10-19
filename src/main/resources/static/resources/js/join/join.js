@@ -14,21 +14,34 @@ export class Join
 	}
 	eventBindgin(){
 		$('.btn_wedding_join').on('click',(e)=>{
+			// 입력안한 값 있는지 확인
+			let isNull = 0;
+			$('input').each((idx, obj) => {
+				console.log(obj)
+				let $obj = $(obj);
+				if (!$obj.val()) {
+					isNull = 1;
+				}
+			})
+
 			let joinFormData = SerializeObject.run('wedding_joinForm');
 			console.log("wjfd==>{}",joinFormData)
 			console.log(joinFormData)
-			if(checkAll()){
+			if(isNull===0){
 				axios.post('/data/join',joinFormData).then((result)=> {
 					if(result.data>0){
 						alert("가입성공")
-						location.href = "index";
+						location.href = "/";
 					}else{
 						alert("정보를 올바르게 입력해주세요")
-						location.href="join";
+						location.href="localJoin";
 					}
 				})
+			}else {
+				alert("fdsafdsa")
 			}
 		})
+
 		/*
 		 * 이름 입력시 한글만 입력되도록
 		 */

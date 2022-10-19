@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface JoinMapper {
     int save(MemberVO memberVO);
+    MemberVO chkIdPw(MemberVO memberVO);
 }

@@ -81,12 +81,6 @@ public class HomeAct {
         log.error("aaaaaa");
     }
 
-	@RequestMapping("/join")
-	public String join(){
-		return "join";
-	}
-
-	// 로컬회원가입
     //로컬 회원가입
     @RequestMapping("/localJoin")
     public String localJoin() {

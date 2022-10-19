@@ -9,9 +9,11 @@ import com.smart.project.web.home.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -85,11 +87,23 @@ public class HomeDataAct {
 
 	@PostMapping("/data/join")
 	public int MemberJoin(@RequestBody MemberVO vo){
-		String tel_full = vo.getU_tel_front()+"-"+vo.getU_tel_mid()+"-"+vo.getU_tel_end();
-		vo.setU_tel(tel_full);
+		String telfull = vo.getUTelFront()+"-"+vo.getUTelMid()+"-"+vo.getUTelEnd();
+		vo.setUTel(telfull);
 		log.error("vo===>{}",vo);
 		int data = join.save(vo);
 		log.error("joindata===>{}",data);
 		return data;
+	}
+
+	@PostMapping("/data/login")
+	public int MemberLogin(@RequestBody MemberVO vo){
+		log.error("value ==> {}",vo);
+		MemberVO result = join.chkIdPw(vo);
+		log.error("result ==> {}",result);
+		if(result!=null){
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }

@@ -6,16 +6,16 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-    private int u_idx;
-    private String u_id;
-    private String u_pw;
-    private String u_name;
-    private String u_tel_front;
-    private String u_tel_mid;
-    private String u_tel_end;
-    private String u_tel;
-    private String u_location;
-    private String u_auth;
-    private String join_path;
-    private String join_date;
+    private int uIdx;
+    private String uId;
+    private String uPw;
+    private String uName;
+    private String uTelFront;
+    private String uTelMid;
+    private String uTelEnd;
+    private String uTel;
+    private String uLocation;
+    private String uAuth;
+    private String joinPath;
+    private String joinDate;
 }
