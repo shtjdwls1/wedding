@@ -13,43 +13,76 @@
 </head>
 <body>
 <div th:fragment="footerFragment">
-	<ul class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6">
+	<!-- 세션 없을때 -->
+	<ul th:if="${session.loginSession == null}" class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6">
+		<!-- 홈버튼 -->
 		<li class="nav-item">
 			<a aria-current="page" class="nav-link active" href="/">
 				<i class="bi bi-house footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
+		<!-- 내상담 -->
 		<li class="nav-item">
-			<a class="nav-link" href="/myCounsel">
+			<a class="nav-link" href="/login">
 				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
+		<!--예약확인-->
 		<li class="nav-item">
-			<a class="nav-link" href="/myReserve">
+			<a class="nav-link" href="/login">
 				<i class="bi bi-calendar-check footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
-		<!--	정보수정버튼	-->
-		<!--		<li class="nav-item">-->
-		<!--			<a class="nav-link" href="#">-->
-		<!--				<i class="bi bi-pencil-square footerIcon" style="font-size: 30px; color: black;"></i>-->
-		<!--			</a>-->
-		<!--		</li>-->
+		<!--로그인-->
 		<li class="nav-item">
 			<a class="nav-link" href="/login">
 				<i class="bi bi-power footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
-		<!--플래너 정보 버튼-->
+	</ul>
+
+	<!-- 세션 있을때 -->
+	<ul th:unless="${session.loginSession == null}"  class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6">
+		<!-- 홈버튼 -->
 		<li class="nav-item">
+			<a aria-current="page" class="nav-link active" href="/">
+				<i class="bi bi-house footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<!-- 업체정보버튼 -->
+		<li th:if="${session.loginSession.UAuth.equals('company')}" class="nav-item">
+			<a class="nav-link" href="#">
+				<i class="bi bi-building footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<!--플래너 정보 버튼-->
+		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
 			<a class="nav-link" href="/login">
 				<i class="bi bi-person" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
+		<!-- 내상담/상담확인 -->
+		<li th:if="${session.loginSession.UAuth}!='company'" class="nav-item">
+			<a class="nav-link" href="/myCounsel">
+				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<!--예약확인/관리-->
+		<li th:if="${session.loginSession.UAuth}!='planner'" class="nav-item">
+			<a class="nav-link" href="/myReserve">
+				<i class="bi bi-calendar-check footerIcon" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
 		<!--후기보기 별 버튼-->
-		<li class="nav-item">
+		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
 			<a class="nav-link" href="/login">
 				<i class="bi bi-star" style="font-size: 30px; color: black;"></i>
+			</a>
+		</li>
+		<!--정보수정버튼-->
+		<li class="nav-item">
+			<a class="nav-link" href="#">
+				<i class="bi bi-pencil-square footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 	</ul>

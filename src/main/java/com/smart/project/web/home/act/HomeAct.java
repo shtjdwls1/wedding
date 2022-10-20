@@ -133,7 +133,7 @@ public class HomeAct {
     public String homeData() {
         return "index";
     }
-
+    // 로그아웃
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);

@@ -9,7 +9,7 @@
   width: 30vw;
   height: auto;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
 }
 .reserveCard .Photosec .wedPhoto {
@@ -17,7 +17,6 @@
   height: auto;
   border: 1px solid black;
   border-radius: 2vw;
-  margin-top: 3.5rem;
 }
 
 /*# sourceMappingURL=MyReserve.css.map */
