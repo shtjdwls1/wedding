@@ -8,7 +8,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,11 +28,8 @@ public class MyCounselAct {
     final private MyCounselService myCounselService;
 
     @RequestMapping("/myCounsel")
-    public String myCounsel(HttpServletRequest request,Model model) {
-        HttpSession session = request.getSession();
-        session.setAttribute("u_idx", 4);
-
-        int u_idx = (int) session.getAttribute("u_idx");
+    public String myCounsel(Model model) {
+        int u_idx = 4;
         log.error("세션1 : {}", u_idx);
 
         List<MyCounselVO> list = myCounselService.myCounsel(u_idx);
@@ -44,10 +44,9 @@ public class MyCounselAct {
 
     @PostMapping("/myCounsel/reviewWrite")
     @ResponseBody
-    public MyCounselUpdateVO reviewWrite(HttpServletRequest request,@RequestBody MyCounselUpdateVO vo) {
+    public MyCounselUpdateVO reviewWrite(@RequestBody MyCounselUpdateVO vo) {
+        int u_idx = 4;
         log.error("입력===>{}", vo);
-        HttpSession session = request.getSession();
-        int u_idx = (int) session.getAttribute("u_idx");
         vo.setCounselIdx(u_idx);
         log.error("최종===>{}", vo);
         myCounselService.myCounselUpdate(vo);
