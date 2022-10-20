@@ -113,6 +113,7 @@ public class HomeDataAct {
 			return 0;
 		}
 	}
+	// 회원가입시 아이디 중복체크
 	@PostMapping("/data/checkId")
 	public int CheckId(@RequestBody MemberVO vo){
 		log.error("value ==> {}",vo);
@@ -123,5 +124,22 @@ public class HomeDataAct {
 		}else {
 			return 0;
 		}
+	}
+	// 정보수정시 세션 id의 비밀번호 맞는지 확인
+	@PostMapping("/data/updateChkPw")
+	public int UpdateChkPw(HttpServletRequest req, @RequestBody Map<String,Object> pw){
+		HttpSession session = req.getSession(false); //세션가져오기
+		MemberVO loginSession = (MemberVO) session.getAttribute("loginSession"); // 세션값 저장
+		String loginId = loginSession.getUId(); //세션에서 아이디만 추출
+		MemberVO result = join.updateChkPw(loginId);
+		log.error("pwchk===>{}", pw.get("upw"));
+		log.error("pwchk result ==> {}",result);
+		if(result.getUPw().equals(pw.get("upw"))){
+			return 1;
+		}else{
+			return 0;
+		}
+
+
 	}
 }

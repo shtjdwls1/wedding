@@ -30,6 +30,7 @@ export class Login{
                     }else{
                         $('body').addClass('modal-open')
                             .css('overflow','hidden').css('padding-right','0px')
+                            .append("<div class='modal-backdrop fade show'></div>")
                         $('#loginModal').addClass('show')
                             .css('display','block')
                             .removeAttr('aria-hidden')
@@ -39,6 +40,7 @@ export class Login{
             }else{
                 $('body').addClass('modal-open')
                     .css('overflow','hidden').css('padding-right','0px')
+                    .append("<div class='modal-backdrop fade show'></div>")
                 $('#loginModal').addClass('show')
                     .css('display','block')
                     .removeAttr('aria-hidden')
@@ -52,6 +54,7 @@ export class Login{
                 .css('display','none')
                 .attr('aria-hidden','true')
                 .removeAttr('aria-modal').removeAttr('role')
+            $('.modal-backdrop').remove()
         })
 
 

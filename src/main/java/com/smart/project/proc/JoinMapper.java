@@ -10,4 +10,5 @@ public interface JoinMapper {
     int save(MemberVO memberVO);
     MemberVO login(MemberVO memberVO);
     MemberVO chkId(MemberVO memberVO);
+    MemberVO updateChkPw(String uid);
 }

@@ -52,7 +52,7 @@ public class HomeAct {
     @RequestMapping("/cookie/add2")
     public String cookieAdd(HttpServletResponse response) throws java.io.UnsupportedEncodingException {
         StudyCookieService.createCookie(response, "USER_ID", "mygod76");
-        StudyCookieService.createCookie(response, "NAME", URLEncoder.encode("김남현", "EUC-KR"));
+        StudyCookieService.createCookie(response, "NAME", URLEncoder.encode("김남현", "UTF-8"));
         StudyCookieService.createCookie(response, "EMP_NO", URLEncoder.encode("emp_no=1234", "UTF-8"));
         return "cookie";
     }
