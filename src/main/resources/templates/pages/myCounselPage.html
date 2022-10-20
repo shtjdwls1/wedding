@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{layouts/myCounselLayout.html}"
+      layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
@@ -11,7 +11,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div layout:fragment="myCounsel">
+<div layout:fragment="content">
 	<!-- 헤더 -->
 	<nav class="navbar navbar-light bg-light sticky-top">
 		<div class="container mx-3">
@@ -43,7 +43,6 @@
 					<tr>
 						<th scope="row">상담일자</th>
 						<td>2022-12-31</td>
-
 					</tr>
 					<tr>
 						<th scope="row">견적</th>

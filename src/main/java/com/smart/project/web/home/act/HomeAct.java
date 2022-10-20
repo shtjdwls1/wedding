@@ -102,6 +102,32 @@ public class HomeAct {
         return "pages/weddingDetailPage";
     }
 
+    @RequestMapping("/plannerDetail")
+    public String plannerDetail() {
+        return "pages/plannerDetailpage";
+    }
+
+    @RequestMapping("/payment")
+    public String payment() {
+        return "pages/paymentPage";
+    }
+
+    @RequestMapping("/wedInfoForm")
+    public String wedInfoForm() {
+        return "pages/wedInfoFormPage";
+    }
+
+    @RequestMapping("/loadingPayment")
+    public String loadingPayment() {
+        return "pages/loadingPaymentPage";
+    }
+
+
+    @RequestMapping("/wedInfo")
+    public String wedInfo() {
+        return "pages/wedInfoPage";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public String homeData() {

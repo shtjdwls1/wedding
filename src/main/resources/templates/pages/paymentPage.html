@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link href="/css/wedding/myReserve.css" rel="stylesheet" type="text/css">
+	<link href="/css/wedding/payment.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div layout:fragment="content">
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand backBtn">
+				<i class="bi bi-arrow-left"></i>
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>예약 정보</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+
+	<!--예약 확인 카드-->
+	<div class="reserveCard mx-3 my-2 mt-3">
+		<div class="Photosec mx-2 ">
+			<div>
+				<img class="wedPhoto" src="/imgs/ReserveWed.jpg">
+			</div>
+		</div>
+		<div class="reserveInfo mx-2">
+			<table class="table table-borderless my-2">
+				<tbody>
+				<tr>
+					<th scope="row">예약홀명</th>
+					<td>A홀</td>
+
+				</tr>
+				<tr>
+					<th scope="row">예약일자</th>
+					<td>2023-01-15</td>
+				</tr>
+				<tr>
+					<th scope="row">예약시간</th>
+					<td>14-16</td>
+				</tr>
+				<tr>
+					<th scope="row">연락처</th>
+					<td>062-123-4567</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 결제 정보-->
+	<div class="paymentSec mt-5 mx-3">
+		<div class="text-center">
+			결제 정보
+		</div>
+		<div class="paymentCard ">
+			<table class="table table-borderless my-2">
+				<tbody>
+				<tr>
+					<th scope="row">예약자명</th>
+					<td>김철수</td>
+
+				</tr>
+				<tr>
+					<th scope="row">연락처</th>
+					<td>010-5465-4564</td>
+				</tr>
+				<tr>
+					<th scope="row">결제금액(대관료)</th>
+					<td>2,000,000</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="completeBtn mt-5">
+		<button class="btn btn-light border-dark" onClick="location.href='/loadingPayment'" type="button">결제 하기</button>
+	</div>
+</div>
+
+</body>
+
+</html>

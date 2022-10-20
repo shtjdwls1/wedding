@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+	<link href="/css/wedding/loadingPayment.css" rel="stylesheet" type="text/css">
+	<th:block th:replace="fragments/head :: headFragment"></th:block>
+
+
+</head>
+<body>
+<div class="background">
+	<div class="loadingPayment">
+		<div class="text-center">결제가 진행중입니다.</div>
+		<div class="text-center">완료가 되면 확인버튼을 눌러주세요.</div>
+		<div class="btnGroup">
+			<div>
+				<div>
+					<button>확인</button>
+				</div>
+				<div>
+					<button>취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

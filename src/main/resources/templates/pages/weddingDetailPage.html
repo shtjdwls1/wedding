@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{layouts/weddingDetailLayout.html}"
+      layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
@@ -13,7 +13,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div layout:fragment="weddingDetail">
+<div layout:fragment="content">
 	<!-- 헤더 -->
 	<nav class="navbar navbar-light bg-light sticky-top">
 		<div class="container mx-3">
@@ -149,7 +149,7 @@
 	<!--예약 확인 영역 -->
 	<div class="checkTime fixed-bottom">
 		<div class="checkTimeInput">선택 안됨</div>
-		<button class="btn btn-sm btn-light border-dark" type="button">예약하기</button>
+		<button class="btn btn-sm btn-light border-dark" onClick="location.href='/payment'" type="button">예약하기</button>
 	</div>
 
 	<!-- 시간 선택 모달 -->

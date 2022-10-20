@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<link href="/css/wedding/wedInfo.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div layout:fragment="content">
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand backBtn">
+				<i class="bi bi-arrow-left"></i>
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>업체 정보</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+	<!-- 업체 정보 카드-->
+	<div class="wedCardSec mt-3 mx-3">
+		<div>내정보</div>
+		<div class="wedCard">
+			<div class="imgInfo">
+				<img class="thumbImg" src="/imgs/noImage.png">
+				<div class="wedInfo mx-3">
+					<div>드메르 웨딩홀</div>
+					<div>062-546-4512</div>
+					<div>광주광역시 광산구</div>
+					<div>임방울대로 549</div>
+				</div>
+			</div>
+			<button class="changeWedBtn" type="button">수정하기</button>
+		</div>
+	</div>
+	<!-- 홀 정보 카드 -->
+	<div class="mt-3 mx-3">홀정보</div>
+	<div class="hallCardSec mt-1 mx-3">
+		<div class="hallCard">
+			<div class="wedInfo mx-3">
+				<table class="table table-borderless my-2">
+					<tbody>
+					<tr>
+						<th scope="row">홀 명</th>
+						<td>A 홀</td>
+					</tr>
+					<tr>
+						<th scope="row">가격</th>
+						<td>1,000,000</td>
+					</tr>
+					<tr>
+						<th scope="row">인원수</th>
+						<td>50~100</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<button class="changeHallBtn" type="button">수정하기</button>
+		</div>
+	</div>
+
+	<!--홀 등록 폼-->
+	<div class="addHallForm mx-3 mt-3 ">
+		<form class="mx-4 mt-2">
+			<div>
+				<label class="form-label" for="hallName">홀 이름</label>
+				<input class="form-control" id="hallName" type="text">
+			</div>
+			<div>
+				<label class="form-label" for="hallPrice">가격</label>
+				<input class="form-control" id="hallPrice" type="text">
+			</div>
+			<label class="form-label">인원수</label>
+			<div class="minMaxPeople">
+				<div class="row mx-3">
+					<div class="col">
+						<input class="form-control minPeoInput" placeholder="최소" type="number">
+					</div>
+					<div class="col text-center">
+						~
+					</div>
+					<div class="col">
+						<input class="form-control maxPeoInput" placeholder="최대" type="number">
+					</div>
+				</div>
+			</div>
+			<!--시간등록-->
+			<label class="form-label">운영회차</label>
+			<div class="timeForm">
+				<table class="table">
+					<tbody>
+					<tr>
+						<th scope="row">1회차 :</th>
+						<td>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+							<div>~</div>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">2회차 :</th>
+						<td>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+							<div>~</div>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">3회차 :</th>
+						<td>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+							<div>~</div>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">4회차 :</th>
+						<td>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+							<div>~</div>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">5회차 :</th>
+						<td>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+							<div>~</div>
+							<div class="timeInput">
+								<div>-- -- : --</div>
+								<i class="bi bi-clock"></i>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--사진등록-->
+			<div class="uploadPhoto">
+
+			</div>
+			<div class="d-grid gap-2 col-6 mx-auto mb-3">
+				<button class="btn btn-light border-dark" type="button">정보 등록</button>
+			</div>
+		</form>
+	</div>
+
+	<!--홀 추가 등록하기-->
+	<div class="addHall mt-2" type="button">
+		<div>홀 등록하기</div>
+		<div>
+			<i class="bi bi-plus-lg"></i>
+		</div>
+	</div>
+
+
+</div>
+
+</body>
+
+</html>
