@@ -112,6 +112,7 @@ public class HomeAct {
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         if(session!=null){
+            log.error("deleteSessionbefore ==>{}",session.getAttribute("loginSession"));
             session.invalidate();
         }
         return "index";
