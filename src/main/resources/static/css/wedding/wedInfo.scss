@@ -1,0 +1,134 @@
+.wedCard {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 2vh;
+  padding: 0.5vh;
+  align-items: center;
+  justify-content: space-between;
+
+  .imgInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .thumbImg {
+      width: 10vh;
+      height: 10vh;
+      border: 1px solid black;
+      border-radius: 2vh;
+    }
+  }
+
+  .changeWedBtn {
+    width: 10vh;
+    height: 10vh;
+    border: 1px solid black;
+    border-radius: 2vh;
+  }
+}
+
+.hallCardSec {
+  .hallCard {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 2vh;
+    padding: 0 0.5vh;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  th {
+    padding: 0;
+  }
+
+  td {
+    padding: 0 5vh;
+  }
+
+  .changeHallBtn {
+    width: 10vh;
+    height: 6vh;
+    border: 1px solid black;
+    border-radius: 2vh;
+  }
+}
+
+.addHall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.addHallForm {
+  border: 1px solid black;
+  border-radius: 2vw;
+
+  .minMaxPeople {
+    display: flex;
+
+    input {
+      width: 25vw;
+    }
+  }
+
+  .timeForm {
+    .timeInput {
+      border: 1px solid black;
+      border-radius: 2vh;
+      width: 28vw;
+      text-align: center;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    td {
+      display: flex;
+    }
+  }
+
+  .uploadPhoto {
+    .image {
+      display: block;
+      width: 100%;
+    }
+
+    .image-label {
+      position: relative;
+      bottom: 22px;
+      left: 5px;
+      color: white;
+      text-shadow: 2px 2px 2px black;
+    }
+
+    #multipleContainer {
+
+      ::-webkit-scrollbar {
+
+        width: 3px;
+        height: 3px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: #e2e4e5 /*스크롤바의 색상*/
+      }
+
+      .column {
+
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        .image {
+          height: 20vw;
+          width: 30vw;
+          border: 0px;
+          flex: 0 0 auto;
+          padding-right: 1vh;
+        }
+      }
+    }
+  }
+}
