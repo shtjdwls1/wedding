@@ -10,10 +10,11 @@ module.exports = {
             path.join(context, '/js/module/common/customize.js'),			// js내장객체 확장및 변경 모듈
             path.join(context, '/js/bridge/bridgeFactory.js'),				// bridge
             path.join(context, '/js/module/common/socketReceive.js'),		// 소켓
-            path.join(context, '/js/module/common/historyUtil.js')			// HistoryUtil
+            path.join(context, '/js/module/common/historyUtil.js')// HistoryUtil
         ],
         sample: path.join(context, '/js/sample/sample.js'),
         join: path.join(context, '/js/join/join.js'),
+        login: path.join(context,'/js/wedding/login.js')
     },
     devtool: 'eval',//inline-source-map, eval
     devServer: {

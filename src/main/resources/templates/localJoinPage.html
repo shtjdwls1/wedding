@@ -13,76 +13,73 @@
 <body>
 <div layout:fragment="content">
 
-	<div>
-		<form class="mx-5 mt-3">
-			<label class="form-label" for="clasify">회원분류</label>
-			<div class="input-group mb-3">
-				<div aria-describedby="button-addon2" aria-label="Recipient's username"
-				     class="form-control text-center clasifyInput"
-				     id="clasify" readonly type="text" value="">
-					일반 회원
-				</div>
-				<button class="btn btn-outline-secondary" id="clasifyBtn" type="button">
-					<i class="bi bi-caret-down" onclick="controllClasifyModal()"></i>
-				</button>
-			</div>
-			<label class="form-label" for="checkId">아이디</label>
-			<div class="input-group mb-3">
-				<input aria-describedby="button-addon2" aria-label="Recipient's username" class="form-control"
-				       id="checkId" placeholder="사용할 아이디를 입력하여 주세요" type="text">
-				<button class="btn btn-outline-secondary" data-bs-target="#idCheckModal" data-bs-toggle="modal"
-				        id="checkIdBtn"
-				        type="button">
-					중복확인
-				</button>
-			</div>
-			<div class="mb-3">
-				<label class="form-label" for="inputPw">비밀번호</label>
-				<input class="form-control" id="inputPw" placeholder="8~16자 영문 대 소문자,숫자,특수문자를 사용하세요" type="password">
-			</div>
-			<div class="mb-3">
-				<label class="form-label" for="checkPw">비밀번호 확인</label>
-				<input class="form-control" id="checkPw" placeholder="8~16자 영문 대 소문자,숫자,특수문자를 사용하세요" type="password">
-			</div>
-			<div class="mb-3">
-				<label class="form-label" for="inputName">이름</label>
-				<input aria-describedby="emailHelp" class="form-control" id="inputName" placeholder="실명을 입력해주세요"
-				       type="text">
-			</div>
-			<div class="row mb-3">
-				<label class="mb-2" for="tel1">연락처</label>
-				<div class="col">
-					<input aria-label="First name" class="form-control" id="tel1" maxlength="3"
-					       placeholder="010" type="tel">
-				</div>
-				-
-				<div class="col">
-					<input aria-label="Last name" class="form-control" id="tel2" maxlength="4" placeholder="1234"
-					       type="tel">
-				</div>
-				-
-				<div class="col">
-					<input aria-label="Last name" class="form-control" id="tel3" maxlength="4" placeholder="5678"
-					       type="tel">
-				</div>
-			</div>
-			<label class="form-label" for="checkCity">지역</label>
-			<div class="input-group mb-3">
-				<input aria-describedby="button-addon2" aria-label="Recipient's username"
-				       class="text-center form-control"
-				       id="checkCity" readonly type="text" value="서울">
-				<button class="btn btn-outline-secondary" id="checkCityBtn" onclick="controllLocationModal()"
-				        type="button">
-					<i class="bi bi-caret-down"></i>
-				</button>
-			</div>
-			<div class="d-grid gap-2 col-6 mx-auto mt-5">
-				<button class="btn btn-light btn-outline-dark" type="button">
-					회원가입
-				</button>
-			</div>
-		</form>
-	</div>
+    <div>
+        <form class="mx-5 mt-3" id="wedding_joinForm">
+            <label class="form-label" for="clasify">회원분류</label>
+            <div class="input-group mb-3">
+                <input aria-describedby="button-addon2" aria-label="Recipient's username"
+                       class="form-control text-center clasifyInput"
+                       id="clasify" readonly type="text" value="일반회원" name="uauth">
+                <button class="btn btn-outline-secondary" id="clasifyBtn" type="button">
+                    <i class="bi bi-caret-down" onclick="controllClasifyModal()"></i>
+                </button>
+            </div>
+            <label class="form-label" for="checkId">아이디</label>
+            <div class="mb-3">
+                <input aria-describedby="button-addon2" aria-label="Recipient's username" class="form-control"
+                       id="checkId" placeholder="사용할 아이디를 입력하여 주세요" type="text" name="uid" >
+                <span id="idc" class="already hidden"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="inputPw">비밀번호</label>
+                <input class="form-control" id="inputPw" placeholder="8~16자 영문 대 소문자,숫자,특수문자를 사용하세요" type="password" name="upw" maxlength="16" >
+                <span id="pwc"></span>
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="checkPw">비밀번호 확인</label>
+                <input class="form-control" id="checkPw" placeholder="8~16자 영문 대 소문자,숫자,특수문자를 사용하세요" type="password" maxlength="16" >
+                <span id="pwsc"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="inputName">이름</label>
+                <input aria-describedby="emailHelp" class="form-control" id="inputName" placeholder="실명을 입력해주세요"
+                       type="text" name="uname" >
+            </div>
+            <div class="row mb-3">
+                <label class="mb-2" for="tel1">연락처</label>
+                <div class="col">
+                    <input aria-label="First name" class="form-control" id="tel1" maxlength="3"
+                           placeholder="010" type="tel" name="utel_front" >
+                </div>
+                -
+                <div class="col">
+                    <input aria-label="Last name" class="form-control" id="tel2" maxlength="4" placeholder="1234"
+                           type="tel" name="utel_mid" >
+                </div>
+                -
+                <div class="col">
+                    <input aria-label="Last name" class="form-control" id="tel3" maxlength="4" placeholder="5678"
+                           type="tel" name="utel_end" >
+                </div>
+            </div>
+            <label class="form-label" for="checkCity">지역</label>
+            <div class="input-group mb-3">
+                <input aria-describedby="button-addon2" aria-label="Recipient's username"
+                       class="text-center form-control"
+                       id="checkCity" readonly type="text" value="서울" name="ulocation">
+                <button class="btn btn-outline-secondary" id="checkCityBtn" onclick="controllLocationModal()"
+                        type="button">
+                    <i class="bi bi-caret-down"></i>
+                </button>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                <button class="btn btn-light btn-outline-dark btn_wedding_join" type="button">
+                    회원가입
+                </button>
+            </div>
+        </form>
+    </div>
 
 	<!-- 회원 분류 모달 -->
 	<div class="testModal hidden clasifyModal">
@@ -136,20 +133,19 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- 중복 모달-->
-	<div aria-hidden="true" aria-labelledby="idCheckModalLabel" class="modal fade" id="idCheckModal" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
-			<div class="modal-content text-center">
-				<div class="modal-body mx-4 mt-4">
-					<strong>중복된 아이디 입니다.</strong>
-					<div class="d-grid gap-2 col-4 mx-auto mt-4">
-						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- 모달	-->
+    <div aria-hidden="true" aria-labelledby="loginModalLabel" class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+            <div class="modal-content text-center">
+                <div class="modal-body mx-4 mt-4">
+                    <strong id="mdtxt">정보를 올바르게 입력해주세요.</strong>
+                    <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                        <button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button" id="loginModalClose">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

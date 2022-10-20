@@ -2,64 +2,41 @@ package com.smart.project.web.home.act;
 
 import com.smart.project.common.vo.InternCookie;
 import com.smart.project.component.CommonCodeComponent;
-import com.smart.project.component.data.CodeObject;
-import com.smart.project.proc.JoinMapper;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
 import com.smart.project.web.home.vo.MemberVO;
-import com.smart.project.web.home.vo.TestVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class HomeAct {
 
-	final private
-	CommonCodeComponent commonCodeComponent;
+    final private
+    CommonCodeComponent commonCodeComponent;
 
-	final private Test test;
-
-
-    @RequestMapping("/")
-    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
-        if (StringUtils.isNotEmpty(cookie.getUserId())) {
-            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
+    final private Test test;
+    // 메인 들어올때
+	@RequestMapping("/")
+	public String home(Model model, InternCookie cookie, HttpServletRequest request){
+		if(StringUtils.isNotEmpty(cookie.getUserId())){
+			log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
+		}
+        // 서블릿 HTTP 세션 사용
+        HttpSession session = request.getSession(false);
+        if(session!=null){
+            MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
         }
-        model.addAttribute("data", commonCodeComponent.getCodeList("style_f"));
-        model.addAttribute("data2", commonCodeComponent.getCodeList("character_f"));
-
-        Map<String, CodeObject> data = commonCodeComponent.getAll();
-
-        log.error("***************************************");
-        List<TestVO> list = test.sqlMenu2("");
-        for (TestVO dt : list) {
-            log.error("{}//{}", dt.getUserId(), dt.getUserName());
-        }
-        //log.error("{}", list);
-        log.error("***************************************");
-
-        Iterator<String> keys = data.keySet().iterator();
-        while (keys.hasNext()) {
-            String key = keys.next();
-            //log.error("key==>{}, list==>{}", key, data.get(key));
-            model.addAttribute(key, data.get(key).getCodeList());
-        }
-
-        //log.error("{}",data);
         return "index";
     }
 
@@ -162,4 +139,15 @@ public class HomeAct {
     public String homeData() {
         return "index";
     }
+    // 로그아웃
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session!=null){
+            log.error("deleteSessionbefore ==>{}",session.getAttribute("loginSession"));
+            session.invalidate();
+        }
+        return "index";
+    }
+
 }

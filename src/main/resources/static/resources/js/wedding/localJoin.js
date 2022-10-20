@@ -91,4 +91,3 @@ function controllLocationModal() {
 window.addEventListener('click', (e) => {
     e.target === locationModal ? locationModal.classList.add('hidden') : false
 })
-
