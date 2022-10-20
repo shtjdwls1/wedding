@@ -104,4 +104,9 @@ window.addEventListener('click', (e) => {
 })
 
 //모비 스크롤
-mobiscroll.datepicker('#date')
+mobiscroll.datepicker('#date', {
+    controls: ['date'],
+    touchUi: true,
+    locale: mobiscroll.localeKo,
+    dateFormat: 'YYYY-MM-DD'
+})

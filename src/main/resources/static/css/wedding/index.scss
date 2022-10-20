@@ -9,16 +9,7 @@
 
 
 .outerMyCityWedding {
-  //width: 100vh;
-  //height: 100vw;
-  //transform: rotate(-90deg);
-  //transform-origin: top left;
-  //overflow-y: scroll;
-  //overflow-x: hidden;
-  //position: absolute;
-  //transform: rotate(-90deg) translateX(-100vh);
-  //scrollbar-width: none;
-  //-ms-overflow-style: none;
+
   ::-webkit-scrollbar {
     //display: none;
     width: 3px;
@@ -30,12 +21,7 @@
   }
 
   .myCityWedding {
-    //display: flex;
-    //flex-direction: row;
-    //width: 350vw;
-    //transform: rotate(90deg);
-    //transform-origin: top left;
-    //transform: rotate(90deg) translateY(-100vh);
+
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
@@ -47,8 +33,7 @@
       flex: 0 0 auto;
 
       .card-body {
-        //display: flex;
-        //justify-content: center;
+
         text-align: center;
 
       }
@@ -100,3 +85,12 @@
     }
   }
 }
+
+.indexSearchBtn {
+  width: 20vw;
+  height: 5vh;
+  border: 1px solid black;
+  border-radius: 1vw;
+}
+
+

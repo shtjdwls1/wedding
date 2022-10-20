@@ -18,12 +18,13 @@
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
 	<div class="searchHeader d-flex justify-content-between mx-4 my-4">
-		<button class="btn btn-light mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
-		<button class="btn btn-light mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼</button>
-		<button class="btn btn-light mx-2 my-2" onclick="controllDateModal()" type="button">날짜 선택</button>
-		<button class="btn btn-light mx-2 my-2" type="button">검색</button>
+		<button class="indexSearchBtn  mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
+		<button class="indexSearchBtn  mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼
+		</button>
+		<input class="indexSearchBtn  mx-2 my-2" id="date" placeholder="날짜선택">
+		<button class="indexSearchBtn  mx-2 my-2" type="button">검색</button>
 	</div>
-	<input id="datepicker" placeholder="Please Select...">
+
 	<!-- 이벤트 배너	-->
 	<div class="carousel slide mx-3" data-bs-ride="carousel" id="carouselEventControl">
 		<div class="carousel-inner">
@@ -153,7 +154,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="modalOption clasifyOption">플래너</div>
-				<div class="modalOption clasifyOption">웨딩홀업주</div>
+				<div class="modalOption clasifyOption">웨딩홀</div>
 			</div>
 		</div>
 	</div>
@@ -188,22 +189,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 날짜 선택 모달	-->
-	<div class="testModal hidden dateModal">
-		<div class="testModalShape modal-content">
-			<div class="modal-header d-flex justify-content-center align-content-center">
-				<h5 class="modal-title">
-					날짜선택
-				</h5>
-				<button class="modalCloseBtn" onclick="controllDateModal()">
-					<i class="bi bi-x-circle"></i>
-				</button>
-			</div>
-			<div class="modal-body">
-				<input id="myInput">
-			</div>
-		</div>
-	</div>
+
 </div>
 </body>
 </html>
