@@ -19,15 +19,29 @@ export class Join
 			console.log("wjfd==>{}",joinFormData)
 			console.log(joinFormData)
 			if(checkAll()){
-				axios.post('/data/join',joinFormData).then((result)=> {
-					if(result.data>0){
-						alert("가입성공")
-						location.href = "/";
-					}else{
-						alert("정보를 올바르게 입력해주세요")
-						location.href="localJoin";
-					}
-				})
+				if($('#idc').hasClass("cnuid")){
+					axios.post('/data/join',joinFormData).then((result)=> {
+						if(result.data>0){
+							$('#mdtxt').html("가입을 축하드립니다.")
+							modalOn();
+							$('#loginModalClose').on('click',()=>{
+								modalClose(true)
+							});
+						}else{
+							$('#mdtxt').html("정보를 올바르게 입력해주세요.")
+							modalOn();
+							$('#loginModalClose').on('click',()=>{
+								modalClose(false)
+							});
+						}
+					})
+				}else{
+					$('#mdtxt').html("정보를 올바르게 입력해주세요.")
+					modalOn();
+					$('#loginModalClose').on('click',()=>{
+						modalClose(false)
+					});
+				}
 			}
 		})
 		/*
@@ -35,7 +49,7 @@ export class Join
 		 */
 		$('#checkId').on("focus",(e)=>{
 			$(e.currentTarget).val('')
-			$('#idc').addClass("hidden").removeAttr("color")
+			$('#idc').addClass("hidden").removeClass("cnuid").removeAttr("color")
 		})
 		$('#checkId').on('blur',(e)=>{
 			let data = {"uid":$('#checkId').val()}
@@ -46,7 +60,7 @@ export class Join
 						if(result.data!==1){
 							$('#idc').removeClass("hidden").html("이미 사용중인 아이디입니다.").css("color","red")
 						}else{
-							$('#idc').removeClass("hidden").html("사용 가능한 아이디입니다.").css("color","green")
+							$('#idc').addClass("cnuid").removeClass("hidden").html("사용 가능한 아이디입니다.").css("color","green")
 						}
 					}
 				)
@@ -153,6 +167,20 @@ export class Join
 			$('#pwc').html(message).css('color',color);
 		})
 		/*
+		 * 비밀번호 동일성 체크
+		 */
+		$('#checkPw').on('keyup',(e)=>{
+			if($('#checkPw').val()!==''){
+				if($('#inputPw').val()===$('#checkPw').val()){
+					$('#pwsc').html("").removeAttr("color")
+				}else{
+					$('#pwsc').html("입력한 비밀번호와 다릅니다.").css("color","red")
+				}
+			}else{
+				$('#pwsc').html("").removeAttr("color")
+			}
+		})
+		/*
 		 * 폼 공백 체크 및 비밀번호 동일 체크
 		 */
 		function checkAll() {
@@ -190,6 +218,30 @@ export class Join
 				return false;
 			}
 			return true;
+		}
+
+		/*
+		 * 회원가입 실패시 모달
+		 */
+
+		function modalClose(tf){
+			$('body').removeClass('modal-open')
+				.css('overflow','').css('padding-right','')
+			$('#loginModal').addClass('show')
+				.css('display','none')
+				.attr('aria-hidden','true')
+				.removeAttr('aria-modal').removeAttr('role')
+			if(tf===true){
+				location.href="/login"
+			}
+		}
+		function modalOn(){
+			$('body').addClass('modal-open')
+				.css('overflow','hidden').css('padding-right','0px')
+			$('#loginModal').addClass('show')
+				.css('display','block')
+				.removeAttr('aria-hidden')
+				.attr('aria-modal','true').attr('role','dialog')
 		}
 	}
 }

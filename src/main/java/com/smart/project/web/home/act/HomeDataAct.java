@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Slf4j
@@ -96,11 +98,16 @@ public class HomeDataAct {
 	}
 
 	@PostMapping("/data/login")
-	public int MemberLogin(@RequestBody MemberVO vo){
+	public int MemberLogin(@RequestBody MemberVO vo, HttpServletRequest request){
 		log.error("value ==> {}",vo);
 		MemberVO result = join.login(vo);
 		log.error("result ==> {}",result);
+		// 로그인 실행후 결과값이 널이 아니면 세션생성, 리턴 1
+		// 널이면 리턴 0
 		if(result!=null){
+			HttpSession session = request.getSession();
+			session.setAttribute("loginSession", result);
+			log.error("session ==> {}",session.getAttribute("loginSession"));
 			return 1;
 		}else {
 			return 0;

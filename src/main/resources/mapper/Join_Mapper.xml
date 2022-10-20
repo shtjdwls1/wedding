@@ -3,7 +3,7 @@
 <mapper namespace="com.smart.project.proc.JoinMapper">
 
     <insert id="save"  useGeneratedKeys="true">
-        INSERT INTO user(u_auth,u_id,u_pw,u_name,u_tel,u_location) VALUES(#{u_auth},#{u_id},#{u_pw},#{u_name},#{u_tel},#{u_location});
+        INSERT INTO user(u_auth,u_id,u_pw,u_name,u_tel,u_location) VALUES(#{uAuth},#{uId},#{uPw},#{uName},#{uTel},#{uLocation});
     </insert>
     <select id="findByEmail" resultType="com.smart.project.web.home.vo.MemberVO">
         SELECT * FROM user WHERE u_id = #{email};
