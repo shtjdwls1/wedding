@@ -61,7 +61,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllClasifyModal('A홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark" onclick="controllHallModal('A홀')" type="button">시간 선택
 				</button>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllClasifyModal('B홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark" onclick="controllHallModal('B홀')" type="button">시간 선택
 				</button>
 			</div>
 		</div>
@@ -139,7 +139,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllClasifyModal('C홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark" onclick="controllHallModal('C홀')" type="button">시간 선택
 				</button>
 			</div>
 		</div>
@@ -153,22 +153,22 @@
 	</div>
 
 	<!-- 시간 선택 모달 -->
-	<div class="testModal hidden clasifyModal">
+	<div class="testModal hidden hallTimeModal">
 		<div class="testModalShape modal-content">
 			<div class="modal-header d-flex justify-content-center align-content-center">
 				<h5 class="modal-title">
 					시간선택
 				</h5>
-				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+				<button class="modalCloseBtn" onclick="controllHallModal()">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="modalOption clasifyOption">10-12</div>
-				<div class="modalOption clasifyOption">12-14</div>
-				<div class="modalOption clasifyOption">14-16</div>
-				<div class="modalOption clasifyOption">16-18</div>
-				<div class="modalOption clasifyOption">18-20</div>
+				<div class="modalOption hallTimeOption">10:00-12:00</div>
+				<div class="modalOption hallTimeOption">12:00-14:00</div>
+				<div class="modalOption hallTimeOption">14:00-16:00</div>
+				<div class="modalOption hallTimeOption">16:00-18:00</div>
+				<div class="modalOption hallTimeOption">18:00-20:00</div>
 			</div>
 		</div>
 	</div>

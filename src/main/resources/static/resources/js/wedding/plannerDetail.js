@@ -21,25 +21,22 @@ commentBtn.onclick = function () {
 
 // 모달
 
-const clasifyBtn = document.getElementById('clasifyBtn');
-const clasifyModal = document.querySelector('.clasifyModal');
-const clasifyInput = document.querySelector(".sortBtn")
+const sortModal = document.querySelector('.sortModal');
+const sortBtn = document.querySelector(".sortBtn")
 
 // 모달 창 나타나기, 엑스버튼 클릭시 모달창 사라지기.
 function controllClasifyModal() {
-    clasifyModal.classList.toggle('hidden')
+    sortModal.classList.toggle('hidden')
 }
 
 //외부 클릭시 모달창 닫기
 window.addEventListener('click', (e) => {
-    e.target === clasifyModal ? clasifyModal.classList.add('hidden') : false
+    e.target === sortModal ? sortModal.classList.add('hidden') : false
 })
 
 
 // 옵션 클릭시 색 변경, 체크 추가
-const modalOption = document.getElementsByClassName("modalOption");
-const clasifyOption = document.getElementsByClassName("clasifyOption");
-const locationOption = document.getElementsByClassName("locationOption")
+const sortOption = document.getElementsByClassName("sortOption");
 
 function handleClickClasify(event) {
     console.log(event.target);
@@ -52,21 +49,21 @@ function handleClickClasify(event) {
         event.target.classList.remove("clicked");
 
     } else {
-        for (var i = 0; i < clasifyOption.length; i++) {
-            clasifyOption[i].classList.remove("clicked");
+        for (var i = 0; i < sortOption.length; i++) {
+            sortOption[i].classList.remove("clicked");
         }
 
         event.target.classList.add("clicked");
         console.log("누른거!" + event.target.textContent)
-        clasifyInput.innerText = event.target.textContent;
+        sortBtn.innerText = event.target.textContent;
         controllClasifyModal();
 
     }
 }
 
 function init() {
-    for (var i = 0; i < clasifyOption.length; i++) {
-        clasifyOption[i].addEventListener("click", handleClickClasify);
+    for (var i = 0; i < sortOption.length; i++) {
+        sortOption[i].addEventListener("click", handleClickClasify);
     }
 }
 

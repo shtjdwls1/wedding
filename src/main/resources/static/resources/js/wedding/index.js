@@ -1,6 +1,7 @@
 const clasifyBtn = document.querySelector('.clasifyBtn');
 const locationBtn = document.querySelector('.locationBtn')
 const clasifyModal = document.querySelector('.clasifyModal');
+const dateModal = document.querySelector('.dateModal')
 
 // 모달 창 나타나기, 엑스버튼 클릭시 모달창 사라지기.
 function controllClasifyModal() {
@@ -92,3 +93,15 @@ window.addEventListener('click', (e) => {
     e.target === locationModal ? locationModal.classList.add('hidden') : false
 })
 
+// 달력 선택 모달 창 나타나기, 사라지기
+function controllDateModal() {
+    dateModal.classList.toggle('hidden')
+}
+
+//외부 클릭시 모달창 닫기
+window.addEventListener('click', (e) => {
+    e.target === dateModal ? dateModal.classList.add('hidden') : false
+})
+
+//모비 스크롤
+mobiscroll.datepicker('#date')

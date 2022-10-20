@@ -146,6 +146,16 @@ public class HomeAct {
         return "pages/wedInfoPage";
     }
 
+    @RequestMapping("/adminReserve")
+    public String adminReserve() {
+        return "pages/adminReservePage";
+    }
+
+    @RequestMapping("/plannerInfoFrom")
+    public String plannerInfoFrom() {
+        return "pages/plannerInfoFromPage";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public String homeData() {

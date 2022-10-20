@@ -10,6 +10,8 @@
 	<link rel="stylesheet" th:href="@{/css/wedding/index.css}">
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 <body>
@@ -18,10 +20,10 @@
 	<div class="searchHeader d-flex justify-content-between mx-4 my-4">
 		<button class="btn btn-light mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
 		<button class="btn btn-light mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼</button>
-		<button class="btn btn-light mx-2 my-2" type="button">날짜 선택</button>
+		<button class="btn btn-light mx-2 my-2" onclick="controllDateModal()" type="button">날짜 선택</button>
 		<button class="btn btn-light mx-2 my-2" type="button">검색</button>
 	</div>
-
+	<input id="datepicker" placeholder="Please Select...">
 	<!-- 이벤트 배너	-->
 	<div class="carousel slide mx-3" data-bs-ride="carousel" id="carouselEventControl">
 		<div class="carousel-inner">
@@ -187,18 +189,18 @@
 		</div>
 	</div>
 	<!-- 날짜 선택 모달	-->
-	<div class="testModal hidden locationModal">
+	<div class="testModal hidden dateModal">
 		<div class="testModalShape modal-content">
 			<div class="modal-header d-flex justify-content-center align-content-center">
 				<h5 class="modal-title">
 					날짜선택
 				</h5>
-				<button class="modalCloseBtn">
+				<button class="modalCloseBtn" onclick="controllDateModal()">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
 			<div class="modal-body">
-
+				<input id="myInput">
 			</div>
 		</div>
 	</div>
