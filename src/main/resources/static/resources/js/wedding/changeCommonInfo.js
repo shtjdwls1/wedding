@@ -32,13 +32,23 @@ export class ChangeCommonInfo
         })
         // 회원탈퇴버튼 클릭시 이벤트
         $('#btnDeleteInfo').on('click',()=>{
-            modalOn()
-            $('#deleteModalClose').on('click',()=>{
-                modalClose()
-                axios.post('/data/deleteInfo').then((result)=>{
+            let pw = $('#exampleInputPassword1').val()
+            axios.post('/data/updateChkPw',{"upw":pw}).then((result)=>{
+                console.log(result.data)
+                if(result.data===1){
+                    modalOn()
+                    $('#deleteModalClose').on('click',()=>{
+                        modalClose()
+                        axios.post('/data/deleteInfo').then((result)=>{
+                            console.log(result.data)
+                            location.href="/"
+                        })
+                    });
+                }else{
+                    $('#pwsc').css("color","red")
+                }
+            })
 
-                })
-            });
         })
         function modalOn(){
             $('body').addClass('modal-open')
@@ -58,5 +68,8 @@ export class ChangeCommonInfo
                 .removeAttr('aria-modal').removeAttr('role')
             $('.modal-backdrop').remove()
         }
+        // $('#deleteModalClose,').on('click',()=>{
+        //     modalClose()
+        // })
     }
 }

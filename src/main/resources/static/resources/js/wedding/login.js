@@ -28,26 +28,26 @@ export class Login{
                     if(result.data===1) {
                         location.href = "/";
                     }else{
-                        $('body').addClass('modal-open')
-                            .css('overflow','hidden').css('padding-right','0px')
-                            .append("<div class='modal-backdrop fade show'></div>")
-                        $('#loginModal').addClass('show')
-                            .css('display','block')
-                            .removeAttr('aria-hidden')
-                            .attr('aria-modal','true').attr('role','dialog')
+                        modalOn()
                     }
                 })
             }else{
-                $('body').addClass('modal-open')
-                    .css('overflow','hidden').css('padding-right','0px')
-                    .append("<div class='modal-backdrop fade show'></div>")
-                $('#loginModal').addClass('show')
-                    .css('display','block')
-                    .removeAttr('aria-hidden')
-                    .attr('aria-modal','true').attr('role','dialog')
+                modalOn()
             }
         })
         $('#loginModalClose').on('click',()=>{
+            modalClose()
+        })
+        function modalOn(){
+            $('body').addClass('modal-open')
+                .css('overflow','hidden').css('padding-right','0px')
+                .append("<div class='modal-backdrop fade show'></div>")
+            $('#loginModal').addClass('show')
+                .css('display','block')
+                .removeAttr('aria-hidden')
+                .attr('aria-modal','true').attr('role','dialog')
+        }
+        function modalClose(){
             $('body').removeClass('modal-open')
                 .css('overflow','').css('padding-right','')
             $('#loginModal').addClass('show')
@@ -55,6 +55,19 @@ export class Login{
                 .attr('aria-hidden','true')
                 .removeAttr('aria-modal').removeAttr('role')
             $('.modal-backdrop').remove()
+        }
+        $('.modal-dialog-centered').on('click',()=>{
+            modalClose()
+        })
+        // 비밀번호 표시
+        $('.pw_hide').on('click',(e) => {
+            if ($('.pw_hide').hasClass('active')){
+                $('.pw_hide').removeClass('active');
+                $('#inputPassword').prop("type", "password");
+            }else{
+                $('.pw_hide').addClass('active');
+                $('#inputPassword').prop("type", "text");
+            }
         })
 
 

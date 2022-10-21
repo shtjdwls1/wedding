@@ -11,10 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -97,6 +94,7 @@ public class HomeDataAct {
 		return data;
 	}
 
+
 	@PostMapping("/data/login")
 	public int MemberLogin(@RequestBody MemberVO vo, HttpServletRequest request){
 		log.error("value ==> {}",vo);
@@ -139,7 +137,16 @@ public class HomeDataAct {
 		}else{
 			return 0;
 		}
-
-
+	}
+	// 회원탈퇴
+	@PostMapping("/data/deleteInfo")
+	public int DeleteInfo(HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		MemberVO loginSession = (MemberVO)session.getAttribute("loginSession");
+		String loginId = loginSession.getUId();
+		int result =join.delete(loginId);
+		session.invalidate();
+		log.error("delete result ===>{}",result);
+		return result;
 	}
 }
