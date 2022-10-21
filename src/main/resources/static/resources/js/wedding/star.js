@@ -1,7 +1,3 @@
 const drawStar = (target) => {
-    console.log(target);
-    console.log(this)
-    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+    document.querySelector(`.star .${target.id}`).style.width = `${target.value * 10}%`;
 }
-
-
