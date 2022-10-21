@@ -31,8 +31,9 @@ public class MyReserveAct {
         for (MyReserveVO vo : list) {
             log.error("예약번호 : {}", vo.getHReserveIdx());
         }
-        model.addAttribute("myReserves", list);
 
+        model.addAttribute("myReserves", list);
+        log.error("model확인 : {}", model);
 
         return "pages/myReservePage";
     }

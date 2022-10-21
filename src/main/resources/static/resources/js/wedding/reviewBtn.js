@@ -1,6 +1,6 @@
 const changeText = (target) => {
     let reviewBtn = document.querySelector(`#${target.id}`);
-    let targetIndex = reviewBtn.id
+    let targetIndex = reviewBtn.id.substring(9);
     let star = document.getElementById("star" + targetIndex).value
     let review = document.getElementById("textArea_byteLimit" + targetIndex).value
     let planner = document.getElementById("p_idx" + targetIndex).textContent

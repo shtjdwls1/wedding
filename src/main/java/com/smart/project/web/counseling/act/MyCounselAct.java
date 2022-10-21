@@ -29,7 +29,7 @@ public class MyCounselAct {
 
     @RequestMapping("/myCounsel")
     public String myCounsel(Model model) {
-        int u_idx = 4;
+        int u_idx = 1;
         log.error("세션1 : {}", u_idx);
 
         List<MyCounselVO> list = myCounselService.myCounsel(u_idx);
