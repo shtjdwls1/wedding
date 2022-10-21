@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{layouts/socialJoinLayout.html}"
+      layout:decorate="~{layouts/joinLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
 >
@@ -11,14 +11,16 @@
 
 </head>
 <body>
-<div layout:fragment="socialJoin">
+<div layout:fragment="content">
 	<div>
 		<form class="mx-5 mt-5">
 			<label class="form-label" for="clasify">회원분류</label>
 			<div class="input-group mb-3">
-				<input aria-describedby="button-addon2" aria-label="Recipient's username"
-				       class="form-control text-center clasifyInput"
-				       id="clasify" readonly type="text" value="일반회원">
+				<div aria-describedby="button-addon2" aria-label="Recipient's username"
+				     class="form-control text-center clasifyInput"
+				     id="clasify" readonly type="text" value="">
+					일반 회원
+				</div>
 				<button class="btn btn-outline-secondary" id="clasifyBtn" type="button">
 					<i class="bi bi-caret-down" onclick="controllClasifyModal()"></i>
 				</button>

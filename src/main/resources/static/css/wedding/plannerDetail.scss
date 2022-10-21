@@ -1,0 +1,29 @@
+.plannerIntro {
+  #intro {
+    border: 1px solid black;
+    width: 100%;
+  }
+}
+
+.temImg {
+  width: 92%;
+}
+
+.commentTop {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+.commentSec {
+  .countComment {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .commentView {
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+}

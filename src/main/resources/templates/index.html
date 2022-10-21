@@ -10,16 +10,19 @@
 	<link rel="stylesheet" th:href="@{/css/wedding/index.css}">
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 </head>
 <body>
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
 	<div class="searchHeader d-flex justify-content-between mx-4 my-4">
-		<button class="btn btn-light mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
-		<button class="btn btn-light mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼</button>
-		<button class="btn btn-light mx-2 my-2" type="button">날짜 선택</button>
-		<button class="btn btn-light mx-2 my-2" type="button">검색</button>
+		<button class="indexSearchBtn  mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
+		<button class="indexSearchBtn  mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼
+		</button>
+		<input class="indexSearchBtn  mx-2 my-2" id="date" placeholder="날짜선택">
+		<button class="indexSearchBtn  mx-2 my-2" type="button">검색</button>
 	</div>
 
 	<!-- 이벤트 배너	-->
@@ -53,7 +56,7 @@
 	<!-- 내 지역 웨딩슬라이드 -->
 	<div class="outerMyCityWedding ">
 		<div class="myCityWedding">
-			<div class="card slide mx-3" style="width: 50vw;">
+			<div class="card slide mx-3" onClick="location.href='/weddingDetail'" style="width: 50vw;">
 				<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
 				<div class="card-body p-2">
 					<p class="card-text ">상무예식장</p>
@@ -99,7 +102,7 @@
 	</div>
 	<div class="outerMyCityPlanner ">
 		<div class="myCityPlanner">
-			<div class="card slide mx-3" style="width: 33vw;">
+			<div class="card slide mx-3" onClick="location.href='/plannerDetail'" style="width: 33vw;">
 				<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
 				<div class="card-body p-2">
 					<p class="card-text ">상무예식장</p>
@@ -151,7 +154,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="modalOption clasifyOption">플래너</div>
-				<div class="modalOption clasifyOption">웨딩홀업주</div>
+				<div class="modalOption clasifyOption">웨딩홀</div>
 			</div>
 		</div>
 	</div>
@@ -186,22 +189,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- 날짜 선택 모달	-->
-	<div class="testModal hidden locationModal">
-		<div class="testModalShape modal-content">
-			<div class="modal-header d-flex justify-content-center align-content-center">
-				<h5 class="modal-title">
-					날짜선택
-				</h5>
-				<button class="modalCloseBtn">
-					<i class="bi bi-x-circle"></i>
-				</button>
-			</div>
-			<div class="modal-body">
 
-			</div>
-		</div>
-	</div>
 </div>
 </body>
 </html>

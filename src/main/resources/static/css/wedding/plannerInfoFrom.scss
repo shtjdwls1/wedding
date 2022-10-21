@@ -1,0 +1,36 @@
+.inputSec {
+  .thumbImgSec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #thumbImg {
+      width: 50vw;
+      height: 50vw;
+      border: 1px solid black;
+      border-radius: 2vw;
+    }
+  }
+
+  .fileBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    #file {
+      display: none;
+    }
+
+    .btnUpload {
+      width: 20vw;
+      height: 4.5vh;
+      border: 1px solid black;
+      background-color: ghostwhite;
+      border-radius: 2vw;
+      line-height: 4vh;
+    }
+  }
+
+
+}

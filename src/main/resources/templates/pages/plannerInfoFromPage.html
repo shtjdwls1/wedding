@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" th:href="@{/css/wedding/plannerInfoFrom.css}">
+
+</head>
+<body>
+<div layout:fragment="content">
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand backBtn">
+				<i class="bi bi-arrow-left"></i>
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>정보 입력</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
+	<!-- 입력	-->
+	<div class="inputSec mt-3 mx-3">
+		<label class="mx-4 my-1" for="thumbImg">내 프로필 사진</label>
+		<div class="thumbImgSec">
+			<img id="thumbImg" src="/imgs/noImage.png">
+		</div>
+		<div class="fileBtn mt-2">
+			<label for="file">
+				<div class="btnUpload">사진선택</div>
+			</label>
+			<input id="file" name="file" type="file">
+		</div>
+		<form class="mx-3">
+			<div class="mb-3">
+				<label class="form-label" for="address">소개글</label>
+				<textarea class="form-control" id="address" placeholder="500자 이내로 작성하여 주세요"
+				          type="text"></textarea>
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="detailAdd">견적</label>
+				<input class="form-control" id="detailAdd" type="text">
+			</div>
+			<!--템플릿 등록-->
+			<div class="uploadTemplate">
+				템플릿 등록
+			</div>
+
+			<div class="d-grid gap-2 col-6 mx-auto mt-5">
+				<button class="btn btn-light btn-outline-dark" onClick="location.href='/wedInfo'" type="button">
+					정보등록
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>

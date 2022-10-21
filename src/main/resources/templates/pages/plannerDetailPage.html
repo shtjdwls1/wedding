@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link href="/css/wedding/weddingDetail.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/imgToBig.css}">
+	<link href="/css/wedding/myCounselPage.css" rel="stylesheet" type="text/css">
+	<link href="/css/wedding/plannerDetail.css" rel="stylesheet" type="text/css">
+	<link href="/css/wedding/star.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+	<!-- 헤더 -->
+	<header class="sticky-top ">
+		<nav class="navbar navbar-light bg-light ">
+			<div class="container mx-3">
+				<a class="navbar-brand" href="/">
+					<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+				</a>
+				<a class="navbar-brand " style="margin-right: 2rem">
+					<strong>플래너 상세</strong>
+				</a>
+				<a>
+				</a>
+			</div>
+		</nav>
+		<div class=" d-flex justify-content-center py-3" style="background-color: white">
+			<button class="btn btn-light border-dark mx-3 detailBtn" type="button">상세정보</button>
+			<button class="btn btn-light border-dark mx-3 commentBtn" type="button">후기보기</button>
+		</div>
+		<!--후기 보기시 등장하는 헤더-->
+		<div class="sticky-top hidden commentTop" style="background-color: white">
+			<!--별점기능-->
+			<div>
+				<div class="outerStar" style="justify-content: flex-start">
+					<div class="mt-2 mx-3">플래너 후기</div>
+					<span class="star text" style="font-size: 1.5rem">
+					  ★★★★★
+						<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 50%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+					</span>
+					<div class="mt-2 mx-2"><strong>2.5</strong></div>
+				</div>
+			</div>
+			<div>
+				<button class="btn btn-light mx-3 sortBtn" onclick="controllClasifyModal()" style="font-size: 0.5rem">
+					최신순▼
+				</button>
+			</div>
+		</div>
+	</header>
+	<!-- 상세 정보 -->
+	<div class="detailSec outer mt-2 mx-3 ">
+		<div class="plannerCard">
+			<div class="Photosec mx-2 my-2">
+				<div>
+					<img class="plannerPhoto mt-2" src="/imgs/PlannerPhoto.jpg">
+				</div>
+			</div>
+			<div class="plannerInfo mx-2">
+				<table class="table table-borderless my-2">
+					<tbody>
+					<tr>
+						<th scope="row">상담사명</th>
+						<td>김땡땡</td>
+					</tr>
+
+					<tr>
+						<th scope="row">연락처</th>
+						<td>010-9876-5432</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="plannerIntro mx-3 mb-2">
+			<label class="form-label my-1" for="intro">플래너 소개</label>
+			<div id="intro">IE든 크롬이든 최초 문자열의 크기에 맞게 TEXTAREA 세로 크기가 정해진다.
+				이후에 텍스트를 입력하면...
+				IE8에서는 그에 맞게 TEXTAREA의 세로 크기가 늘어난다.
+				크롬에서는 늘어나지 않고, 대신 스크롤이 생긴다...
+				CSS transition과 함께 쓰면 제대로 작동하지 않더라.
+			</div>
+		</div>
+		<div class="templates">
+			<img class="mx-3 temImg" src="/imgs/thumbWed5.jpg">
+			<img class="mx-3 temImg" src="/imgs/thumbWed4.jpg">
+			<img class="mx-3 temImg" src="/imgs/thumbWed3.jpg">
+			<img class="mx-3 temImg" src="/imgs/thumbWed2.jpg">
+			<img class="mx-3 temImg" src="/imgs/weddinghall2.jpg">
+		</div>
+	</div>
+	<!-- 후기 보기 -->
+	<div class="commentSec  hidden">
+		<div class="countComment mt-2 mx-4" style="color: gray">
+			<i class="bi bi-people-fill mx-1"></i>32
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					정말 친절하고 좋은 분이였습니다.
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					아이템들의 사이와 양 끝에 균일한 간격을 만들어 줍니다.
+					주의! IE와 엣지(Edge)에서는 지원되지 않습니다👎
+					이 웹사이트의 메뉴 부분은 브라우저 폭이 1024px 이상일 때 space-evenly가 적용되도록 했는데요, IE와 엣지에서만 space-around로 적용이 되도록 처리해
+					두었어요.
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+		<!--후기댓글	-->
+		<div class="comment">
+			<div class="outerStar mx-3" style="justify-content: flex-start">
+				<div class="mt-1 mx-1">유저 아이디</div>
+				<span class="star text" style="font-size: 1rem">
+					  ★★★★★
+					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width: 80%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
+				</span>
+			</div>
+			<div class="plannerIntro mx-3 mb-2">
+				<div class="commentView px-2">
+					너무 좋아요!
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- 예약 확인 영역과 간격을 위한 div-->
+	<div style="height: 8vh"></div>
+	<!--예약 확인 영역 -->
+	<div class="checkTime fixed-bottom">
+		<div class="checkTimeInput">견적 : 1.000.000</div>
+		<button class="btn btn-sm btn-light border-dark" type="button">상담신청</button>
+	</div>
+	<!-- 정렬 모달-->
+	<div class="testModal hidden sortModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption sortOption">최신순▼</div>
+				<div class="modalOption sortOption">별점높은순▼</div>
+				<div class="modalOption sortOption">별점낮은순▼</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+</body>
+</html>
