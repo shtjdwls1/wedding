@@ -108,5 +108,24 @@ mobiscroll.datepicker('#date', {
     controls: ['date'],
     touchUi: true,
     locale: mobiscroll.localeKo,
-    dateFormat: 'YYYY-MM-DD'
+    dateFormat: 'YYYY-MM-DD',
+    display: 'bottom'
 })
+
+mobiscroll.datepicker('.timeInput', {
+    controls: ['time'],
+    timeFormat: 'HH:mm',
+    touchUi: true
+})
+
+// const hoverSec = document.querySelectorAll('.hoverSec')
+//
+// $(document).ready(function () {
+//     $(".hoverSec").mouseover(function () {
+//         $(this).addClass('hidden')
+//     });
+//     $(".hoverSec").mouseout(function () {
+//         $(this).remove('hidden')
+//         console.log('됨')
+//     });
+// })

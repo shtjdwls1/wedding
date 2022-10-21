@@ -63,6 +63,14 @@
 .addHallForm .minMaxPeople input {
   width: 25vw;
 }
+.addHallForm .timeForm .inputParent {
+  position: relative;
+}
+.addHallForm .timeForm .inputParent .bi-clock {
+  position: absolute;
+  left: 22vw;
+  top: 0;
+}
 .addHallForm .timeForm .timeInput {
   border: 1px solid black;
   border-radius: 2vh;

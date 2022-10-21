@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/mainpageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" th:href="@{/css/wedding/index.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/searchResult.css}">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+<div layout:fragment="mainpage">
+	<!-- 분류 지역 날짜선택 검색 바	-->
+	<div class="searchHeader d-flex justify-content-between mx-4 my-3">
+		<button class="indexSearchBtn  mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
+		<button class="indexSearchBtn  mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼
+		</button>
+		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" placeholder="날짜선택">
+		<button class="indexSearchBtn  mx-2 my-2" type="button">검색</button>
+	</div>
+	<div class="sticky-top  commentTop mx-2" style="background-color: white">
+		<div>
+			<button class="btn btn-light mx-3 sortBtn" onclick="controllSortModal()" style="font-size: 0.5rem">
+				최신순▼
+			</button>
+		</div>
+	</div>
+	<!--웨딩홀 카드-->
+	<div class="resWedCard mx-3 mt-2">
+		<div class="imgSec">
+			<img class="mx-2 my-2" src="/imgs/noImage.png">
+		</div>
+		<div class="infoSec mx-2">
+			<div class="my-2">웨딩홀명</div>
+			<div class="my-2">주소</div>
+			<div class="my-2">금액</div>
+			<div class="reservePrice my-2">
+				<div class="resBtn mx-4">예약가능</div>
+			</div>
+		</div>
+	</div>
+	<!-- 플래너 카드-->
+	<div class="resPlanCard mx-3 mt-2">
+		<div class="imgSec">
+			<img class="mx-2 my-2" src="/imgs/noImage.png">
+		</div>
+		<div class="infoSec mx-2">
+			<div class="my-2">플래너 이름</div>
+			<div class="my-2">★ 4.5</div>
+			<div class="my-2">금액</div>
+			<div class="reservePrice my-2">
+				<div class="resBtn mx-4">상세보기</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--분류 모달-->
+	<div class="testModal hidden clasifyModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption clasifyOption">플래너</div>
+				<div class="modalOption clasifyOption">웨딩홀</div>
+			</div>
+		</div>
+	</div>
+	<!--지역 선택 모달-->
+	<div class="testModal hidden locationModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllLocationModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption locationOption">서울</div>
+				<div class="modalOption locationOption">인천</div>
+				<div class="modalOption locationOption">대전</div>
+				<div class="modalOption locationOption">부산</div>
+				<div class="modalOption locationOption">광주</div>
+				<div class="modalOption locationOption">대구</div>
+				<div class="modalOption locationOption">울산</div>
+				<div class="modalOption locationOption">제주</div>
+				<div class="modalOption locationOption">경기</div>
+				<div class="modalOption locationOption">강원</div>
+				<div class="modalOption locationOption">충북</div>
+				<div class="modalOption locationOption">충남</div>
+				<div class="modalOption locationOption">경북</div>
+				<div class="modalOption locationOption">경남</div>
+				<div class="modalOption locationOption">전북</div>
+				<div class="modalOption locationOption">전남</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 정렬 모달-->
+	<div class="testModal hidden sortModal">
+		<div class="testModalShape modal-content">
+			<div class="modal-header d-flex justify-content-center align-content-center">
+				<h5 class="modal-title">
+					분류
+				</h5>
+				<button class="modalCloseBtn" onclick="controllSortModal()">
+					<i class="bi bi-x-circle"></i>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="modalOption sortOption">최신순▼</div>
+				<div class="modalOption sortOption">별점높은순▼</div>
+				<div class="modalOption sortOption">별점낮은순▼</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

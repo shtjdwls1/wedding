@@ -74,6 +74,16 @@
   }
 
   .timeForm {
+    .inputParent {
+      position: relative;
+
+      .bi-clock {
+        position: absolute;
+        left: 22vw;
+        top: 0;
+      }
+    }
+
     .timeInput {
       border: 1px solid black;
       border-radius: 2vh;
