@@ -8,11 +8,9 @@ import com.smart.project.web.home.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,15 +28,16 @@ public class HomeAct {
     CommonCodeComponent commonCodeComponent;
 
     final private Test test;
+
     // 메인 들어올때
-	@RequestMapping("/")
-	public String home(Model model, InternCookie cookie, HttpServletRequest request){
-		if(StringUtils.isNotEmpty(cookie.getUserId())){
-			log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
-		}
+    @RequestMapping("/")
+    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
+        if (StringUtils.isNotEmpty(cookie.getUserId())) {
+            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
+        }
         // 서블릿 HTTP 세션 사용
         HttpSession session = request.getSession(false);
-        if(session!=null){
+        if (session != null) {
             MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
         }
         return "index";
@@ -128,17 +127,39 @@ public class HomeAct {
         return "pages/wedInfoPage";
     }
 
+    @RequestMapping("/adminReserve")
+    public String adminReserve() {
+        return "pages/adminReservePage";
+    }
+
+    @RequestMapping("/plannerInfoFrom")
+    public String plannerInfoFrom() {
+        return "pages/plannerInfoFromPage";
+    }
+
+    @RequestMapping("/plannerCommentView")
+    public String plannerCommentView() {
+        return "pages/plannerCommentView";
+    }
+
+
+    @RequestMapping("/searchResult")
+    public String searchResult() {
+        return "pages/searchResultPage";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public String homeData() {
         return "index";
     }
+
     // 로그아웃
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request){
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if(session!=null){
-            log.error("deleteSessionbefore ==>{}",session.getAttribute("loginSession"));
+        if (session != null) {
+            log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
             session.invalidate();
         }
         return "index";

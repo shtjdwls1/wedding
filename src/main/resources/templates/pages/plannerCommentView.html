@@ -14,8 +14,6 @@
 	<link href="/css/wedding/star.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
 
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -27,18 +25,15 @@
 					<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
 				</a>
 				<a class="navbar-brand " style="margin-right: 2rem">
-					<strong>플래너 상세</strong>
+					<strong>내 후기 보기</strong>
 				</a>
 				<a>
 				</a>
 			</div>
 		</nav>
-		<div class=" d-flex justify-content-center py-3" style="background-color: white">
-			<button class="btn btn-light border-dark mx-3 detailBtn" type="button">상세정보</button>
-			<button class="btn btn-light border-dark mx-3 commentBtn" type="button">후기보기</button>
-		</div>
+
 		<!--후기 보기시 등장하는 헤더-->
-		<div class="sticky-top hidden commentTop" style="background-color: white">
+		<div class="sticky-top  commentTop" style="background-color: white">
 			<!--별점기능-->
 			<div>
 				<div class="outerStar" style="justify-content: flex-start">
@@ -59,49 +54,9 @@
 			</div>
 		</div>
 	</header>
-	<!-- 상세 정보 -->
-	<div class="detailSec outer mt-2 mx-3 ">
-		<div class="plannerCard">
-			<div class="Photosec mx-2 my-2">
-				<div>
-					<img class="plannerPhoto mt-2" src="/imgs/PlannerPhoto.jpg">
-				</div>
-			</div>
-			<div class="plannerInfo mx-2">
-				<table class="table table-borderless my-2">
-					<tbody>
-					<tr>
-						<th scope="row">상담사명</th>
-						<td>김땡땡</td>
-					</tr>
 
-					<tr>
-						<th scope="row">연락처</th>
-						<td>010-9876-5432</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<div class="plannerIntro mx-3 mb-2">
-			<label class="form-label my-1" for="intro">플래너 소개</label>
-			<div id="intro">IE든 크롬이든 최초 문자열의 크기에 맞게 TEXTAREA 세로 크기가 정해진다.
-				이후에 텍스트를 입력하면...
-				IE8에서는 그에 맞게 TEXTAREA의 세로 크기가 늘어난다.
-				크롬에서는 늘어나지 않고, 대신 스크롤이 생긴다...
-				CSS transition과 함께 쓰면 제대로 작동하지 않더라.
-			</div>
-		</div>
-		<div class="templates">
-			<img class="mx-3 temImg" src="/imgs/thumbWed5.jpg">
-			<img class="mx-3 temImg" src="/imgs/thumbWed4.jpg">
-			<img class="mx-3 temImg" src="/imgs/thumbWed3.jpg">
-			<img class="mx-3 temImg" src="/imgs/thumbWed2.jpg">
-			<img class="mx-3 temImg" src="/imgs/weddinghall2.jpg">
-		</div>
-	</div>
 	<!-- 후기 보기 -->
-	<div class="commentSec  hidden">
+	<div class="commentSec ">
 		<div class="countComment mt-2 mx-4" style="color: gray">
 			<i class="bi bi-people-fill mx-1"></i>32
 		</div>
@@ -308,7 +263,5 @@
 
 
 </div>
-
-
 </body>
 </html>

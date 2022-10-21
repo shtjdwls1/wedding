@@ -1,0 +1,64 @@
+.commentTop {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resWedCard {
+  border: 1px solid black;
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  img {
+    width: 40vw;
+    height: 16vh;
+  }
+
+
+  .infoSec {
+    width: 50vw;
+
+
+    .reservePrice {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.resPlanCard {
+  border: 1px solid black;
+  border-radius: 1vw;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 27vw;
+    height: 16vh;
+  }
+
+
+  .infoSec {
+    width: 100vw;
+
+
+    .reservePrice {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}
+
+.resBtn {
+  display: flex;
+  width: 28vw;
+  height: 4vh;
+  background-color: whitesmoke;
+  border: 1px solid black;
+  text-align: center;
+  align-items: center;
+  border-radius: 1vw;
+  justify-content: center;
+}
+

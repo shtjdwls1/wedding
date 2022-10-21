@@ -1,4 +1,3 @@
-const clasifyBtn = document.getElementById('clasifyBtn');
 const clasifyModal = document.querySelector('.clasifyModal');
 const clasifyInput = document.querySelector("#clasify")
 const locationInput = document.querySelector('#checkCity')

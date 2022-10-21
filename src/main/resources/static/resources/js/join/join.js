@@ -12,6 +12,23 @@ export class Join
 		console.log('join')
 		this.eventBindgin();
 	}
+
+	locEvent(key){
+		console.log(key)
+		let locTmpl = require("@/join/want.html")
+		let callObj = {'key' : $('#locWantKey').val()};
+
+		axios.post('/data/wantLoc', callObj).then((result)=>{
+			console.log(result);
+			result.data.title = key.key === 'loc' ? '자기지역' : '배우자 희망지역';
+			//console.log(locTmpl(result));
+			$('.want_loc').append(locTmpl(result));
+			$('.want_loc').removeClass('hidden');
+
+
+		})
+	}
+
 	eventBindgin(){
 		// 회원가입 유효성 풀체크
 		$('.btn_wedding_join').on('click',(e)=>{
