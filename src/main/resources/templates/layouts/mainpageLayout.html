@@ -15,12 +15,16 @@
 	<p>Page content goes here</p>
 </section>
 
+<th:block th:replace="fragments/topBtn :: topBtnFragment"></th:block>
+
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
 <script th:src="@{/resources/js/wedding/index.js}"
         type="text/javascript"></script>
 <script th:src="@{/resources/js/wedding/plannerDetail.js}"
         type="text/javascript"></script>
+<script type="text/javascript" th:src="@{/resources/js/wedding/moveTopBtn.js}"></script>
+
 </body>
 </html>
 

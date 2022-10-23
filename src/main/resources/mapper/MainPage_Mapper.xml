@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.MainPageMapper">
+
+    <select id="getStart" resultType="com.smart.project.web.mainpage.vo.MainpageVO" parameterType="String">
+        SELECT ci.c_img_name, ci.c_img_path, u.u_name(더 필요한 컬럼 추가)
+        FROM company_img AS ci
+                 LEft join company AS c on ci.c_idx = c.c_idx
+                 LEft join `user` AS u on u.u_idx = c.u_idx
+        where u.u_location = '서울'
+          and ci.c_img_type = 'thumbnail';
+    </select>
+</mapper>

@@ -75,10 +75,10 @@ public class HomeAct {
     }
 
     //내상담페이지
-    @RequestMapping("/myCounsel")
-    public String myCounsel() {
-        return "pages/myCounselPage";
-    }
+//    @RequestMapping("/myCounsel")
+//    public String myCounsel() {
+//        return "pages/myCounselPage";
+//    }
 
     //내 예약페이지
     @RequestMapping("/myReserve")
