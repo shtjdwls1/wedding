@@ -3,7 +3,6 @@ package com.smart.project.web.counseling.vo;
 
 import lombok.*;
 
-import java.util.Date;
 
 @Data
 @NoArgsConstructor

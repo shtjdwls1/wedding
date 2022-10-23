@@ -1,6 +1,5 @@
 package com.smart.project.web.counseling.act;
 
-import com.google.gson.Gson;
 import com.smart.project.proc.MyCounselService;
 import com.smart.project.web.counseling.vo.MyCounselUpdateVO;
 import com.smart.project.web.counseling.vo.MyCounselVO;
@@ -13,12 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -29,7 +23,7 @@ public class MyCounselAct {
 
     @RequestMapping("/myCounsel")
     public String myCounsel(Model model) {
-        int u_idx = 1;
+        int u_idx = 4;
         log.error("세션1 : {}", u_idx);
 
         List<MyCounselVO> list = myCounselService.myCounsel(u_idx);

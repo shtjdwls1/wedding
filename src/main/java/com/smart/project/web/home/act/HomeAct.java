@@ -3,10 +3,8 @@ package com.smart.project.web.home.act;
 import com.smart.project.common.vo.InternCookie;
 import com.smart.project.component.CommonCodeComponent;
 import com.smart.project.component.data.CodeObject;
-import com.smart.project.proc.JoinMapper;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
-import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.home.vo.TestVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -106,11 +104,6 @@ public class HomeAct {
     @RequestMapping("/weddingDetail")
     public String weddingDetail() {
         return "pages/weddingDetailPage";
-    }
-
-    @RequestMapping("/plannerDetail")
-    public String plannerDetail() {
-        return "pages/plannerDetailpage";
     }
 
     @RequestMapping("/payment")

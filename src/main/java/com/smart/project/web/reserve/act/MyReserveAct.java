@@ -23,10 +23,13 @@ public class MyReserveAct {
     @RequestMapping("/myReserve")
     public String myReserve(Model model) {
 
-        int u_idx = 4;
+        int u_idx = 26;
         log.error("세션1 : {}", u_idx);
 
         List<MyReserveVO> list = myReserveService.myReserve(u_idx);
+
+
+
         log.error("결과1 : {}", myReserveService.myReserve(u_idx));
         for (MyReserveVO vo : list) {
             log.error("예약번호 : {}", vo.getHReserveIdx());
@@ -43,7 +46,7 @@ public class MyReserveAct {
     @ResponseBody
     public MyReserveVO myReserveCancel(@RequestBody MyReserveVO vo) {
         log.error("입력===>{}", vo);
-        myReserveService.myReserveCancel(vo);
+
 
         return vo;
     }
