@@ -1,6 +1,7 @@
 package com.smart.project.web.reserve.act;
 
 import com.smart.project.proc.MyReserveService;
+import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.reserve.vo.MyReserveVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -21,16 +24,20 @@ public class MyReserveAct {
     final private MyReserveService myReserveService;
 
     @RequestMapping("/myReserve")
-    public String myReserve(Model model) {
+    public String myReserve(Model model, HttpServletRequest request) {
 
-        int u_idx = 26;
-        log.error("세션1 : {}", u_idx);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
+        }
+        MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+        log.error("세션1 : {}", loginMember.getUIdx());
 
-        List<MyReserveVO> list = myReserveService.myReserve(u_idx);
+        List<MyReserveVO> list = myReserveService.myReserve(loginMember.getUIdx());
 
 
 
-        log.error("결과1 : {}", myReserveService.myReserve(u_idx));
+        log.error("결과1 : {}", myReserveService.myReserve(loginMember.getUIdx()));
         for (MyReserveVO vo : list) {
             log.error("예약번호 : {}", vo.getHReserveIdx());
         }
