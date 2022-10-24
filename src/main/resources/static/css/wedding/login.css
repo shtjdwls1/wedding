@@ -1,0 +1,16 @@
+.logoSection {
+  display: flex;
+  justify-content: center;
+}
+.logoSection .logoIcon {
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  width: 12rem;
+}
+
+.loginForm .btnGroup .btn {
+  line-height: 2.5;
+  border-radius: 1rem;
+}
+
+/*# sourceMappingURL=login.css.map */

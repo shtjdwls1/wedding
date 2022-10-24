@@ -1,0 +1,117 @@
+.wedCard {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 2vh;
+  padding: 0.5vh;
+  align-items: center;
+  justify-content: space-between;
+}
+.wedCard .imgInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wedCard .imgInfo .thumbImg {
+  width: 10vh;
+  height: 10vh;
+  border: 1px solid black;
+  border-radius: 2vh;
+}
+.wedCard .changeWedBtn {
+  width: 10vh;
+  height: 10vh;
+  border: 1px solid black;
+  border-radius: 2vh;
+}
+
+.hallCardSec .hallCard {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 2vh;
+  padding: 0 0.5vh;
+  align-items: center;
+  justify-content: space-between;
+}
+.hallCardSec th {
+  padding: 0;
+}
+.hallCardSec td {
+  padding: 0 5vh;
+}
+.hallCardSec .changeHallBtn {
+  width: 10vh;
+  height: 6vh;
+  border: 1px solid black;
+  border-radius: 2vh;
+}
+
+.addHall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.addHallForm {
+  border: 1px solid black;
+  border-radius: 2vw;
+}
+.addHallForm .minMaxPeople {
+  display: flex;
+}
+.addHallForm .minMaxPeople input {
+  width: 25vw;
+}
+.addHallForm .timeForm .inputParent {
+  position: relative;
+}
+.addHallForm .timeForm .inputParent .bi-clock {
+  position: absolute;
+  left: 22vw;
+  top: 0;
+}
+.addHallForm .timeForm .timeInput {
+  border: 1px solid black;
+  border-radius: 2vh;
+  width: 28vw;
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+.addHallForm .timeForm td {
+  display: flex;
+}
+.addHallForm .uploadPhoto .image {
+  display: block;
+  width: 100%;
+}
+.addHallForm .uploadPhoto .image-label {
+  position: relative;
+  bottom: 22px;
+  left: 5px;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+.addHallForm .uploadPhoto #multipleContainer ::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.addHallForm .uploadPhoto #multipleContainer ::-webkit-scrollbar-thumb {
+  background-color: #e2e4e5;
+}
+.addHallForm .uploadPhoto #multipleContainer .column {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.addHallForm .uploadPhoto #multipleContainer .column .image {
+  height: 20vw;
+  width: 30vw;
+  border: 0px;
+  flex: 0 0 auto;
+  padding-right: 1vh;
+}
+
+/*# sourceMappingURL=wedInfo.css.map */

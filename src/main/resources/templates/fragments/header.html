@@ -6,17 +6,18 @@
 	      name="viewport">
 	<meta content="ie=edge" http-equiv="X-UA-Compatible">
 	<title>Document</title>
+
 </head>
 <body>
 <div th:fragment="headerFragment">
-	<nav class="navbar navbar-light bg-light">
+	<nav class="navbar navbar-light bg-light sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand mx-3">
 				<img class="logoIcon" onClick="location.href='/'" src="/imgs/logo.png" style="width: 2rem">
 			</a>
-			<form class="d-flex">
-				<input aria-label="Search" class="form-control me-2" placeholder="Search" type="search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
+			<form class="d-flex searchSec">
+				<input class="form-control searchInput text-center" placeholder="웨딩홀 명을 입력하세요" type="search">
+				<button class="searchBtn " type="submit"><i class="bi bi-search"></i></button>
 			</form>
 		</div>
 	</nav>

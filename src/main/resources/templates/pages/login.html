@@ -7,7 +7,16 @@
 	<title>Login</title>
 	<link href="/css/wedding/login.css" rel="stylesheet" type="text/css">
 	<th:block th:replace="fragments/head :: headFragment"></th:block>
-
+<style>
+	.passwordForm{
+		position: relative;
+	}
+	.pw_hide{
+		position: absolute;
+		top: 14px;
+		right: 8px;
+	}
+</style>
 
 </head>
 <body>
@@ -17,23 +26,23 @@
 		<img class="logoIcon" onClick="location.href='/'" src="/imgs/logo.png">
 	</div>
 	<div class="loginForm mx-3">
-		<form>
+		<form id="loginForm">
 			<div class="mb-3 mx-3">
 				<label class="form-label" for="inputId">아이디</label>
 				<input aria-describedby="emailHelp" class="form-control" id="inputId" placeholder="아이디를 입력하세요"
-				       type="text">
+				       type="text" name="inputId">
 			</div>
-			<div class="mb-3 mx-3">
+			<div class="mb-3 mx-3 passwordForm">
 				<label class="form-label" for="inputPassword">비밀번호</label>
-				<input class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" type="password">
+				<input class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" type="password" name="inputPw">
+				<a class="pw_hide"></a>
 			</div>
 			<div class="mb-3 form-check mx-3">
 				<input class="form-check-input" id="RememId" type="checkbox">
 				<label class="form-check-label" for="RememId">아이디 기억하기</label>
 			</div>
 			<div class="btnGroup d-grid gap-2 col-7 mx-auto">
-				<button class="btn btn-light btn-outline-dark" data-bs-target="#loginModal" data-bs-toggle="modal"
-				        type="button">
+				<button class="btn btn-light btn-outline-dark" type="button" id="login_btn">
 					로그인
 				</button>
 				<btn class="btn py-0" onClick="location.href='/socialJoin'" style="background-color: #03C75A"
@@ -57,14 +66,14 @@
 				<div class="modal-body mx-4 mt-4">
 					<strong>잘못된 아이디 또는 비밀번호 입니다.</strong>
 					<div class="d-grid gap-2 col-4 mx-auto mt-4">
-						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button">확인</button>
+						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button" id="loginModalClose">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/login.bundle.js')}"></script>
 </div>
 </body>
 </html>
