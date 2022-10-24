@@ -149,4 +149,22 @@ public class HomeDataAct {
 		log.error("delete result ===>{}",result);
 		return result;
 	}
+	@PostMapping("/data/update")
+	public int UpdateInfo(HttpServletRequest req,@RequestBody MemberVO vo){
+		//TODO 폼데이터 받아오기(id,pw,name,tel1,tel2,tel3,location)
+		//TODO tel합치고 VO에 담기
+		HttpSession session = req.getSession(false);
+		String telfull = vo.getUTelFront()+"-"+vo.getUTelMid()+"-"+vo.getUTelEnd();
+		vo.setUTel(telfull);
+		log.error("input Data ==>{}",vo);
+		int result = join.update(vo);
+		MemberVO updateVo = join.login(vo);
+		if(result==1){
+			session.setAttribute("loginSession",updateVo);
+			return 1;
+		}else{
+			return 0;
+		}
+
+	}
 }

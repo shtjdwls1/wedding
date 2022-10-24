@@ -7,7 +7,16 @@
 	<title>Login</title>
 	<link href="/css/wedding/login.css" rel="stylesheet" type="text/css">
 	<th:block th:replace="fragments/head :: headFragment"></th:block>
-
+<style>
+	.passwordForm{
+		position: relative;
+	}
+	.pw_hide{
+		position: absolute;
+		top: 14px;
+		right: 8px;
+	}
+</style>
 
 </head>
 <body>
@@ -23,7 +32,7 @@
 				<input aria-describedby="emailHelp" class="form-control" id="inputId" placeholder="아이디를 입력하세요"
 				       type="text" name="inputId">
 			</div>
-			<div class="mb-3 mx-3">
+			<div class="mb-3 mx-3 passwordForm">
 				<label class="form-label" for="inputPassword">비밀번호</label>
 				<input class="form-control" id="inputPassword" placeholder="비밀번호를 입력하세요" type="password" name="inputPw">
 				<a class="pw_hide"></a>

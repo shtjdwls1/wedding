@@ -14,4 +14,5 @@ public interface JoinMapper {
     MemberVO updateChkPw(String uid);
 
     int delete(String loginId);
+    int update(MemberVO memberVO);
 }

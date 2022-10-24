@@ -1,22 +1,22 @@
-const clasifyModal = document.querySelector('.clasifyModal');
+const classifyModal = document.querySelector('.clasifyModal');
 const clasifyInput = document.querySelector("#clasify")
 const locationInput = document.querySelector('#checkCity')
 
 // 모달 창 나타나기, 엑스버튼 클릭시 모달창 사라지기.
 function controllClasifyModal() {
-    clasifyModal.classList.toggle('hidden')
+    classifyModal.classList.toggle('hidden')
 }
 
 //외부 클릭시 모달창 닫기
 window.addEventListener('click', (e) => {
-    e.target === clasifyModal ? clasifyModal.classList.add('hidden') : false
+    e.target === classifyModal ? classifyModal.classList.add('hidden') : false
 })
 
 
 // 옵션 클릭시 색 변경, 체크 추가
-const modalOption = document.getElementsByClassName("modalOption");
-const clasifyOption = document.getElementsByClassName("clasifyOption");
-const locationOption = document.getElementsByClassName("locationOption")
+const modalOption1 = document.getElementsByClassName("modalOption");
+const clasifyOption1 = document.getElementsByClassName("clasifyOption");
+const locationOption1 = document.getElementsByClassName("locationOption")
 
 function handleClickClasify(event) {
     console.log(event.target);
@@ -29,14 +29,14 @@ function handleClickClasify(event) {
         event.target.classList.remove("clicked");
 
     } else {
-        for (var i = 0; i < clasifyOption.length; i++) {
-            clasifyOption[i].classList.remove("clicked");
+        for (var i = 0; i < clasifyOption1.length; i++) {
+            clasifyOption1[i].classList.remove("clicked");
         }
 
         event.target.classList.add("clicked");
         console.log("누른거!" + event.target.textContent)
 
-        clasifyInput.innerText = event.target.textContent;
+        clasifyInput.value = event.target.textContent;
         controllClasifyModal();
 
     }
@@ -54,8 +54,8 @@ function handleClickLocation(event) {
         event.target.classList.remove("clicked");
 
     } else {
-        for (var i = 0; i < locationOption.length; i++) {
-            locationOption[i].classList.remove("clicked");
+        for (var i = 0; i < locationOption1.length; i++) {
+            locationOption1[i].classList.remove("clicked");
         }
 
         event.target.classList.add("clicked");
@@ -69,25 +69,25 @@ function handleClickLocation(event) {
 
 
 function init() {
-    for (var i = 0; i < clasifyOption.length; i++) {
-        clasifyOption[i].addEventListener("click", handleClickClasify);
+    for (var i = 0; i < clasifyOption1.length; i++) {
+        clasifyOption1[i].addEventListener("click", handleClickClasify);
     }
-    for (var i = 0; i < locationOption.length; i++) {
-        locationOption[i].addEventListener("click", handleClickLocation);
+    for (var i = 0; i < locationOption1.length; i++) {
+        locationOption1[i].addEventListener("click", handleClickLocation);
     }
 }
 
 init();
 
 //지역 모달
-const locationModal = document.querySelector('.locationModal')
+const locationModal1 = document.querySelector('.locationModal')
 
 // 지역 선택 모달 창 나타나기, 사라지기
 function controllLocationModal() {
-    locationModal.classList.toggle('hidden')
+    locationModal1.classList.toggle('hidden')
 }
 
 //외부 클릭시 모달창 닫기
 window.addEventListener('click', (e) => {
-    e.target === locationModal ? locationModal.classList.add('hidden') : false
+    e.target === locationModal1 ? locationModal1.classList.add('hidden') : false
 })

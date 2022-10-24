@@ -76,11 +76,22 @@ export class ChangeCommonInfoForm
     //TODO 수정완료 버튼 클릭시 DB UPDATE 실행 후 "수정완료되었습니다" 모달창, 확인버튼 클릭시 메인으로 이동
     $('#update').on('click',()=>{
         if(checkAll()===0){
-            console.log("성공")
+            console.log("입력성공")
+            let UpdateInfoFormData = SerializeObject.run('UpdateInfoForm');
+            console.log("UIFD==>{}",UpdateInfoFormData)
+            axios.post("/data/update",UpdateInfoFormData).then((result)=>{
+                console.log(result.data)
+                if(result.data===1){
+                    console.log("수정성공")
+                    location.replace("/")
+                }else{
+                    console.log("수정실패")
+                }
+            })
         }else{
-            console.log("실패")
+            console.log("입력실패")
         }
-        
+
     })
     }
 }
