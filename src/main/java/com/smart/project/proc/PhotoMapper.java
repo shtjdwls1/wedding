@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Master
 @Component
 public interface PhotoMapper {
-    int slctIdx(String uName);
+    int selectIdx(String uName);
     int savePhoto(PhotoVO photo);
+    int saveCompany(PhotoVO vo);
+    int findByIdx(int uIdx);
+
+    PhotoVO selectThumbimg(PhotoVO vo);
 }

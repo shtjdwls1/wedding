@@ -32,9 +32,9 @@
 			<div class="imgInfo">
 				<img class="thumbImg" src="/imgs/noImage.png">
 				<div class="wedInfo mx-3">
-					<div>드메르 웨딩홀</div>
-					<div>062-546-4512</div>
-					<div>광주광역시 광산구</div>
+					<div th:text="${session.loginSession.UName}"></div>
+					<div th:text="${session.loginSession.UTel}"></div>
+					<div th:text="${companyData.CAddr}"></div>
 					<div>임방울대로 549</div>
 				</div>
 			</div>

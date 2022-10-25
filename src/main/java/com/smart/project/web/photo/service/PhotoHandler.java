@@ -3,7 +3,6 @@ package com.smart.project.web.photo.service;
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.photo.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,9 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 @Slf4j
@@ -31,7 +28,7 @@ public class PhotoHandler {
         } else {
             log.error("files ===> {}",files);
             // 반활할 파일리스트
-            int uIdx = photoMapper.slctIdx(companyName); // 업체 인덱스 번호
+            int uIdx = photoMapper.selectIdx(companyName); // 업체 인덱스 번호
             List<PhotoVO> returnFiles = new ArrayList<>();
             String dirPath = "C:/img/"+uIdx+"/representative";
             File file = new File(dirPath);
@@ -71,7 +68,7 @@ public class PhotoHandler {
         }
     }
     // https://code-zzolbo.tistory.com/55 참조
-    public PhotoVO sizeChange(PhotoVO photo, int size, String type){
+    public PhotoVO sizeChange(int uidx, PhotoVO photo, int size, String type){
         try {
             // image load
             BufferedImage image = ImageIO.read(new File(photo.getCImgPath()));
@@ -109,6 +106,7 @@ public class PhotoHandler {
             }
             // return
             PhotoVO newPhoto = new PhotoVO();
+            newPhoto.setUIdx(uidx);
             newPhoto.setCImgName(photo.getCImgName().replace("origin",type));
             newPhoto.setCImgPath(photo.getCImgPath().replace("origin",type));
             newPhoto.setCImgType(type);
@@ -128,9 +126,10 @@ public class PhotoHandler {
 //        return dataurl;
 //    }
 //
-    public int save(List<PhotoVO> photos) {
+    public int save(int uidx,List<PhotoVO> photos) {
         int cnt = 0;
         for (PhotoVO photo : photos) {
+            photo.setUIdx(uidx);
             cnt += photoMapper.savePhoto(photo);
         }
         return cnt;

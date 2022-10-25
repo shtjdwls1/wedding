@@ -20,18 +20,25 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class photoDataAct {
+public class PhotoDataAct {
     final private PhotoHandler ph;
+    final private PhotoMapper pm;
     @PostMapping("/data/photo/upload")
     public Map<String,Object> companyPhotoUpload(HttpServletRequest req, PhotoVO photodata){
         //TODO 세션에서 u_name, u_name으로 db에서 u_idx찾아오기
         HttpSession session = req.getSession(false);
         MemberVO mvo = (MemberVO)session.getAttribute("loginSession");
         String companyName = mvo.getUName();
+        int uIdx = mvo.getUIdx();
 
         //TODO 폼에서 이미지, 주소,사업자등록번호 가져오기
         String cRegNum = photodata.getBusiness1()+"-"+photodata.getBusiness2()+"-"+photodata.getBusiness3();
         String cAddr = photodata.getAddress()+"/"+photodata.getDetailAddr();
+        //company 테이블에 데이터 추가
+        PhotoVO vo = new PhotoVO();
+        vo.setUIdx(uIdx);
+        vo.setCRegNum(cRegNum);
+        vo.setCAddr(cAddr);
 
         //TODO 컨트롤러+핸들러에서 파일이름,타입,저장할 경로 지정해주기
         // 넘어온 데이터 확인하기
@@ -53,8 +60,8 @@ public class photoDataAct {
             for (PhotoVO photo : files) {
                 PhotoVO thumbnail;
                 PhotoVO big;
-                thumbnail = ph.sizeChange(photo, 108, "thumbnail");
-                big = ph.sizeChange(photo, 180, "main");
+                thumbnail = ph.sizeChange(uIdx,photo, 108, "thumbnail");
+                big = ph.sizeChange(uIdx,photo, 180, "main");
                 if (thumbnail != null) {
                     temp.add(thumbnail);
                 }
@@ -66,9 +73,9 @@ public class photoDataAct {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        ph.save(files);
-//        data.put("imgs",files);
-
+        pm.saveCompany(vo);
+        ph.save(uIdx,files);
+        data.put("imgs",files);
         return data;
     }
 }

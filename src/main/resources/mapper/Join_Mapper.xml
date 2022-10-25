@@ -12,9 +12,6 @@
     <select id="login" resultType="com.smart.project.web.home.vo.MemberVO">
         SELECT * FROM user WHERE u_id=#{uId} AND u_pw=#{uPw};
     </select>
-    <insert id="saveTest" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO test VALUES (#{u_id},#{u_name});
-    </insert>
     <!--ID 중복체크-->
     <select id="chkId" resultType="com.smart.project.web.home.vo.MemberVO">
         SELECT * FROM user WHERE u_id=#{uId};

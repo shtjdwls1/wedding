@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.project.proc.PhotoMapper">
-    <!--회원가입-->
-    <insert id="save"  useGeneratedKeys="true">
-        INSERT INTO user(u_auth,u_id,u_pw,u_name,u_tel,u_location) VALUES(#{uAuth},#{uId},#{uPw},#{uName},#{uTel},#{uLocation});
+    <!--업체이미지 등록-->
+    <insert id="savePhoto"  useGeneratedKeys="true">
+        INSERT INTO company_img(u_idx, c_img_name, c_img_path, c_img_type) VALUES(#{uIdx},#{cImgName},#{cImgPath},#{cImgType});
     </insert>
-    <select id="findByEmail" resultType="com.smart.project.web.home.vo.MemberVO">
-        SELECT * FROM user WHERE u_id = #{email};
+    <!--업체정보 등록-->
+    <insert id="saveCompany">
+        INSERT INTO company(c_reg_num, c_addr, u_idx) VALUES(#{cRegNum},#{cAddr},#{uIdx})
+    </insert>
+    <!--세션에 있는 업체명으로 idx 리턴-->
+    <select id="selectIdx" resultType="int">
+        SELECT u_idx FROM user WHERE u_name=#{uName};
     </select>
-    <!--로그인-->
-    <select id="login" resultType="com.smart.project.web.home.vo.MemberVO">
-        SELECT * FROM user WHERE u_id=#{uId} AND u_pw=#{uPw};
+    <!--idx로 업체정보 유무 리턴-->
+    <select id="findByIdx" resultType="int">
+        SELECT count(*) FROM company WHERE u_idx = #{uIdx};
     </select>
-    <!--업체명으로 idx 가져오기-->
-    <select id="slctIdx" resultType="int">
-        SELECT u_idx FROM user WHERE u_id=#{uName};
+    <!--idx로 업체썸네일 이미지 리턴-->
+    <select id="selectThumbimg" parameterType="com.smart.project.web.photo.vo.PhotoVO" resultType="com.smart.project.web.photo.vo.PhotoVO">
+        SELECT * FROM company_img WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
     </select>
-    <!--회원정보수정시 비밀번호 확인-->
-    <select id="updateChkPw" resultType="com.smart.project.web.home.vo.MemberVO">
-        SELECT u_pw FROM user WHERE u_id=#{uId};
-    </select>
-    <!--회원탈퇴-->
-    <delete id="delete">
-        DELETE FROM user WHERE u_id=#{uId};
-    </delete>
-    <!--회원정보수정-->
-    <update id="update">
-        UPDATE user SET u_pw= #{uPw}, u_name= #{uName},  u_tel= #{uTel}, u_location= #{uLocation} WHERE u_id=#{uId};
-    </update>
 </mapper>
