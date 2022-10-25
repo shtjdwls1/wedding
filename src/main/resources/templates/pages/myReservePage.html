@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko"
-      layout:decorate="~{layouts/myReserveLayout.html}"
-      xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
 >
 
 <head>
+    <meta charset="UTF-8">
+    <title>MyReserve</title>
     <link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
     <link rel="stylesheet" th:href="@{/css/wedding/myReserve.css}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
 <!-- content -->
-<div layout:fragment="myReserve">
+<div layout:fragment="content">
     <!-- 헤더 -->
     <nav class="navbar navbar-light bg-light">
         <div class="container mx-3">

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{layouts/myCounselLayout.html}"
+      layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MyCounsel</title>
     <link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
     <link rel="stylesheet" th:href="@{/css/wedding/myCounselPage.css}">
     <link rel="stylesheet" th:href="@{/css/wedding/star.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div layout:fragment="myCounsel">
+<div layout:fragment="content">
     <!-- 헤더 -->
     <nav class="navbar navbar-light bg-light sticky-top">
         <div class="container mx-3">
@@ -44,7 +44,7 @@
                             <tbody>
                             <tr hidden>
                                 <th scope="row">인덱스번호</th>
-                                <td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getPIdx()}">인덱스</td>
+                                <td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
                             </tr>
                             <tr>
                                 <th scope="row">상담사명</th>
