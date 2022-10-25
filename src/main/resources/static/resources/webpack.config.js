@@ -16,7 +16,8 @@ module.exports = {
         join: path.join(context, '/js/join/join.js'),
         login: path.join(context,'/js/wedding/login.js'),
         changeCommonInfo: path.join(context,'/js/wedding/changeCommonInfo.js'),
-        changeCommonInfoForm: path.join(context,'/js/wedding/changeCommonInfoForm.js')
+        changeCommonInfoForm: path.join(context,'/js/wedding/changeCommonInfoForm.js'),
+        wedInfoForm:path.join(context,'/js/wedding/photo/photoUpload.js')
     },
     devtool: 'eval',//inline-source-map, eval
     devServer: {
