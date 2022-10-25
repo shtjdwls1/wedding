@@ -32,7 +32,7 @@ export class Join
 	eventBindgin(){
 		// 회원가입 유효성 풀체크
 		$('.btn_wedding_join').on('click',(e)=>{
-			let joinFormData = SerializeObject.run('wedding_joinForm');
+			let joinFormData = new FormData($('#wedInfoForm'))[0];
 			console.log("wjfd==>{}",joinFormData)
 			console.log(joinFormData)
 			if(checkAll()){
