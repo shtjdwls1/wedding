@@ -22,12 +22,13 @@ module.exports = {
         moveTopBtn: path.join(context, '/js/wedding/moveTopBtn.js'),
         plannerDetail: path.join(context, '/js/wedding/plannerDetail.js'),
         reviewBtn: path.join(context, '/js/wedding/reviewBtn.js'),
+        reserveCancelBtn: path.join(context, '/js/wedding/reserveCancelBtn.js'),
         star: path.join(context, '/js/wedding/star.js'),
         textareaMax: path.join(context, '/js/wedding/textareaMax.js'),
         weddingDetail: path.join(context, '/js/wedding/weddingDetail.js')
 
 
-        login: path.join(context,'/js/wedding/login.js'),
+
         changeCommonInfo: path.join(context,'/js/wedding/changeCommonInfo.js'),
         changeCommonInfoForm: path.join(context,'/js/wedding/changeCommonInfoForm.js'),
         wedInfoForm:path.join(context,'/js/wedding/photo/photoUpload.js')

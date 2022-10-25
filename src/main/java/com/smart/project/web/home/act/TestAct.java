@@ -39,7 +39,6 @@ public class TestAct {
 
         log.error("결과1 : {}", list1);
         for (TestListVO vo3 : list1) {
-
             TestMemberVO vo4 = testService.test3(vo3);
             list3.add(vo4);
             log.error("결과2 : {}", vo4);
