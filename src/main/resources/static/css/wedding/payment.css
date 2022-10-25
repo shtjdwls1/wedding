@@ -1,0 +1,16 @@
+.paymentCard {
+  border: 1px solid black;
+  border-radius: 2vw;
+}
+
+.completeBtn {
+  display: flex;
+  justify-content: center;
+}
+.completeBtn button {
+  width: 45vw;
+  height: 6vh;
+  border-radius: 2vh;
+}
+
+/*# sourceMappingURL=payment.css.map */

@@ -1,0 +1,21 @@
+.background {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.background .btnGroup {
+  display: flex;
+  justify-content: center;
+}
+.background .btnGroup button {
+  width: 90vw;
+  height: 6vh;
+  background: ghostwhite;
+  border: 1px solid black;
+  border-radius: 2vw;
+  margin: 0.5rem;
+}
+
+/*# sourceMappingURL=loadingPayment.css.map */
