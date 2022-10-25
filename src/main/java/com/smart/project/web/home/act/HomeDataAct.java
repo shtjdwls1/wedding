@@ -11,10 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -97,6 +94,7 @@ public class HomeDataAct {
 		return data;
 	}
 
+
 	@PostMapping("/data/login")
 	public int MemberLogin(@RequestBody MemberVO vo, HttpServletRequest request){
 		log.error("value ==> {}",vo);
@@ -113,6 +111,7 @@ public class HomeDataAct {
 			return 0;
 		}
 	}
+	// 회원가입시 아이디 중복체크
 	@PostMapping("/data/checkId")
 	public int CheckId(@RequestBody MemberVO vo){
 		log.error("value ==> {}",vo);
@@ -123,5 +122,49 @@ public class HomeDataAct {
 		}else {
 			return 0;
 		}
+	}
+	// 정보수정시 세션 id의 비밀번호 맞는지 확인
+	@PostMapping("/data/updateChkPw")
+	public int UpdateChkPw(HttpServletRequest req, @RequestBody Map<String,Object> pw){
+		HttpSession session = req.getSession(false); //세션가져오기
+		MemberVO loginSession = (MemberVO) session.getAttribute("loginSession"); // 세션값 저장
+		String loginId = loginSession.getUId(); //세션에서 아이디만 추출
+		MemberVO result = join.updateChkPw(loginId);
+		log.error("pwchk===>{}", pw.get("upw"));
+		log.error("pwchk result ==> {}",result);
+		if(result.getUPw().equals(pw.get("upw"))){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	// 회원탈퇴
+	@PostMapping("/data/deleteInfo")
+	public int DeleteInfo(HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		MemberVO loginSession = (MemberVO)session.getAttribute("loginSession");
+		String loginId = loginSession.getUId();
+		int result =join.delete(loginId);
+		session.invalidate();
+		log.error("delete result ===>{}",result);
+		return result;
+	}
+	@PostMapping("/data/update")
+	public int UpdateInfo(HttpServletRequest req,@RequestBody MemberVO vo){
+		//TODO 폼데이터 받아오기(id,pw,name,tel1,tel2,tel3,location)
+		//TODO tel합치고 VO에 담기
+		HttpSession session = req.getSession(false);
+		String telfull = vo.getUTelFront()+"-"+vo.getUTelMid()+"-"+vo.getUTelEnd();
+		vo.setUTel(telfull);
+		log.error("input Data ==>{}",vo);
+		int result = join.update(vo);
+		MemberVO updateVo = join.login(vo);
+		if(result==1){
+			session.setAttribute("loginSession",updateVo);
+			return 1;
+		}else{
+			return 0;
+		}
+
 	}
 }

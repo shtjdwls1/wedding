@@ -1,98 +1,141 @@
 <!DOCTYPE html>
 <html lang="ko"
-      layout:decorate="~{layouts/otherPageLayout.html}"
+      layout:decorate="~{layouts/myReserveLayout.html}"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-
+      xmlns:th="http://www.thymeleaf.org"
 >
 
 <head>
-	<link href="/css/wedding/myReserve.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
+    <link rel="stylesheet" th:href="@{/css/wedding/myReserve.css}">
 
 </head>
 <body>
+
 <!-- content -->
-<div layout:fragment="content">
-	<!-- 헤더 -->
-	<nav class="navbar navbar-light bg-light">
-		<div class="container mx-3">
-			<a class="navbar-brand" href="/">
-				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
-			</a>
-			<a class="navbar-brand " style="margin-right: 2rem">
-				<strong>예약 확인</strong>
-			</a>
-			<a>
-			</a>
-		</div>
-	</nav>
-	<!--예약 확인 카드-->
-	<div class="reserveCard mx-2 my-2">
-		<div class="Photosec mx-2 my-2">
-			<div>
-				<img class="wedPhoto" src="/imgs/ReserveWed.jpg">
-			</div>
-		</div>
-		<div class="reserveInfo mx-2">
-			<table class="table table-borderless my-2">
-				<tbody>
-				<tr>
-					<th scope="row">웨딩홀명</th>
-					<td>드메르 웨딩홀</td>
-				</tr>
-				<tr>
-					<th scope="row">예약홀명</th>
-					<td>A홀</td>
+<div layout:fragment="myReserve">
+    <!-- 헤더 -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container mx-3">
+            <a class="navbar-brand" href="/">
+                <img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+            </a>
+            <a class="navbar-brand " style="margin-right: 2rem">
+                <strong>예약 확인</strong>
+            </a>
+            <a>
+            </a>
+        </div>
+    </nav>
 
-				</tr>
-				<tr>
-					<th scope="row">예약일자</th>
-					<td>2023-01-15</td>
-				</tr>
-				<tr>
-					<th scope="row">예약시간</th>
-					<td>14-16</td>
-				</tr>
-				<tr>
-					<th scope="row">연락처</th>
-					<td>062-123-4567</td>
-				</tr>
-				<tr>
-					<th scope="row">금액</th>
-					<td>200만원</td>
-				</tr>
-				<tr>
-					<th scope="row"></th>
-					<td>
-						<button class="btn btn-sm btn-light border-dark" data-bs-target="#cancelModal"
-						        data-bs-toggle="modal"
-						        type="button">
-							예약 취소
-						</button>
-					</td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+    <!-- 리스트가 있는 경우 -->
+    <div th:if="${!#lists.isEmpty(myReserves)}">
+        <div th:each="myReserve : ${myReserves}">
+            <!--예약 확인 카드-->
+            <div class="reserveCard mx-2 my-2">
+                <div class="Photosec mx-2 my-2">
+                    <div>
+                        <img class="wedPhoto" src="/imgs/ReserveWed.jpg">
+                    </div>
+                </div>
+                <div class="reserveInfo mx-2">
+                    <table class="table table-borderless my-2">
+                        <tbody>
+                        <tr hidden>
+                            <th scope="row">인덱스번호</th>
+                            <td th:id="'p_idx'+${myReserveStat.index}" th:text="${myReserve.getUName()}">인덱스</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">웨딩홀명</th>
+                            <td th:text="${myReserve.getUName()}">드메르 웨딩홀</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">예약홀명</th>
+                            <td th:text="${myReserve.getHName()}">A홀</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">예약일자</th>
+                            <td th:text="${myReserve.getReserveDate()}">2023-01-15</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">예약시간</th>
+                            <td th:text="${myReserve.getSTime()}+ '-' +${myReserve.getETime()}">14-16</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">연락처</th>
+                            <td th:text="${myReserve.getUTel()}">062-123-4567</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">금액</th>
+                            <td th:text="${myReserve.getHPrice()} + 원">200만원</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td>
+                                <button class="btn btn-sm btn-light border-dark"
+                                        th:data-bs-target="'#cancelModal1'+${myReserve.getHReserveIdx()}"
+                                        data-bs-toggle="modal"
+                                        type="button"
+                                        onclick="madal_idx(this)"
+                                        th:id="'reserve_cancelBtn'+${myReserve.getHReserveIdx()}"
+                                >
+                                    예약 취소
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-	<!-- 모달	-->
-	<div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade" id="cancelModal" tabindex="-1">
-		<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
-			<div class="modal-content text-center">
-				<div class="modal-body mx-4 mt-4">
-					<strong>
-						<p>OOO님,</p>
-						예약 취소하시겠습니까?
-					</strong>
-					<div class="d-grid gap-2 col-4 mx-auto mt-4">
-						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <!-- 모달	-->
+            <div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade"
+                 th:id="'cancelModal1'+${myReserve.getHReserveIdx()}" tabindex="0">
+                <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <button class="close float-end bi-x-lg" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <strong>
+                                <p th:text="${session.loginSession.getUName()}+'님,'">OOO님,</p>
+                                예약 취소하시겠습니까?
+                            </strong>
+                            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                                <button class="btn btn-light btn-outline-dark"
+                                        th:data-bs-target="'#cancelModal2'+${myReserve.getHReserveIdx()}"
+                                        data-bs-toggle="modal"
+                                        data-bs-dismiss="modal" type="button"
+                                        th:id="'cancelBtn'+${myReserve.getHReserveIdx()}">확인
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 삭제 결과 모달 -->
+            <div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade"
+                 th:id="'cancelModal2'+${myReserve.getHReserveIdx()}" tabindex="0">
+                <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <strong>
+                                삭제되었습니다.
+                            </strong>
+                            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                                <button class="btn btn-light btn-outline-dark" type="button"
+                                        th:id="'resultBtn'+${myReserve.getHReserveIdx()}">확인
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 리스트가 비어 있는 경우 표시 -->
+    <div th:if="${#lists.isEmpty(myReserves)}">
+        <h3 style="color: #898989; text-align: center; margin-top: 100px" >예약내역이 존재하지 않습니다.</h3>
+    </div>
 </div>
-
 </body>
 </html>

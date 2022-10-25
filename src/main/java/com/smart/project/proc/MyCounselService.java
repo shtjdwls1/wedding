@@ -12,7 +12,5 @@ import java.util.List;
 public interface MyCounselService {
 
     List<MyCounselVO> myCounsel(int u_idx);
-    void myCounselUpdate(MyCounselUpdateVO vo);
-//    MyCounselUpdateVO myCounselUpdate(int u_idx, Object reviewObj);
-
+    int myCounselUpdate(MyCounselUpdateVO vo);
 }

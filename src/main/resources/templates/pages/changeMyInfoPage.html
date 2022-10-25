@@ -32,14 +32,12 @@
 			</div>
 			<div class="passwordCheck">
 				<input class="form-control mb-3" id="exampleInputPassword1" type="password">
+				<span id="pwsc" style="color: white">비밀번호를 정확히 입력해주세요.</span>
 			</div>
 			<div class="chageInfo d-grid gap-2 col-6 mx-auto">
-				<button class="changeInfoBtn btn btn-light border-dark" onClick="location.href='/changeMyInfoForm'"
-				        type="button">정보수정
+				<button class="changeInfoBtn btn btn-light border-dark" type="button" id="beforeUpdate">정보수정
 				</button>
-				<button class="deleteInfoBtn btn btn-light border-dark" data-bs-target="#deleteModal"
-				        data-bs-toggle="modal"
-				        type="button">회원탈퇴
+				<button class="deleteInfoBtn btn btn-light border-dark" type="button" id="btnDeleteInfo">회원탈퇴
 				</button>
 				<a class="logoutBtn btn btn-light border-dark" type="button" href="/logout">로그아웃</a>
 			</div>
@@ -50,15 +48,19 @@
 	<div aria-hidden="true" aria-labelledby="deleteModalLabel" class="modal fade" id="deleteModal" tabindex="-1">
 		<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
 			<div class="modal-content text-center">
-				<div class="modal-body mx-4 mt-4">
+				<button class="btn float-right">x</button>
+				<div class="modal-body mx-4">
 					<strong>정말로 탈퇴 하시겠습니까?</strong>
 					<div class="d-grid gap-2 col-4 mx-auto mt-4">
-						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button">확인</button>
+						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button" id="deleteModalClose">확인</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/changeCommonInfo.bundle.js')}"></script>
+
 </div>
 
 </body>

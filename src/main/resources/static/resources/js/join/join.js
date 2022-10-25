@@ -248,6 +248,7 @@ export class Join
 				.css('display','none')
 				.attr('aria-hidden','true')
 				.removeAttr('aria-modal').removeAttr('role')
+			$('.modal-backdrop').remove()
 			if(tf===true){
 				location.href="/login"
 			}
@@ -255,6 +256,7 @@ export class Join
 		function modalOn(){
 			$('body').addClass('modal-open')
 				.css('overflow','hidden').css('padding-right','0px')
+				.append("<div class='modal-backdrop fade show'></div>")
 			$('#loginModal').addClass('show')
 				.css('display','block')
 				.removeAttr('aria-hidden')
