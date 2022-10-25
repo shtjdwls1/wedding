@@ -1,6 +1,11 @@
 .searchHeader {
   border: 1px solid black;
   border-radius: 10px;
+
+  .indexSearchBtn {
+    background-color: white;
+    text-align: center;
+  }
 }
 
 .carousel-inner {

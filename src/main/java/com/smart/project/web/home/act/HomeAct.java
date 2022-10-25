@@ -4,10 +4,8 @@ import com.smart.project.common.vo.InternCookie;
 import com.smart.project.component.CommonCodeComponent;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
-import com.smart.project.web.home.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,18 +28,18 @@ public class HomeAct {
     final private Test test;
 
     // 메인 들어올때
-    @RequestMapping("/")
-    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
-        if (StringUtils.isNotEmpty(cookie.getUserId())) {
-            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
-        }
-        // 서블릿 HTTP 세션 사용
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
-        }
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
+//        if (StringUtils.isNotEmpty(cookie.getUserId())) {
+//            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
+//        }
+//        // 서블릿 HTTP 세션 사용
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+//        }
+//        return "index";
+//    }
 
     @RequestMapping("/login")
     public String login(Model model, InternCookie cookie, HttpServletRequest request) {
@@ -96,10 +94,10 @@ public class HomeAct {
         return "pages/changeMyInfoFormPage";
     }
 
-    @RequestMapping("/weddingDetail")
-    public String weddingDetail() {
-        return "pages/weddingDetailPage";
-    }
+//    @RequestMapping("/weddingDetail")
+//    public String weddingDetail() {
+//        return "pages/weddingDetailPage";
+//    }
 
     @RequestMapping("/plannerDetail")
     public String plannerDetail() {
@@ -143,10 +141,10 @@ public class HomeAct {
     }
 
 
-    @RequestMapping("/searchResult")
-    public String searchResult() {
-        return "pages/searchResultPage";
-    }
+//    @RequestMapping("/searchResult")
+//    public String searchResult() {
+//        return "pages/searchResultPage";
+//    }
 
     @RequestMapping("/data")
     @ResponseBody

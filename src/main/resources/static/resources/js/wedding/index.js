@@ -37,7 +37,7 @@ function handleClickClasify(event) {
         event.target.classList.add("clicked");
         console.log("누른거!" + event.target.textContent)
 
-        clasifyBtn.innerText = event.target.textContent;
+        clasifyBtn.value = event.target.textContent;
         controllClasifyModal();
 
     }
@@ -62,7 +62,7 @@ function handleClickLocation(event) {
         event.target.classList.add("clicked");
         console.log("누른거!" + event.target.textContent)
 
-        locationBtn.innerText = event.target.textContent;
+        locationBtn.value = event.target.textContent;
         controllLocationModal();
 
     }

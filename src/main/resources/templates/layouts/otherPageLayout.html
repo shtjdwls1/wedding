@@ -16,24 +16,40 @@
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
 <th:block layout:fragment="script">
-	<script th:src="@{/resources/js/wedding/imgToBig.js}"
+	<script th:src="${@versionComponent.getVersion('/resources/build/imgToBig.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/backBtn.js}"
+	<!--	<script th:src="@{/resources/js/wedding/imgToBig.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/backBtn.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/index.js}"
+	<!--	<script th:src="@{/resources/js/wedding/backBtn.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/index.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/localJoin.js}"
+	<!--	<script th:src="@{/resources/js/wedding/index.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/localJoin.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/plannerDetail.js}"
+	<!--	<script th:src="@{/resources/js/wedding/localJoin.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/plannerDetail.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/star.js}"
+	<!--	<script th:src="@{/resources/js/wedding/plannerDetail.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/star.bundle.js')}" type="text/javascript"></script>
+	<!--	<script th:src="@{/resources/js/wedding/star.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/textareaMax.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/textareaMax.js}"
+	<!--	<script th:src="@{/resources/js/wedding/textareaMax.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/weddingDetail.bundle.js')}"
 	        type="text/javascript"></script>
-
-	<script th:src="@{/resources/js/wedding/weddingDetail.js}"
+	<!--	<script th:src="@{/resources/js/wedding/weddingDetail.js}"-->
+	<!--	        type="text/javascript"></script>-->
+	<script th:src="${@versionComponent.getVersion('/resources/build/moveTopBtn.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/moveTopBtn.js}" type="text/javascript"></script>
+	<!--	<script th:src="@{/resources/js/wedding/moveTopBtn.js}" type="text/javascript"></script>-->
 
 
 </th:block>

@@ -13,9 +13,11 @@
 </section>
 
 <th:block layout:fragment="script">
-	<script th:src="@{/resources/js/wedding/localJoin.js}"
+
+	<script th:src="${@versionComponent.getVersion('/resources/build/localJoin.bundle.js')}"
 	        type="text/javascript"></script>
-	<script th:src="@{/resources/js/wedding/backBtn.js}"
+
+	<script th:src="${@versionComponent.getVersion('/resources/build/backBtn.bundle.js')}"
 	        type="text/javascript"></script>
 	<script th:src="${@versionComponent.getVersion('/resources/build/join.bundle.js')}" type="text/javascript"></script>
 </th:block>
