@@ -62,7 +62,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark testBtn" onclick="controllHallModal('A홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark timeBtn" type="button" value="A홀">시간 선택
 				</button>
 			</div>
 		</div>
@@ -101,7 +101,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllHallModal('B홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark timeBtn" type="button" value="B홀">시간 선택
 				</button>
 			</div>
 		</div>
@@ -140,7 +140,7 @@
 				<div>금액 : 1,000,000</div>
 			</div>
 			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllHallModal('C홀')" type="button">시간 선택
+				<button class="btn btn-light border-dark timeBtn" type="button" value="C홀">시간 선택
 				</button>
 			</div>
 		</div>
@@ -160,7 +160,7 @@
 				<h5 class="modal-title">
 					시간선택
 				</h5>
-				<button class="modalCloseBtn" onclick="controllHallModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -181,33 +181,33 @@
 	</div>
 
 
-	<script th:inline="javascript">
+	<!--	<script th:inline="javascript">-->
 
 
-		var SList = [[${SList}]]
-		var EList = [[${EList}]]
-		console.log(SList)
-		console.log(EList)
-		const modalBody = document.querySelector(".modal-body")
-		const testBtn = document.querySelector(".testBtn")
+	<!--		var SList = [[${SList}]]-->
+	<!--		var EList = [[${EList}]]-->
+	<!--		console.log(SList)-->
+	<!--		console.log(EList)-->
+	<!--		const modalBody = document.querySelector(".modal-body")-->
+	<!--		const timeBtn = document.querySelector(".timeBtn")-->
 
-		testBtn.addEventListener('click', () => {
-			timeChange(SList, EList)
-		})
+	<!--		timeBtn.addEventListener('click', () => {-->
+	<!--			timeChange(SList, EList)-->
+	<!--		})-->
 
-		// $(".testBtn").on("click", timeChange(SList, EList))
+	<!--		// $(".testBtn").on("click", timeChange(SList, EList))-->
 
-		async function timeChange(start, end) {
-			modalBody.replaceChildren();
-			console.log("왜되냐고")
-			for (let i = 0; i < start.length; i++) {
-				const div1 = document.createElement("div");
-				div1.className = 'modalOption hallTimeOption';
-				div1.innerText = start[i] + " - " + end[i];
-				modalBody.appendChild(div1)
-			}
-		}
-	</script>
+	<!--		async function timeChange(start, end) {-->
+	<!--			modalBody.replaceChildren();-->
+	<!--			console.log("왜되냐고")-->
+	<!--			for (let i = 0; i < start.length; i++) {-->
+	<!--				const div1 = document.createElement("div");-->
+	<!--				div1.className = 'modalOption hallTimeOption';-->
+	<!--				div1.innerText = start[i] + " - " + end[i];-->
+	<!--				modalBody.appendChild(div1)-->
+	<!--			}-->
+	<!--		}-->
+	<!--	</script>-->
 </div>
 
 

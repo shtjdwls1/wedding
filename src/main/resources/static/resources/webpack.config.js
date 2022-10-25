@@ -18,7 +18,6 @@ module.exports = {
         index: path.join(context, '/js/wedding/index.js'),
         backBtn: path.join(context, '/js/wedding/backBtn.js'),
         imgToBig: path.join(context, '/js/wedding/imgToBig.js'),
-        localJoin: path.join(context, '/js/wedding/localJoin.js'),
         mobiscroll: path.join(context, '/js/wedding/mobiscroll.javascript.min.js'),
         moveTopBtn: path.join(context, '/js/wedding/moveTopBtn.js'),
         plannerDetail: path.join(context, '/js/wedding/plannerDetail.js'),

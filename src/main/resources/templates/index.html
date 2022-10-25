@@ -18,10 +18,8 @@
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
 	<form action="/searchResult" class="searchHeader d-flex justify-content-between mx-4 my-4">
-		<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" onclick="controllClasifyModal()"
-		       value="분류▼">
-		<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" onclick="controllLocationModal()"
-		       value="지역▼">
+		<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" value="분류▼">
+		<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" value="지역▼">
 		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" name="date" placeholder="날짜선택">
 		<button class="indexSearchBtn  mx-2 my-2" type="submit">검색</button>
 	</form>
@@ -93,7 +91,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -110,7 +108,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllLocationModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
