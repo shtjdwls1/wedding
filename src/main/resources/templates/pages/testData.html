@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="data : ${maindata}">
+
+    <p th:Text="'업체번호'+${data.getCIdx()}"></p>
+    <p th:Text="'유저번호'+${data.getUIdx()}"></p>
+    <p th:Text="'웨딩홀명'+${data.getUName()}"></p>
+    <p th:Text="'주소'+${data.getCAddr()}"></p>
+    <p th:Text="'최소금액'+${data.getHPrice()}"></p>
+    <p th:Text="'이미지이름'+${data.getCImgName()}"></p>
+    <p th:Text="'이미지경로'+${data.getCImgPath()}"></p>
+    <p th:Text="'이미지타입'+${data.getCImgType()}"></p>
+
+</div>
+</body>
+</html>

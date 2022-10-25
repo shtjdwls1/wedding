@@ -10,7 +10,7 @@ import lombok.*;
 public class MyCounselVO {
 
     private int pCounselingIdx;
-    private int pIdx;
+    private int uIdx;
     private String pCounselingCk;
     private int pGrade;
     private String pReview;

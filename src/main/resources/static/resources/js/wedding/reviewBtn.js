@@ -33,7 +33,12 @@ const changeText = (target) => {
 
         axios.post('/myCounsel/reviewWrite', updateData)
             .then((result) => {
-                console.log(result);
+                if(result == 1){
+                    console.log("후기등록 성공");
+                }else{
+                    console.log("후기등록 실패");
+                }
+
             })
 
     }

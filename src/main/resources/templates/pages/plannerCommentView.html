@@ -2,6 +2,7 @@
 <html lang="en"
       layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
 >
 <head>
 	<meta charset="UTF-8">
@@ -60,6 +61,7 @@
 		<div class="countComment mt-2 mx-4" style="color: gray">
 			<i class="bi bi-people-fill mx-1"></i>32
 		</div>
+
 		<!--후기댓글	-->
 		<div class="comment">
 			<div class="outerStar mx-3" style="justify-content: flex-start">
@@ -77,162 +79,8 @@
 				</div>
 			</div>
 		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					정말 친절하고 좋은 분이였습니다.
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					아이템들의 사이와 양 끝에 균일한 간격을 만들어 줍니다.
-					주의! IE와 엣지(Edge)에서는 지원되지 않습니다👎
-					이 웹사이트의 메뉴 부분은 브라우저 폭이 1024px 이상일 때 space-evenly가 적용되도록 했는데요, IE와 엣지에서만 space-around로 적용이 되도록 처리해
-					두었어요.
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
-		<!--후기댓글	-->
-		<div class="comment">
-			<div class="outerStar mx-3" style="justify-content: flex-start">
-				<div class="mt-1 mx-1">유저 아이디</div>
-				<span class="star text" style="font-size: 1rem">
-					  ★★★★★
-					<!-- width 값 에 db값 * 10 % 해서 별 출력-->
-					  <span style="width: 80%">★★★★★</span>
-					  <input max="10" min="0" name="star1" step="1" type="range" value="1">
-				</span>
-			</div>
-			<div class="plannerIntro mx-3 mb-2">
-				<div class="commentView px-2">
-					너무 좋아요!
-				</div>
-			</div>
-		</div>
+
+
 	</div>
 
 	<!-- 예약 확인 영역과 간격을 위한 div-->

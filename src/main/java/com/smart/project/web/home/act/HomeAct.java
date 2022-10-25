@@ -125,6 +125,11 @@ public class HomeAct {
         return "pages/plannerCommentView";
     }
 
+    @RequestMapping("/plannertttt")
+    public String plannerCommentView2() {
+        return "pages/plannerDetailPage";
+    }
+
 
     @RequestMapping("/searchResult")
     public String searchResult() {
