@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.MainPagePlanner">
+
+    <select id="getStartPlan" resultType="com.smart.project.web.mainpage.vo.MainPlannerVO" parameterType="String">
+        select u_name,
+               p_idx,
+               p_img_name,
+               p_img_path,
+               p_img_type,
+               TRUNCATE((sum(p_grade) / COUNT(p_grade) / 2), 1) as p_grade,
+               u_location
+        from planner_main
+        where u_location = #{u_location}
+        group by p_idx, p_img_name, p_img_path, p_img_type;
+    </select>
+
+
+</mapper>

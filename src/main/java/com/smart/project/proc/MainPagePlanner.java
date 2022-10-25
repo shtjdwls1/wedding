@@ -1,0 +1,13 @@
+package com.smart.project.proc;
+
+import com.smart.project.annotation.Master;
+import com.smart.project.web.mainpage.vo.MainPlannerVO;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Master
+@Component
+public interface MainPagePlanner {
+    List<MainPlannerVO> getStartPlan(String location);
+}
