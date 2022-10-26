@@ -51,11 +51,11 @@ public class MyReserveAct {
 
     @PostMapping("/myReserve/cancel")
     @ResponseBody
-    public MyReserveVO myReserveCancel(@RequestBody MyReserveVO vo) {
+    public int myReserveCancel(@RequestBody MyReserveVO vo) {
         log.error("입력===>{}", vo);
-
-
-        return vo;
+        int result = myReserveService.myReserveCancel(vo);
+        log.error("결과===>{}", result);
+        return result;
     }
 
 }

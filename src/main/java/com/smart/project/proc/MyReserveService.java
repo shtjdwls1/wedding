@@ -12,7 +12,7 @@ public interface MyReserveService {
 
     List<MyReserveVO> myReserve(int u_idx);
 
-    void myReserveCancel(MyReserveVO vo);
+    int myReserveCancel(MyReserveVO vo);
 
 
 }

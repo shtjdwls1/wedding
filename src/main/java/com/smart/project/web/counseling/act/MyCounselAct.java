@@ -60,11 +60,7 @@ public class MyCounselAct {
         vo.setCounselIdx(loginMember.getUIdx());
         log.error("최종===>{}", vo);
         int result = myCounselService.myCounselUpdate(vo);
-        if(result > 0){
-            return 1;
-        }else{
-            return 0;
-        }
+        return result;
     }
 
 }

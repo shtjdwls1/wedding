@@ -15,8 +15,8 @@
     <select id="test3" resultType="com.smart.project.web.home.vo.TestMemberVO"
             parameterType="com.smart.project.web.home.vo.TestListVO">
         SELECT *
-        from company_result
-        where u_idx = #{uIdx}
+        from company_result2
+        where u_idx = #{uIdx} and u_location = '대전'
     </select>
 </mapper>
 

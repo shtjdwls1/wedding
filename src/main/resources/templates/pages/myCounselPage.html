@@ -44,7 +44,7 @@
 							<tbody>
 							<tr hidden>
 								<th scope="row">인덱스번호</th>
-								<td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
+								<td th:id="'u_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
 							</tr>
 							<tr>
 								<th scope="row">상담사명</th>
@@ -67,18 +67,16 @@
 								<th scope="row"></th>
 								<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ( ${#strings.isEmpty(myCounsel.getPReview())} or ${#strings.isEmpty(myCounsel.getPGrade())})">
 									<button aria-controls="collapseExample" aria-expanded="false"
-									        class="btn btn-sm btn-light border-dark review-write"
+									        class="btn btn-sm btn-light border-dark counselBtn review_write"
 									        data-bs-toggle="collapse"
-									        onclick="changeText(this)"
 									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
 									        th:id="'reviewBtn'+${myCounselStat.index}" type="button">후기 작성
 									</button>
 								</td>
 								<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ${not #strings.isEmpty(myCounsel.getPReview())} and ${not #strings.isEmpty(myCounsel.getPGrade())}">
 									<button aria-controls="collapseExample" aria-expanded="false"
-									        class="btn btn-sm btn-light border-dark review-open"
+									        class="btn btn-sm btn-light border-dark counselBtn review_open"
 									        data-bs-toggle="collapse"
-									        onclick="changeText(this)"
 									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
 									        th:id="'reviewBtn'+${myCounselStat.index}" type="button">후기 보기
 									</button>
@@ -86,9 +84,9 @@
 
 								<td th:unless="${myCounsel.getPCounselingCk() == 'T'}">
 									<button aria-controls="collapseExample" aria-expanded="false"
-									        class="btn btn-sm btn-light border-dark confirm-wait"
+									        class="btn btn-sm btn-light border-dark counselBtn confirm_wait"
 									        data-bs-toggle="collapse"
-									        disabled onclick="changeText(this)"
+									        disabled
 									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
 									        th:id="'reviewBtn'+${myCounselStat.index}"
 									        type="button">
