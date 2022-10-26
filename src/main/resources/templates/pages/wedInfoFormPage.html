@@ -29,46 +29,48 @@
 	<div class="inputSec mt-3 mx-3">
 		<label class="mx-4 my-1" for="thumbImg">대표사진</label>
 		<div class="thumbImgSec">
-			<img id="thumbImg" src="/imgs/noImage.png">
+			<img id="thumbImg" src="/imgs/noImage.png" alt="img_title">
 		</div>
-		<div class="fileBtn mt-2">
-			<label for="file">
-				<div class="btnUpload">사진찾기</div>
-			</label>
-			<input id="file" name="file" type="file">
-		</div>
-		<form class="mx-3">
+
+		<form class="mx-3" id="wedInfoForm">
+			<div class="fileBtn mt-2">
+				<label for="files">
+					<div class="btnUpload">사진찾기</div>
+				</label>
+				<input id="files" name="file" type="file">
+			</div>
 			<div class="mb-3">
 				<label class="form-label" for="address">주소</label>
 				<input class="form-control" id="address" readonly type="text"
-				       value="임의의 주소">
+				       value="임의의 주소" name="address">
 			</div>
 			<div class="mb-3">
-				<label class="form-label" for="detailAdd">상세 주소</label>
-				<input class="form-control" id="detailAdd" type="text">
+				<label class="form-label" for="detailAddr">상세 주소</label>
+				<input class="form-control" id="detailAddr" type="text" name="detailAddr">
 			</div>
 			<div class="row mb-3">
-				<label class="mb-2" for="buisness1">사업자등록번호</label>
+				<label class="mb-2" for="business1">사업자등록번호</label>
 				<div class="col">
-					<input aria-label="First name" class="form-control" id="buisness1" type="number">
+					<input aria-label="First name" class="form-control" id="business1" type="number" name="business1">
 				</div>
 				-
 				<div class="col">
-					<input aria-label="Last name" class="form-control" id="buisness2" type="number">
+					<input aria-label="Last name" class="form-control" id="business2" type="number" name="business2">
 				</div>
 				-
 				<div class="col">
-					<input aria-label="Last name" class="form-control" id="buisness3" type="number">
+					<input aria-label="Last name" class="form-control" id="business3" type="number" name="business3">
 				</div>
 			</div>
 			<div class="d-grid gap-2 col-6 mx-auto mt-5">
-				<button class="btn btn-light btn-outline-dark" onClick="location.href='/wedInfo'" type="button">
+				<button class="btn btn-light btn-outline-dark" id="wedInfoSubmit" type="button">
 					정보등록
 				</button>
 			</div>
 		</form>
 	</div>
 
+	<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/wedInfoForm.bundle.js')}"></script>
 
 </div>
 

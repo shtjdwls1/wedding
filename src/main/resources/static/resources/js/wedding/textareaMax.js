@@ -8,7 +8,7 @@ export class textareaMax {
     }
 
     eventBindgin() {
-//textarea 바이트 수 체크하는 함수
+        //textarea 바이트 수 체크하는 함수
         function fn_checkByte(obj) {
             const maxByte = 1000; //최대 100바이트
             const text_val = obj.value; //입력한 문자
@@ -40,6 +40,10 @@ export class textareaMax {
                 document.getElementById("nowByte" + targetIndex).style.color = "green";
             }
         }
+
+        $('.commentTextarea').on('keyup', (e) => {
+            fn_checkByte(e.target)
+        })
 
     }
 }
