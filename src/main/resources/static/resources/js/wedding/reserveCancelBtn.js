@@ -26,7 +26,7 @@ export class reserveCancelBtn {
                 axios.post('/myReserve/cancel', updateData)
                     .then((result) => {
                         console.log(result);
-                        if(result == 1) {
+                        if(result.data > 0) {
                             console.log("삭제성공");
                             $("#resultBtn" + madalIdx).on('click', (e) => {
                                 location.href = "/myReserve"

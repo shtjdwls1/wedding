@@ -17,5 +17,8 @@ public class MyReserveVO {
     private String hPrice;
     private String uName;
     private String uTel;
+    private String cImgName;
+    private String cImgPath;
+    private String cImgType;
 
 }

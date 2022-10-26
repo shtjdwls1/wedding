@@ -11,7 +11,6 @@
 	<link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
 	<link rel="stylesheet" th:href="@{/css/wedding/myReserve.css}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -44,9 +43,17 @@
 				<div class="reserveInfo mx-2">
 					<table class="table table-borderless my-2">
 						<tbody>
-						<tr hidden>
-							<th scope="row">인덱스번호</th>
-							<td th:id="'p_idx'+${myReserveStat.index}" th:text="${myReserve.getUName()}">인덱스</td>
+						<tr>
+							<th scope="row">업체사진이름</th>
+							<td th:id="'u_idx'+${myReserveStat.index}" th:text="${myReserve.getCImgName()}">업체사진이름</td>
+						</tr>
+						<tr>
+							<th scope="row">업체사진경로</th>
+							<td th:id="'u_idx'+${myReserveStat.index}" th:text="${myReserve.getCImgPath()}">업체사진경로</td>
+						</tr>
+						<tr>
+							<th scope="row">업체사진타입</th>
+							<td th:id="'u_idx'+${myReserveStat.index}" th:text="${myReserve.getCImgType()}">업체사진타입</td>
 						</tr>
 						<tr>
 							<th scope="row">웨딩홀명</th>

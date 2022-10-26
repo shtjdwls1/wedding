@@ -118,17 +118,6 @@ public class HomeAct {
         return "pages/plannerInfoFromPage";
     }
 
-    @RequestMapping("/plannerCommentView")
-    public String plannerCommentView() {
-        return "pages/plannerCommentView";
-    }
-
-    @RequestMapping("/plannertttt")
-    public String plannerCommentView2() {
-        return "pages/plannerDetailPage";
-    }
-
-
 //    @RequestMapping("/searchResult")
 //    public String searchResult() {
 //        return "pages/searchResultPage";

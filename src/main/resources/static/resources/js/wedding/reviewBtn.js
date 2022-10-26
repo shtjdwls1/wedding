@@ -56,7 +56,7 @@ export class reviewBtn {
                 axios.post('/myCounsel/reviewWrite', updateData)
                     .then((result) => {
                         console.log(result);
-                        if(result == 1) {
+                        if(result.data > 0) {
                             console.log("수정성공");
                         }else{
                             console.log("수정실패");

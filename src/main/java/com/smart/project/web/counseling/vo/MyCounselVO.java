@@ -19,4 +19,7 @@ public class MyCounselVO {
     private String pPrice;
     private String uName;
     private String uTel;
+    private String pImgName;
+    private String pImgPath;
+    private String pImgType;
 }

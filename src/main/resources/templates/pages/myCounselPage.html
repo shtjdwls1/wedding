@@ -47,6 +47,18 @@
 								<td th:id="'u_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
 							</tr>
 							<tr>
+								<th scope="row">플래너사진이름</th>
+								<td th:id="'photoName'+${myCounselStat.index}" th:text="${myCounsel.getPImgName()}">플래너사진이름</td>
+							</tr>
+							<tr>
+								<th scope="row">플래너사진경로</th>
+								<td th:id="'photoPath'+${myCounselStat.index}" th:text="${myCounsel.getPImgPath()}">플래너사진경로</td>
+							</tr>
+							<tr>
+								<th scope="row">플래너사진타입</th>
+								<td th:id="'photoType'+${myCounselStat.index}" th:text="${myCounsel.getPImgType()}">플래너사진타입</td>
+							</tr>
+							<tr>
 								<th scope="row">상담사명</th>
 								<td th:Text="${myCounsel.getUName()}">김땡땡</td>
 							</tr>
@@ -106,7 +118,7 @@
 					<span class="star text">
 					  ★★★★★
 					  <span th:class="'star'+${myCounselStat.index}"
-					        th:style="'width:'+${myCounsel.getPGrade()*10}+'%'">★★★★★</span>
+					        th:style="'width:'+${myCounsel.getPGrade()}*10+'%'">★★★★★</span>
 					  <input class="star" max="10" min="0" step="1" th:id="'star'+${myCounselStat.index}"
 					         th:value="${myCounsel.getPGrade()}" type="range">
 					</span>

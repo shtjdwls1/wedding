@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.PlannerService" >
+    <select id="plannerReview" resultType="com.smart.project.web.planner.vo.PlannerVO" parameterType="int">
+        select u.u_name,pc.p_grade,pc.p_review
+        from planner_counseling as pc
+                 left join `user` as u on u.u_idx = pc.counsel_idx
+        where pc.u_idx = #{u_idx} and p_review is not null
+        ORDER by pc.counsel_date DESC
+<!--        select pc.p_counseling_idx, u.u_name,pc.p_grade,pc.p_review-->
+<!--        from planner_counseling as pc-->
+<!--        left join `user` as u on u.u_idx = pc.counsel_idx-->
+<!--        where pc.u_idx = #{u_idx} and p_review is not null-->
+<!--        and pc.p_counseling_idx < (select count(*) from planner_counseling)-->
+<!--        ORDER by pc.counsel_date DESC-->
+<!--        LIMIT 10-->
+    </select>
+    <select id="plannerReviewCnt" resultType="int" parameterType="int">
+        select count(*) from planner_counseling where u_idx = #{u_idx} and p_review is not null
+    </select>
+</mapper>
+
+
+
+
