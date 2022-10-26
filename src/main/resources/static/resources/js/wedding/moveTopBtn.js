@@ -4,10 +4,10 @@ $(() => {
 
 export class moveTopBtn {
     constructor() {
-        this.eventBindgin()
+        this.eventBinding()
     }
 
-    eventBindgin() {
+    eventBinding() {
         $(function () {
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 500) {

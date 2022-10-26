@@ -5,138 +5,142 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-    <meta charset="UTF-8">
-    <title>MyCounsel</title>
-    <link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
-    <link rel="stylesheet" th:href="@{/css/wedding/myCounselPage.css}">
-    <link rel="stylesheet" th:href="@{/css/wedding/star.css}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<meta charset="UTF-8">
+	<title>MyCounsel</title>
+	<link rel="stylesheet" th:href="@{/css/wedding/moveTopBtn.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/myCounselPage.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/star.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
-    <!-- 헤더 -->
-    <nav class="navbar navbar-light bg-light sticky-top">
-        <div class="container mx-3">
-            <a class="navbar-brand" href="/">
-                <img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
-            </a>
-            <a class="navbar-brand " style="margin-right: 2rem">
-                <strong>내 상담</strong>
-            </a>
-            <a>
-            </a>
-        </div>
-    </nav>
+	<!-- 헤더 -->
+	<nav class="navbar navbar-light bg-light sticky-top">
+		<div class="container mx-3">
+			<a class="navbar-brand" href="/">
+				<img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+			</a>
+			<a class="navbar-brand " style="margin-right: 2rem">
+				<strong>내 상담</strong>
+			</a>
+			<a>
+			</a>
+		</div>
+	</nav>
 
-    <!-- 리스트가 있는 경우 -->
-    <div th:if="${!#lists.isEmpty(myCounsels)}">
-        <div th:each="myCounsel : ${myCounsels}">
-            <!-- 상담 카드 -->
-            <div class="outer  mt-2 mx-3">
-                <div class="plannerCard">
-                    <div class="Photosec mx-2 my-2">
-                        <div>
-                            <img class="plannerPhoto mt-2" src="/imgs/PlannerPhoto.jpg">
-                        </div>
-                    </div>
-                    <div class="plannerInfo mx-2">
-                        <table class="table table-borderless my-2">
-                            <tbody>
-                            <tr hidden>
-                                <th scope="row">인덱스번호</th>
-                                <td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">상담사명</th>
-                                <td th:Text="${myCounsel.getUName()}">김땡땡</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">상담일자</th>
-                                <td th:Text="${myCounsel.getCounselDate()}">2022-12-31</td>
+	<!-- 리스트가 있는 경우 -->
+	<div th:if="${!#lists.isEmpty(myCounsels)}">
+		<div th:each="myCounsel : ${myCounsels}">
+			<!-- 상담 카드 -->
+			<div class="outer  mt-2 mx-3">
+				<div class="plannerCard">
+					<div class="Photosec mx-2 my-2">
+						<div>
+							<img class="plannerPhoto mt-2" src="/imgs/PlannerPhoto.jpg">
+						</div>
+					</div>
+					<div class="plannerInfo mx-2">
+						<table class="table table-borderless my-2">
+							<tbody>
+							<tr hidden>
+								<th scope="row">인덱스번호</th>
+								<td th:id="'p_idx'+${myCounselStat.index}" th:text="${myCounsel.getUIdx()}">인덱스</td>
+							</tr>
+							<tr>
+								<th scope="row">상담사명</th>
+								<td th:Text="${myCounsel.getUName()}">김땡땡</td>
+							</tr>
+							<tr>
+								<th scope="row">상담일자</th>
+								<td th:Text="${myCounsel.getCounselDate()}">2022-12-31</td>
 
-                            </tr>
-                            <tr>
-                                <th scope="row">견적</th>
-                                <td th:Text="${myCounsel.getPPrice()} + 원">400만~</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">연락처</th>
-                                <td th:Text="${myCounsel.getUTel()}">010-9876-5432</td>
-                            </tr>
-                            <tr>
-                                <th scope="row"></th>
-                                <td th:if="${myCounsel.getPCounselingCk() == 'T'} and ( ${#strings.isEmpty(myCounsel.getPReview())} or ${#strings.isEmpty(myCounsel.getPGrade())})">
-                                    <button aria-controls="collapseExample" aria-expanded="false"
-                                            class="btn btn-sm btn-light border-dark review-write"
-                                            th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
-                                            data-bs-toggle="collapse" type="button"
-                                            th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)">후기 작성
-                                    </button>
-                                </td>
-                                <td th:if="${myCounsel.getPCounselingCk() == 'T'} and ${not #strings.isEmpty(myCounsel.getPReview())} and ${not #strings.isEmpty(myCounsel.getPGrade())}">
-                                    <button aria-controls="collapseExample" aria-expanded="false"
-                                            class="btn btn-sm btn-light border-dark review-open"
-                                            th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
-                                            data-bs-toggle="collapse" type="button"
-                                            th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)">후기 보기
-                                    </button>
-                                </td>
+							</tr>
+							<tr>
+								<th scope="row">견적</th>
+								<td th:Text="${myCounsel.getPPrice()} + 원">400만~</td>
+							</tr>
+							<tr>
+								<th scope="row">연락처</th>
+								<td th:Text="${myCounsel.getUTel()}">010-9876-5432</td>
+							</tr>
+							<tr>
+								<th scope="row"></th>
+								<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ( ${#strings.isEmpty(myCounsel.getPReview())} or ${#strings.isEmpty(myCounsel.getPGrade())})">
+									<button aria-controls="collapseExample" aria-expanded="false"
+									        class="btn btn-sm btn-light border-dark review-write"
+									        data-bs-toggle="collapse"
+									        onclick="changeText(this)"
+									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
+									        th:id="'reviewBtn'+${myCounselStat.index}" type="button">후기 작성
+									</button>
+								</td>
+								<td th:if="${myCounsel.getPCounselingCk() == 'T'} and ${not #strings.isEmpty(myCounsel.getPReview())} and ${not #strings.isEmpty(myCounsel.getPGrade())}">
+									<button aria-controls="collapseExample" aria-expanded="false"
+									        class="btn btn-sm btn-light border-dark review-open"
+									        data-bs-toggle="collapse"
+									        onclick="changeText(this)"
+									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
+									        th:id="'reviewBtn'+${myCounselStat.index}" type="button">후기 보기
+									</button>
+								</td>
 
-                                <td th:unless="${myCounsel.getPCounselingCk() == 'T'}">
-                                    <button aria-controls="collapseExample" aria-expanded="false"
-                                            class="btn btn-sm btn-light border-dark confirm-wait"
-                                            th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
-                                            data-bs-toggle="collapse" type="button"
-                                            th:id="'reviewBtn'+${myCounselStat.index}" onclick="changeText(this)"
-                                            disabled>
-                                        확인 대기
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="commentSection mx-3">
+								<td th:unless="${myCounsel.getPCounselingCk() == 'T'}">
+									<button aria-controls="collapseExample" aria-expanded="false"
+									        class="btn btn-sm btn-light border-dark confirm-wait"
+									        data-bs-toggle="collapse"
+									        disabled onclick="changeText(this)"
+									        th:data-bs-target="'#collapseExample'+ ${myCounselStat.index}"
+									        th:id="'reviewBtn'+${myCounselStat.index}"
+									        type="button">
+										확인 대기
+									</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="commentSection mx-3">
 
-                    <form class="collapse" th:id="'collapseExample'+ ${myCounselStat.index}">
-                        <!--별점기능-->
-                        <div class="outerStar">
+					<form class="collapse" th:id="'collapseExample'+ ${myCounselStat.index}">
+						<!--별점기능-->
+						<div class="outerStar">
 					<span class="star text">
 					  ★★★★★
-					  <span th:style="'width:'+${myCounsel.getPGrade()*10}+'%'"
-                            th:class="'star'+${myCounselStat.index}">★★★★★</span>
-					  <input max="10" min="0" oninput="drawStar(this)" step="1" type="range"
-                             th:id="'star'+${myCounselStat.index}" th:value="${myCounsel.getPGrade()}">
+					  <span th:class="'star'+${myCounselStat.index}"
+					        th:style="'width:'+${myCounsel.getPGrade()*10}+'%'">★★★★★</span>
+					  <input class="star" max="10" min="0" step="1" th:id="'star'+${myCounselStat.index}"
+					         th:value="${myCounsel.getPGrade()}" type="range">
 					</span>
-                        </div>
-                        <!--여기까지-->
-                        <table class="table border">
-                            <tr>
-                                <th style="vertical-align: middle;">
-                                    TextArea<br/>
-                                    <sup>(<span th:id="'nowByte'+ ${myCounselStat.index}">0</span>/1000bytes)</sup>
-                                </th>
-                                <td>
-                                    <form id="frm_textArea" name="frm_textArea">
-                <textarea class="form-control"
-                          th:id="'textArea_byteLimit'+ ${myCounselStat.index}"
+						</div>
+						<!--여기까지-->
+						<table class="table border">
+							<tr>
+								<th style="vertical-align: middle;">
+									TextArea<br/>
+									<sup>(<span th:id="'nowByte'+ ${myCounselStat.index}">0</span>/1000bytes)</sup>
+								</th>
+								<td>
+									<form id="frm_textArea" name="frm_textArea">
+                <textarea class="form-control commentTextarea"
                           name="textArea_byteLimit"
-                          onkeyup="fn_checkByte(this)"
-                          rows="10" th:text="${myCounsel.getPReview()}"></textarea>
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- 리스트가 비어 있는 경우 표시 -->
-    <div th:if="${#lists.isEmpty(myCounsels)}">
-        <h3 style="color: #898989; text-align: center; margin-top: 100px" >상담내역이 존재하지 않습니다.</h3>
-    </div>
+                          
+                          rows="10"
+                          th:id="'textArea_byteLimit'+ ${myCounselStat.index}"
+                          th:text="${myCounsel.getPReview()}"></textarea>
+									</form>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 리스트가 비어 있는 경우 표시 -->
+	<div th:if="${#lists.isEmpty(myCounsels)}">
+		<h3 style="color: #898989; text-align: center; margin-top: 100px">상담내역이 존재하지 않습니다.</h3>
+	</div>
 </div>
 </body>
 </html>

@@ -6,7 +6,6 @@
 <!-- 공통 헤더-->
 <link href="/css/wedding/header.css" rel="stylesheet" type="text/css">
 
-</style>
 <th:block th:replace="fragments/head :: headFragment"></th:block>
 <body class="pc__bg">
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
@@ -19,9 +18,11 @@
 
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
-<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/index.bundle.js')}"></script>
-<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/plannerDetail.bundle.js')}"></script>
-<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/moveTopBtn.bundle.js')}"></script>
+<script th:src="${@versionComponent.getVersion('/resources/build/index.bundle.js')}" type="text/javascript"></script>
+<script th:src="${@versionComponent.getVersion('/resources/build/plannerDetail.bundle.js')}"
+        type="text/javascript"></script>
+<script th:src="${@versionComponent.getVersion('/resources/build/moveTopBtn.bundle.js')}"
+        type="text/javascript"></script>
 
 <!--<script th:src="@{/resources/js/wedding/index.js}"-->
 <!--        type="text/javascript"></script>-->

@@ -4,8 +4,8 @@
     <select id="myCounsel" resultType="com.smart.project.web.counseling.vo.MyCounselVO" parameterType="int">
         SELECT pc.p_counseling_idx, pc.u_idx, pc.p_counseling_ck, pc.p_grade, pc.p_review, pc.counsel_idx, DATE_FORMAT(pc.counsel_date, '%Y-%m-%d') AS counselDate, FORMAT(p.p_price , 0) AS p_price, u.u_name, u.u_tel
         FROM planner_counseling AS pc
-        Left join planner AS p on pc.u_idx = p.u_idx
-        Left join `user` AS u on p.u_idx = u.u_idx
+                 Left join planner AS p on pc.u_idx = p.u_idx
+                 Left join `user` AS u on p.u_idx = u.u_idx
         where pc.counsel_idx =#{u_idx}
         ORDER BY counselDate DESC ;
     </select>
@@ -13,6 +13,6 @@
         UPDATE planner_counseling
         SET p_grade = #{pGrade}, p_review=#{pReview}
         WHERE u_idx = #{uIdx}
-        AND counsel_idx = #{counselIdx};
+          AND counsel_idx = #{counselIdx};
     </update>
 </mapper>

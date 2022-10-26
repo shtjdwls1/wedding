@@ -8,9 +8,15 @@ export class drawStar {
     }
 
     eventBindgin() {
-        const drawStar = (target) => {
-            document.querySelector(`.star .${target.id}`).style.width = `${target.value * 10}%`;
+        $('.star').on('change', (e) => {
+            drawStar(e)
+        })
+
+        function drawStar(e) {
+            document.querySelector(`.star .${e.target.id}`).style.width = `${e.target.value * 10}%`;
         }
+
+
     }
 }
 
