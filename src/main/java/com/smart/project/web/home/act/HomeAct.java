@@ -111,11 +111,6 @@ public class HomeAct {
         return "pages/paymentPage";
     }
 
-    @RequestMapping("/wedInfoForm")
-    public String wedInfoForm() {
-        return "pages/wedInfoFormPage";
-    }
-
     @RequestMapping("/loadingPayment")
     public String loadingPayment() {
         return "pages/loadingPaymentPage";

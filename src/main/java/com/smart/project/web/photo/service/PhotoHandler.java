@@ -3,6 +3,7 @@ package com.smart.project.web.photo.service;
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.photo.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +13,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Slf4j
@@ -30,7 +33,7 @@ public class PhotoHandler {
             // 반활할 파일리스트
             int uIdx = photoMapper.selectIdx(companyName); // 업체 인덱스 번호
             List<PhotoVO> returnFiles = new ArrayList<>();
-            String dirPath = "C:/img/"+uIdx+"/representative";
+            String dirPath = "/src/main/resources/static/imgs/"+uIdx+"/representative";
             File file = new File(dirPath);
             if (!file.exists()) {
                 file.mkdirs();
@@ -118,14 +121,7 @@ public class PhotoHandler {
 
         return null;
     }
-//    @SneakyThrows
-//    public String encodeDataURL(String path) {
-//        File img = new File(path);
-//        byte[] fileContent = Files.readAllBytes(img.toPath());
-//        String dataurl = Base64.getEncoder().encodeToString(fileContent);
-//        return dataurl;
-//    }
-//
+
     public int save(int uidx,List<PhotoVO> photos) {
         int cnt = 0;
         for (PhotoVO photo : photos) {

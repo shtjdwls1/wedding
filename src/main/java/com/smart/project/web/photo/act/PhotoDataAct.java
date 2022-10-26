@@ -2,20 +2,25 @@ package com.smart.project.web.photo.act;
 
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.home.vo.MemberVO;
+import com.smart.project.web.photo.service.AES256;
 import com.smart.project.web.photo.service.PhotoHandler;
 import com.smart.project.web.photo.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -23,6 +28,7 @@ import java.util.Map;
 public class PhotoDataAct {
     final private PhotoHandler ph;
     final private PhotoMapper pm;
+    final private AES256 aes;
     @PostMapping("/data/photo/upload")
     public Map<String,Object> companyPhotoUpload(HttpServletRequest req, PhotoVO photodata){
         //TODO 세션에서 u_name, u_name으로 db에서 u_idx찾아오기
@@ -78,6 +84,26 @@ public class PhotoDataAct {
         data.put("imgs",files);
         return data;
     }
+
+    @SneakyThrows
+    @RequestMapping(value = "/image/{imgUrl}",produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE})
+    public byte[] imgSearch(@PathVariable("imgUrl") String imgUrl) {
+        imgUrl = aes.decrypt(imgUrl);
+        // TODO imgUrl = "C:/자기프로젝트명"+imgUrl; 으로 바꿔주세요
+        imgUrl = "C:/test"+imgUrl;
+        File img = new File(imgUrl) ;
+
+        FileInputStream fls = null;
+
+        int len = 0;
+        byte[] fileArray = new byte[(int) img.length()];
+        fls = new FileInputStream(img);
+        fls.read(fileArray);
+
+        fls.close();
+        return fileArray;
+    }// img 불러오기
+
 }
 
 

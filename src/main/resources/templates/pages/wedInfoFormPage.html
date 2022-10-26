@@ -19,7 +19,8 @@
 				<i class="bi bi-arrow-left"></i>
 			</a>
 			<a class="navbar-brand " style="margin-right: 2rem">
-				<strong>업체 정보 입력</strong>
+				<strong th:if="${companyDetailInfo}==null">업체 정보 입력</strong>
+				<strong th:unless="${companyDetailInfo}==null">업체 정보 수정</strong>
 			</a>
 			<a>
 			</a>
@@ -41,30 +42,39 @@
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="address">주소</label>
-				<input class="form-control" id="address" readonly type="text"
-				       value="임의의 주소" name="address">
+				<input th:if="${companyDetailInfo}==null" class="form-control" id="address" readonly type="text"
+				       placeholder="검색" name="address">
+				<input th:unless="${companyDetailInfo}==null" class="form-control" id="address" readonly type="text"
+					   th:value="${companyDetailInfo.address}" name="address">
 			</div>
 			<div class="mb-3">
 				<label class="form-label" for="detailAddr">상세 주소</label>
-				<input class="form-control" id="detailAddr" type="text" name="detailAddr" PLACEHOLDER="상세주소를 입력해주세요.">
+				<input th:if="${companyDetailInfo}==null" class="form-control" id="detailAddr" type="text" name="detailAddr" placeholder="상세주소를 입력해주세요.">
+				<input th:unless="${companyDetailInfo}==null" class="form-control" id="detailAddr" type="text" name="detailAddr" th:value="${companyDetailInfo.detailAddr}">
 			</div>
 			<div class="row mb-3">
 				<label class="mb-2" for="business1">사업자등록번호</label>
 				<div class="col">
-					<input aria-label="First name" class="form-control" id="business1" type="number" name="business1">
+					<input th:if="${companyDetailInfo}==null" aria-label="First name" class="form-control" id="business1" type="number" name="business1">
+					<input th:unless="${companyDetailInfo}==null" aria-label="First name" class="form-control" id="business1" type="number" name="business1" th:value="${companyDetailInfo.business1}">
 				</div>
 				-
 				<div class="col">
-					<input aria-label="Last name" class="form-control" id="business2" type="number" name="business2">
+					<input th:if="${companyDetailInfo}==null" aria-label="Last name" class="form-control" id="business2" type="number" name="business2">
+					<input th:unless="${companyDetailInfo}==null" aria-label="Last name" class="form-control" id="business2" type="number" name="business2" th:value="${companyDetailInfo.business2}">
 				</div>
 				-
 				<div class="col">
-					<input aria-label="Last name" class="form-control" id="business3" type="number" name="business3">
+					<input th:if="${companyDetailInfo}==null" aria-label="Last name" class="form-control" id="business3" type="number" name="business3">
+					<input th:unless="${companyDetailInfo}==null" aria-label="Last name" class="form-control" id="business3" type="number" name="business3" th:value="${companyDetailInfo.business3}">
 				</div>
 			</div>
 			<div class="d-grid gap-2 col-6 mx-auto mt-5">
-				<button class="btn btn-light btn-outline-dark" id="wedInfoSubmit" type="button">
+				<button th:if="${companyDetailInfo}==null" class="btn btn-light btn-outline-dark" id="wedInfoSubmit" type="button">
 					정보등록
+				</button>
+				<button th:unless="${companyDetailInfo}==null" class="btn btn-light btn-outline-dark" id="wedInfoSubmit" type="button">
+					정보수정
 				</button>
 			</div>
 		</form>

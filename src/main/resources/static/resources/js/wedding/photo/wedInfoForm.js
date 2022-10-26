@@ -4,12 +4,12 @@
 import {SerializeObject} from "@/module/common/serializeObject";
 
 $(()=>{
-    new photoUpload();
+    new wedInfoForm();
 })
 
-export class photoUpload{
+export class wedInfoForm {
     constructor() {
-        console.log("photoUpload")
+        console.log("wedInfoForm")
         this.eventBinding();
     }
     eventBinding() {
@@ -20,8 +20,7 @@ export class photoUpload{
             wedInfoFormData.append("files",file[0])
             axios.post("/data/photo/upload",wedInfoFormData).then((result)=>{
                 console.log(result.data);
-                // if(result.data!=null)
-
+                location.href = "/"
             })
         })
         // 파일 선택시 미리보기
