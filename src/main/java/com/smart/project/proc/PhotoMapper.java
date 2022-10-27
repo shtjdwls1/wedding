@@ -12,6 +12,11 @@ public interface PhotoMapper {
     int savePhoto(PhotoVO photo);
     int saveCompany(PhotoVO vo);
     CompanyVO findByIdx(int uIdx);
+    int findPhotoByIdx(int uIdx);
 
     PhotoVO selectThumbimg(PhotoVO vo);
+
+    int updatePhoto(PhotoVO photo);
+
+    int updateCompany(PhotoVO vo);
 }

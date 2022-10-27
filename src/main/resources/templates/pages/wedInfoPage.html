@@ -30,7 +30,9 @@
 		<div>내정보</div>
 		<div class="wedCard">
 			<div class="imgInfo">
-				<img class="thumbImg" th:src="'/image/'+${imgUrl}">
+				<img th:unless="${imgUrl}==null" class="thumbImg" th:src="'/image/'+${imgUrl}">
+				<img th:if="${imgUrl}==null" class="thumbImg" src="/imgs/noImage.png">
+
 				<div class="wedInfo mx-3">
 					<div th:text="${session.loginSession.UName}"></div>
 					<div th:text="${session.loginSession.UTel}"></div>

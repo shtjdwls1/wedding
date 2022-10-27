@@ -5,10 +5,16 @@
     <insert id="savePhoto"  useGeneratedKeys="true">
         INSERT INTO company_img(u_idx, c_img_name, c_img_path, c_img_type) VALUES(#{uIdx},#{cImgName},#{cImgPath},#{cImgType});
     </insert>
+    <update id="updatePhoto">
+        UPDATE company_img SET c_img_name=#{cImgName},c_img_path=#{cImgPath} WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
+    </update>
     <!--업체정보 등록-->
     <insert id="saveCompany">
         INSERT INTO company(c_reg_num, c_addr, u_idx) VALUES(#{cRegNum},#{cAddr},#{uIdx})
     </insert>
+    <update id="updateCompany">
+        UPDATE company SET c_reg_num=#{cRegNum},c_addr=#{cAddr} WHERE u_idx=#{uIdx}
+    </update>
     <!--세션에 있는 업체명으로 idx 리턴-->
     <select id="selectIdx" resultType="int">
         SELECT u_idx FROM user WHERE u_name=#{uName};
@@ -16,6 +22,10 @@
     <!--idx로 업체정보 유무 리턴-->
     <select id="findByIdx" resultType="com.smart.project.web.photo.vo.CompanyVO">
         SELECT * FROM company WHERE u_idx = #{uIdx};
+    </select>
+    <!--idx로 업체이미지 유무 리턴-->
+    <select id="findPhotoByIdx" resultType="int">
+        SELECT count(*) FROM company_img WHERE u_idx = #{uIdx};
     </select>
     <!--idx로 업체썸네일 이미지 리턴-->
     <select id="selectThumbimg" parameterType="com.smart.project.web.photo.vo.PhotoVO" resultType="com.smart.project.web.photo.vo.PhotoVO">

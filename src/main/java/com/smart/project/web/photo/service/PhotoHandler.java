@@ -47,13 +47,14 @@ public class PhotoHandler {
                     String originFileName = mfile.getOriginalFilename();
                     log.error("originalFileName ==> {}",originFileName);
                     String contentType = (String) getLastMem(originFileName.split("\\."));
-                    log.error("확장자명 ===> {}", contentType);
+                    log.error("contentType ===> {}", contentType);
 
                     String newFileName = "represent" + type +"."+contentType;
-                    String newPath = dirPath + "/" + newFileName;
-                    log.error("파일명 ===> {}", newFileName);
+                    String newPath = "C:/test"+dirPath + "/" + newFileName;
+                    log.error("newFileName ===> {}", newFileName);
 
                     File saveFile = new File(newPath);
+                    newPath = dirPath + "/" + newFileName;
                     try {
                         mfile.transferTo(saveFile);
                         PhotoVO photo = new PhotoVO();
@@ -72,10 +73,12 @@ public class PhotoHandler {
     }
     // https://code-zzolbo.tistory.com/55 참조
     public PhotoVO sizeChange(int uidx, PhotoVO photo, int size, String type){
+        log.error("!!!!sizeChange!!!!");
         try {
             // image load
-            BufferedImage image = ImageIO.read(new File(photo.getCImgPath()));
-            // 원래 사이지 확인
+            String fullPath = "C:/test"+photo.getCImgPath();
+            BufferedImage image = ImageIO.read(new File(fullPath));
+            // 원래 사이즈 확인
             int ori_width = image.getWidth(null);
             int ori_height = image.getHeight(null);
             double whrate =0;
@@ -84,7 +87,7 @@ public class PhotoHandler {
             }else {
                 whrate = (double) ori_height / (double) ori_width;
             }
-            log.error("변경 전 width/height ===> {}/{}",ori_width,ori_height);
+            log.error("before width/height ===> {}/{}",ori_width,ori_height);
             // 사이즈 변경(원본 가로세로 비율 확인해서 더 긴쪽을 기준으로 비율맞추기)
             Image resizing;
             BufferedImage newImage;
@@ -100,18 +103,18 @@ public class PhotoHandler {
             g.dispose();
 
             // 변경된 이미지 저장
-            ImageIO.write(newImage, (String) getLastMem(photo.getCImgName().split("\\.")), new File(photo.getCImgPath().replace("origin",type)));
+            ImageIO.write(newImage, (String) getLastMem(photo.getCImgName().split("\\.")), new File(fullPath.replace("common",type)));
             //확인
-            File imageFile = new File(photo.getCImgPath().replace("origin",type));
+            File imageFile = new File(fullPath.replace("common",type));
             if(imageFile.exists()){
                 BufferedImage bi = ImageIO.read(imageFile);
-                log.error("변경 후 width/height ===> {}/{}",bi.getWidth(),bi.getHeight());
+                log.error("after width/height ===> {}/{}",bi.getWidth(),bi.getHeight());
             }
             // return
             PhotoVO newPhoto = new PhotoVO();
             newPhoto.setUIdx(uidx);
-            newPhoto.setCImgName(photo.getCImgName().replace("origin",type));
-            newPhoto.setCImgPath(photo.getCImgPath().replace("origin",type));
+            newPhoto.setCImgName(photo.getCImgName().replace("common",type));
+            newPhoto.setCImgPath(photo.getCImgPath().replace("common",type));
             newPhoto.setCImgType(type);
             return newPhoto;
 
@@ -121,7 +124,22 @@ public class PhotoHandler {
 
         return null;
     }
-
+    public int update(int uidx,List<PhotoVO> photos) {
+        int cnt = 0;
+        PhotoVO photo1 = photos.get(0);
+        photo1.setUIdx(uidx);
+        photo1.setCImgType("common");
+        PhotoVO photo2 = photos.get(1);
+        photo2.setUIdx(uidx);
+        photo2.setCImgType("thumbnail");
+        PhotoVO photo3 = photos.get(2);
+        photo3.setUIdx(uidx);
+        photo3.setCImgType("small");
+        cnt += photoMapper.updatePhoto(photo1);
+        cnt += photoMapper.updatePhoto(photo2);
+        cnt += photoMapper.updatePhoto(photo3);
+        return cnt;
+    }
     public int save(int uidx,List<PhotoVO> photos) {
         int cnt = 0;
         for (PhotoVO photo : photos) {

@@ -29,9 +29,9 @@ public class PhotoAct {
         MemberVO vo = (MemberVO) session.getAttribute("loginSession");
         int uidx = vo.getUIdx();
         CompanyVO result = pm.findByIdx(uidx);
-        String regnum1 = result.getCRegNum().substring(0,3);
-        String regnum2 = result.getCRegNum().substring(4,6);
-        String regnum3 = result.getCRegNum().substring(7,12);
+        String regnum1 = result.getCRegNum().split("-")[0];
+        String regnum2 = result.getCRegNum().split("-")[1];
+        String regnum3 = result.getCRegNum().split("-")[2];
         String address = result.getCAddr().split("/")[0];
         String detailAddr = result.getCAddr().split("/")[1];
         result.setBusiness1(regnum1);
@@ -39,7 +39,16 @@ public class PhotoAct {
         result.setBusiness3(regnum3);
         result.setAddress(address);
         result.setDetailAddr(detailAddr);
+        PhotoVO toFindThumbimg = new PhotoVO();
+        toFindThumbimg.setUIdx(uidx);
+        toFindThumbimg.setCImgType("thumbnail");
+        PhotoVO photoVO = pm.selectThumbimg(toFindThumbimg);
         model.addAttribute("companyDetailInfo",result);
+        if (photoVO!=null){
+            String dataurl = aes.encrypt(photoVO.getCImgPath());
+            model.addAttribute("imgUrl", dataurl);
+        }
+
         return "pages/wedInfoFormPage";
     }
     // 업체정보가 있으면 업체정보페이지로 없으면 업체정보입력페이지로 이동
@@ -50,19 +59,30 @@ public class PhotoAct {
         int uidx = vo.getUIdx();
         CompanyVO result = pm.findByIdx(uidx);
         log.error("result ==> {}",result);
+        // 정보 유무 체크
         if(result==null){
-            return "pages/wedInfoFormPage";
+            return "pages/wedInfoFormPage"; // 없으면 등록페이지
         }else{
             PhotoVO toFindThumbimg = new PhotoVO();
             toFindThumbimg.setUIdx(uidx);
             toFindThumbimg.setCImgType("thumbnail");
             PhotoVO photoVO = pm.selectThumbimg(toFindThumbimg);
-
-            String dataurl = aes.encrypt(photoVO.getCImgPath());
+            log.error("imgisNull ==> {}",photoVO);
             model.addAttribute("companyInfo",result);
-            model.addAttribute("imgUrl", dataurl);
-            log.error("imgURL ==> {}",dataurl);
-            return "pages/wedInfoPage";
+            // 그리고 사진유무 체크
+            if(photoVO==null){
+                log.error("without photo");
+                return "pages/wedInfoPage"; // 없으면 정보만가지고
+            }else{
+                // TODO imgUrl = "C:/자기프로젝트명"+imgUrl; 으로 바꿔주세요
+                log.error("with photo");
+                String imgPath = "C:/test"+photoVO.getCImgPath();
+                String dataurl = aes.encrypt(imgPath);
+                model.addAttribute("imgUrl", dataurl);
+                log.error("imgURL ==> {}",dataurl);
+                return "pages/wedInfoPage"; // 있으면 사진도 가지고
+            }
+
         }
 
     }

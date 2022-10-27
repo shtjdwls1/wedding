@@ -14,13 +14,34 @@ export class wedInfoForm {
     }
     eventBinding() {
         // 정보등록 버튼 클릭시 이벤트
+        //TODO 등록완료 버튼 클릭시 DB UPDATE 실행 후 "수정완료되었습니다" 모달창, 확인버튼 클릭시 메인으로 이동
         $('#wedInfoSubmit').on('click', name => {
             let wedInfoFormData = new FormData($('#wedInfoForm')[0]);
-            let file = $('#files')[0].files;
-            wedInfoFormData.append("files",file[0])
+            console.log(wedInfoFormData.get("file").size)
+            if(wedInfoFormData.get("file").size!==0){
+                let file = $('#files')[0].files;
+                wedInfoFormData.append("files",file[0])
+            }
             axios.post("/data/photo/upload",wedInfoFormData).then((result)=>{
                 console.log(result.data);
-                location.href = "/"
+                location.href = "/chkWedInfo"
+            })
+        })
+        //TODO 수정완료 버튼 클릭시 DB UPDATE 실행 후 "수정완료되었습니다" 모달창, 확인버튼 클릭시 메인으로 이동
+        $('#wedInfoUpdate').on('click', name => {
+            let wedInfoFormData = new FormData($('#wedInfoForm')[0]);
+            console.log(wedInfoFormData.get("file").size)
+            if(wedInfoFormData.get("file").size!==0){
+                let file = $('#files')[0].files;
+                wedInfoFormData.append("files",file[0])
+            }
+            modalOn();
+            $('#wedInfoModalClose').on('click',()=>{
+                modalClose();
+                axios.post("/data/photo/update",wedInfoFormData).then((result)=>{
+                    console.log(result.data);
+                    location.href = "/chkWedInfo"
+                })
             })
         })
         // 파일 선택시 미리보기
@@ -32,6 +53,34 @@ export class wedInfoForm {
                 $('#thumbImg').attr('src', e.target.result).attr('object-fit', "contain");
             }
         });
+
+        // 모달창 닫기
+        function modalClose(){
+            $('body').removeClass('modal-open')
+                .css('overflow','').css('padding-right','')
+            $('#wedInfoModal').removeClass('show')
+                .css('display','none')
+                .attr('aria-hidden','true')
+                .removeAttr('aria-modal').removeAttr('role')
+            $('.modal-backdrop').remove()
+        }
+        // 모달창 열기
+        function modalOn(){
+            $('body').addClass('modal-open')
+                .css('overflow','hidden').css('padding-right','0px')
+                .append("<div class='modal-backdrop fade show'></div>")
+            $('#wedInfoModal').addClass('show')
+                .css('display','block')
+                .removeAttr('aria-hidden')
+                .attr('aria-modal','true').attr('role','dialog')
+        }
+        // 사업자 등록번호 자릿수 제한
+        $('#business1').on('keyup',(e)=>{
+            let len = $(this).val()
+            if(len.length>3){
+                $(this).val($(this).val().substring(0,3));
+            }
+        })
         // 다음주소api 기능
         $('#address').on('click',()=>{
             new daum.Postcode({
@@ -76,5 +125,4 @@ export class wedInfoForm {
             }).open();
         })
     }
-
 }
