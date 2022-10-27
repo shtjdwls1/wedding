@@ -45,7 +45,7 @@ public class PhotoAct {
         PhotoVO photoVO = pm.selectThumbimg(toFindThumbimg);
         model.addAttribute("companyDetailInfo",result);
         if (photoVO!=null){
-            String dataurl = aes.encrypt(photoVO.getCImgPath());
+            String dataurl = aes.encrypt("C:/test"+photoVO.getCImgPath());
             model.addAttribute("imgUrl", dataurl);
         }
 
@@ -74,10 +74,10 @@ public class PhotoAct {
                 log.error("without photo");
                 return "pages/wedInfoPage"; // 없으면 정보만가지고
             }else{
-                // TODO imgUrl = "C:/자기프로젝트명"+imgUrl; 으로 바꿔주세요
+
                 log.error("with photo");
-                String imgPath = "C:/test"+photoVO.getCImgPath();
-                String dataurl = aes.encrypt(imgPath);
+                // TODO "C:/자기프로젝트명"+photoVO.getCImgPath(); 으로 바꿔주세요
+                String dataurl = aes.encrypt("C:/test"+photoVO.getCImgPath());
                 model.addAttribute("imgUrl", dataurl);
                 log.error("imgURL ==> {}",dataurl);
                 return "pages/wedInfoPage"; // 있으면 사진도 가지고

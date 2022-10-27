@@ -4,6 +4,9 @@ import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.photo.service.AES256;
 import com.smart.project.web.photo.service.PhotoHandler;
+import com.smart.project.web.photo.vo.HallDataVO;
+import com.smart.project.web.photo.vo.HallTimeVO;
+import com.smart.project.web.photo.vo.HallVO;
 import com.smart.project.web.photo.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -186,6 +189,7 @@ public class PhotoDataAct {
     @RequestMapping(value = "/image/{imgUrl}",produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE})
     public byte[] imgSearch(@PathVariable("imgUrl") String imgUrl) {
         imgUrl = aes.decrypt(imgUrl);
+        log.error("decrypted imgUrl ==> {}",imgUrl);
         File img = new File(imgUrl) ;
 
         FileInputStream fls = null;
@@ -199,6 +203,26 @@ public class PhotoDataAct {
         return fileArray;
     }// img 불러오기
 
+    //홀 정보 및 이미지 등록
+    @PostMapping("/data/hall/upload")
+    public Map<String,Object> hallDataUpload(HallDataVO hallDataVO, HttpServletRequest req){
+        log.error("join halldataUpload!");
+        //TODO 데이터+세션 uIdx 각 VO에 나눠서 저장하기
+        HttpSession session = req.getSession(false);
+        MemberVO memberVO = (MemberVO) session.getAttribute("loginSession");
+        int uIdx = memberVO.getUIdx();
+        //TODO 1. 홀정보 VO에 담기
+        HallVO hallVO = new HallVO();
+        hallVO.setHName(hallDataVO.getHName());
+        hallVO.setHPrice(hallDataVO.getHPrice());
+        hallVO.setHMin(hallDataVO.getHMin());
+        hallVO.setHMax(hallDataVO.getHMax());
+        hallVO.setUIdx(uIdx);
+        log.error("hallVO Test ==> {}",hallVO);
+        //TODO 2. 홀시간 VO에 담기
+        //TODO 3. 이미지가 있다면 이미지 VO에 담기
+        return null;
+    };
 }
 
 

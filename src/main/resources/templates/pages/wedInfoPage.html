@@ -42,6 +42,117 @@
 			</div>
 			<button class="changeWedBtn" type="button">수정하기</button>
 		</div>
+		<!--홀 등록 카드-->
+		<div class="addHallForm hidden">
+			<form class="mx-4 mt-2" id="addHallDataForm" enctype="multipart/form-data">
+				<div>
+					<label class="form-label" for="AddHallName">홀 이름</label>
+					<input class="form-control" id="AddHallName" name="hName" type="text">
+				</div>
+				<div>
+					<label class="form-label" for="AddHallPrice">가격</label>
+					<input class="form-control" id="AddHallPrice" name="hPrice" type="text">
+				</div>
+				<label class="form-label">인원수</label>
+				<div class="minMaxPeople">
+					<div class="row mx-3">
+						<div class="col">
+							<input class="form-control minPeoInput" placeholder="최소" type="number" id="AddMinPeople" name="hMin">
+						</div>
+						<div class="col text-center">
+							~
+						</div>
+						<div class="col">
+							<input class="form-control maxPeoInput" placeholder="최대" type="number" id="AddMaxPeople" name="hMax">
+						</div>
+					</div>
+				</div>
+				<!--시간등록-->
+				<label class="form-label">운영회차</label>
+				<div class="timeForm">
+					<table class="table">
+						<tbody>
+						<tr>
+							<th scope="row">1회차 :</th>
+							<td>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime1Start" name="sTime">
+									<i class="bi bi-clock"></i>
+								</div>
+								<div>~</div>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime1End" name="AddTime1End">
+									<i class="bi bi-clock"></i>
+								</div>
+						</tr>
+						<tr>
+							<th scope="row">2회차 :</th>
+							<td>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime2Start" name="sTime">
+									<i class="bi bi-clock"></i>
+								</div>
+								<div>~</div>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime2End" name="eTime">
+									<i class="bi bi-clock"></i>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">3회차 :</th>
+							<td>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime3Start" name="sTime">
+									<i class="bi bi-clock"></i>
+								</div>
+								<div>~</div>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime3End" name="eTime">
+									<i class="bi bi-clock"></i>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">4회차 :</th>
+							<td>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime4Start" name="sTime">
+									<i class="bi bi-clock"></i>
+								</div>
+								<div>~</div>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime4End" name="eTime">
+									<i class="bi bi-clock"></i>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">5회차 :</th>
+							<td>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime5Start" name="sTime">
+									<i class="bi bi-clock"></i>
+								</div>
+								<div>~</div>
+								<div class="inputParent">
+									<input class="timeInput" placeholder="-- -- : --" id="AddTime5End" name="eTime">
+									<i class="bi bi-clock"></i>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--사진등록-->
+				<div class="fileBtn mt-2 mb-2 uploadPhoto">
+					<input multiple="multiple" type="file" name="files" id="files" />
+				</div>
+				<div class="d-grid gap-2 col-6 mx-auto mb-3">
+					<button class="btn btn-light border-dark" type="button" id="addHallData">정보 등록</button>
+				</div>
+			</form>
+		</div>
 	</div>
 	<!-- 홀 정보 카드 -->
 	<div class="mt-3 mx-3">홀정보</div>
@@ -68,9 +179,7 @@
 			<button class="changeHallBtn" type="button">수정하기</button>
 		</div>
 	</div>
-
-	<!--홀 등록 폼-->
-	<div class="addHallForm mx-3 mt-3 ">
+	<div class="updateHallForm mx-3 hidden">
 		<form class="mx-4 mt-2">
 			<div>
 				<label class="form-label" for="hallName">홀 이름</label>
@@ -176,13 +285,13 @@
 				사진등록
 			</div>
 			<div class="d-grid gap-2 col-6 mx-auto mb-3">
-				<button class="btn btn-light border-dark" type="button">정보 등록</button>
+				<button class="btn btn-light border-dark" type="button">정보 수정</button>
 			</div>
 		</form>
 	</div>
 
 	<!--홀 추가 등록하기-->
-	<div class="addHall mt-2" type="button">
+	<div class="addHall mt-2" type="button" id="addHallBtn">
 		<div>홀 등록하기</div>
 		<div>
 			<i class="bi bi-plus-lg"></i>

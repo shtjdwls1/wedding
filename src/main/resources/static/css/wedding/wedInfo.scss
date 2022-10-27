@@ -1,7 +1,13 @@
 .wedCard {
   display: flex;
-  border: 1px solid black;
-  border-radius: 2vh;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top-right-radius: 1vh;
+  border-top-left-radius: 1vh;
+  border-bottom-right-radius: 1vh;
+  border-bottom-left-radius: 1vh;
   padding: 0.5vh;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +58,6 @@
     border-radius: 2vh;
   }
 }
-
 .addHall {
   display: flex;
   justify-content: center;
@@ -61,9 +66,16 @@
   font-weight: bold;
 }
 
-.addHallForm {
-  border: 1px solid black;
-  border-radius: 2vw;
+.addHallForm, .updateHallForm {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top-right-radius: 2vw;
+  border-top-left-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  border-bottom-left-radius: 2vw;
+
 
   .minMaxPeople {
     display: flex;
