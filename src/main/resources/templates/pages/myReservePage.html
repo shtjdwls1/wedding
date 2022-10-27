@@ -29,10 +29,10 @@
 			</a>
 		</div>
 	</nav>
-
 	<!-- 리스트가 있는 경우 -->
-	<div th:if="${!#lists.isEmpty(myReserves)}">
+	<div class="myReserve" th:if="${!#lists.isEmpty(myReserves)}">
 		<div th:each="myReserve : ${myReserves}">
+
 			<!--예약 확인 카드-->
 			<div class="reserveCard mx-2 my-2">
 				<div class="Photosec mx-2 my-2">
@@ -43,6 +43,14 @@
 				<div class="reserveInfo mx-2">
 					<table class="table table-borderless my-2">
 						<tbody>
+						<tr hidden>
+							<th scope="row">세션이름</th>
+							<td class='sessionUname' th:text="${session.loginSession.getUName()}"></td>
+						</tr>
+						<tr hidden>
+							<th scope="row">인덱스번호</th>
+							<td th:id="'u_idx'+${myReserveStat.index}" th:text="${myReserve.getUIdx()}">인덱스</td>
+						</tr>
 						<tr>
 							<th scope="row">업체사진이름</th>
 							<td th:id="'u_idx'+${myReserveStat.index}" th:text="${myReserve.getCImgName()}">업체사진이름</td>
@@ -87,9 +95,7 @@
 								        th:data-bs-target="'#cancelModal1'+${myReserve.getHReserveIdx()}"
 								        th:id="'reserve_cancelBtn'+${myReserve.getHReserveIdx()}"
 								        type="button"
-								>
-									예약 취소
-								</button>
+								>예약 취소</button>
 							</td>
 						</tr>
 						</tbody>
@@ -97,9 +103,11 @@
 				</div>
 			</div>
 
+
 			<!-- 모달	-->
 			<div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade"
-			     tabindex="0" th:id="'cancelModal1'+${myReserve.getHReserveIdx()}">
+			     tabindex="0" th:id="'cancelModal1'+${myReserve.getHReserveIdx()}"
+				 data-backdrop='static' data-keyboard='false'>
 				<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
 					<div class="modal-content">
 						<div class="modal-body text-center">
@@ -113,8 +121,8 @@
 								        data-bs-dismiss="modal"
 								        data-bs-toggle="modal"
 								        th:data-bs-target="'#cancelModal2'+${myReserve.getHReserveIdx()}" th:id="'cancelBtn'+${myReserve.getHReserveIdx()}"
-								        type="button">확인
-								</button>
+								        type="button"
+										data-backdrop='static' data-keyboard='false'>확인</button>
 							</div>
 						</div>
 					</div>

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MyReserveVO {
 
+    private int offset;
+    private int uIdx;
     private int hReserveIdx;
     private String reserveDate;
     private String sTime;

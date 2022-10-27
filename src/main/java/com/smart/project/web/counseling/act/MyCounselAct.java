@@ -49,7 +49,7 @@ public class MyCounselAct {
 
     @PostMapping("/myCounselData")
     @ResponseBody
-    public List<MyCounselVO> plannerReviewData(Model model, HttpServletRequest request, @RequestBody MyCounselVO vo) {
+    public List<MyCounselVO> myCounselData(Model model, HttpServletRequest request, @RequestBody MyCounselVO vo) {
 
         HttpSession session = request.getSession(false);
         if (session != null) {

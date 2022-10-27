@@ -2,8 +2,13 @@ package com.smart.project.web.home.act;
 
 import com.smart.project.common.vo.InternCookie;
 import com.smart.project.component.CommonCodeComponent;
+import com.smart.project.proc.MainPagePlanner;
+import com.smart.project.proc.MainPageWedding;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
+import com.smart.project.web.home.vo.MemberVO;
+import com.smart.project.web.mainpage.vo.MainCompanyVO;
+import com.smart.project.web.mainpage.vo.MainPlannerVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -129,14 +135,28 @@ public class HomeAct {
         return "index";
     }
 
+
+
+
+    final private MainPageWedding mainPageMapper;
+    final private MainPagePlanner mainPagePlanner;
     // 로그아웃
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
             session.invalidate();
         }
+        String u_location = "서울";
+
+        List<MainCompanyVO> wedList = mainPageMapper.getStartWed(u_location);
+        List<MainPlannerVO> planList = mainPagePlanner.getStartPlan(u_location);
+
+
+        model.addAttribute("WeddingData", wedList);
+        model.addAttribute("PlannerData", planList);
+
         return "index";
     }
 

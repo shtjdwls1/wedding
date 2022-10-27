@@ -10,7 +10,7 @@ export class reviewBtn {
     eventBindgin() {
 
 
-        $('.counselBtn').on('click', (e) => {
+        $(document).on('click','.counselBtn' ,(e) => {
             changeText(e.target)
         })
 

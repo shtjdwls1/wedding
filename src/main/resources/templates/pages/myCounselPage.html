@@ -29,10 +29,10 @@
 	</nav>
 
 	<!-- 리스트가 있는 경우 -->
-	<div th:if="${!#lists.isEmpty(myCounsels)}">
+	<div class="myCounsel"  th:if="${!#lists.isEmpty(myCounsels)}">
 
 
-		<div class="myCounsel" th:each="myCounsel : ${myCounsels}">
+		<div th:each="myCounsel : ${myCounsels}">
 
 
 			<!-- 상담 카드 -->

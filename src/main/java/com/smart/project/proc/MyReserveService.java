@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public interface MyReserveService {
 
-    List<MyReserveVO> myReserve(int u_idx);
+    List<MyReserveVO> myReserve(MyReserveVO vo);
 
     int myReserveCancel(MyReserveVO vo);
 
