@@ -142,6 +142,8 @@ export class index {
         })
 
 //모비 스크롤
+
+
         mobiscroll.datepicker('#date', {
             controls: ['date'],
             touchUi: true,
