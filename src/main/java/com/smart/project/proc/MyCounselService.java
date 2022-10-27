@@ -11,6 +11,6 @@ import java.util.List;
 @Component
 public interface MyCounselService {
 
-    List<MyCounselVO> myCounsel(int u_idx);
+    List<MyCounselVO> myCounsel(MyCounselVO vo);
     int myCounselUpdate(MyCounselUpdateVO vo);
 }

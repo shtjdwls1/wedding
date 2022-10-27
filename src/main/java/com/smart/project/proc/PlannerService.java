@@ -10,8 +10,8 @@ import java.util.List;
 @Component
 public interface PlannerService {
 
-    List<PlannerVO> plannerReview(int u_idx);
-
+    List<PlannerVO> plannerReview(PlannerVO vo);
+    float plannerReviewGrade(int u_idx);
     int plannerReviewCnt(int u_idx);
 
 }

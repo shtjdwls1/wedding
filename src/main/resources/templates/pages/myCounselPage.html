@@ -30,7 +30,11 @@
 
 	<!-- 리스트가 있는 경우 -->
 	<div th:if="${!#lists.isEmpty(myCounsels)}">
-		<div th:each="myCounsel : ${myCounsels}">
+
+
+		<div class="myCounsel" th:each="myCounsel : ${myCounsels}">
+
+
 			<!-- 상담 카드 -->
 			<div class="outer  mt-2 mx-3">
 				<div class="plannerCard">
@@ -146,6 +150,9 @@
 				</div>
 			</div>
 		</div>
+
+
+
 	</div>
 	<!-- 리스트가 비어 있는 경우 표시 -->
 	<div th:if="${#lists.isEmpty(myCounsels)}">

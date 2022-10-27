@@ -64,7 +64,7 @@
 		</li>
 		<!-- 내상담 -->
 		<li th:if="${session.loginSession.UAuth.equals('common')}" class="nav-item">
-			<a class="nav-link" href="/myCounsel">
+			<a class="nav-link" href="/myCounsel?offset=0&ck=mc">
 				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
@@ -88,7 +88,7 @@
 		</li>
 		<!--후기보기 별 버튼-->
 		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
-			<a class="nav-link" href="/plannerCommentView">
+			<a class="nav-link" href="/plannerCommentView?columnData=p_counseling_idx&offset=0&sortData=desc&ck=pr">
 				<i class="bi bi-star" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>

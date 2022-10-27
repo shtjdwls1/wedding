@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class MyCounselVO {
 
+    private int offset;
     private int pCounselingIdx;
     private int uIdx;
     private String pCounselingCk;

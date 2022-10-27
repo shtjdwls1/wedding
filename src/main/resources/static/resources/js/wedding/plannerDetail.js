@@ -25,6 +25,9 @@ export class plannerDetail {
         $('.sortBtn').on('click', () => {
             controllSortModal()
         })
+        $('.modalCloseBtn').on('click', () => {
+            controllSortModal()
+        })
 
 // 외부 클릭시 모달창 닫기
         window.addEventListener('click', (e) => {
