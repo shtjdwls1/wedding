@@ -18,8 +18,8 @@
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
 	<form action="/searchResult" class="searchHeader d-flex justify-content-between mx-4 my-4">
-		<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" value="분류▼">
-		<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" value="지역▼">
+		<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" readonly value="분류▼">
+		<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" readonly value="지역▼">
 		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" name="date" placeholder="날짜선택">
 		<button class="indexSearchBtn  mx-2 my-2" type="submit">검색</button>
 	</form>
@@ -57,7 +57,8 @@
 	<div class="outerMyCityWedding ">
 		<div class="myCityWedding">
 			<div th:each="wedList : ${WeddingData}">
-				<a class="card slide mx-3" style="width: 50vw;" th:href="@{/weddingDetail(cIdx=${wedList.getCIdx()})}">
+				<a class="card slide mx-3" style="width: 50vw;"
+				   th:href="@{/weddingDetail(uIdx=${wedList.getUIdx()})}">
 					<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
 					<div class="card-body p-2">
 						<p th:class="card-text" th:text="${wedList.getUName()}">웨딩홀명</p>

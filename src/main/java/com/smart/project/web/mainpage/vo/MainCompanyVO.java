@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MainCompanyVO {
     private int cIdx;
+    private int uIdx;
     private String uName;
     private String cAddr;
     private String hPrice;

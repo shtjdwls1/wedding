@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.SearchResultService">
+    <select id="getList1" resultType="com.smart.project.web.searchresult.vo.ResultListVO">
+        SELECT u_idx, count(*) as count
+        from hall_time
+        group by u_idx;
+    </select>
+    <select id="getList2" resultType="com.smart.project.web.searchresult.vo.ResultListVO" parameterType="String">
+        SELECT u_idx, count(*) as count
+        from hall_reservation
+        where reserve_date = #{date}
+        group by u_idx;
+    </select>
+    <select id="getList3" resultType="com.smart.project.web.searchresult.vo.ResultMemberVO"
+            parameterType="com.smart.project.web.searchresult.vo.ResultListVO">
+        SELECT *
+        from company_result2
+        where u_idx = #{uIdx}
+          and u_location = #{uLocation}
+    </select>
+    <select id="getList4" resultType="com.smart.project.web.searchresult.vo.ResultPlannerVO"
+            parameterType="String">
+        select u_name,
+               p_idx,
+               p_img_name,
+               p_img_path,
+               p_img_type,
+               TRUNCATE((sum(p_grade) / COUNT(p_grade) / 2), 1) as p_grade,
+               u_location,
+               p_price
+        from planner_main
+        where u_location = #{u_location}
+        group by p_idx, p_img_name, p_img_path, p_img_type;
+    </select>
+
+</mapper>

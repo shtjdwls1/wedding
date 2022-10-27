@@ -3,8 +3,8 @@
 <mapper namespace="com.smart.project.proc.MainPageWedding">
 
     <select id="getStartWed" resultType="com.smart.project.web.mainpage.vo.MainCompanyVO" parameterType="String">
-        select u_name, c_img_name, c_img_path
-        from company_main
+        select u_name, c_img_name, c_img_path, u_idx
+        from company_result2
         where u_location = #{u_location};
     </select>
 

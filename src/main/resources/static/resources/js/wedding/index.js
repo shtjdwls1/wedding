@@ -33,6 +33,9 @@ export class index {
             if ($('.locationModal').hasClass('hidden') == false) {
                 $('.locationModal').addClass('hidden')
             }
+            if ($('.sortModal').hasClass('hidden') == false) {
+                $('.sortModal').addClass('hidden')
+            }
         })
 
 //외부 클릭시 모달창 닫기
@@ -57,8 +60,8 @@ export class index {
                 event.target.classList.remove("clicked");
 
             } else {
-                for (var i = 0; i < modalOption.length; i++) {
-                    modalOption[i].classList.remove("clicked");
+                for (var i = 0; i < clasifyOption.length; i++) {
+                    clasifyOption[i].classList.remove("clicked");
                 }
 
                 event.target.classList.add("clicked");
@@ -97,8 +100,8 @@ export class index {
 
 
         function init() {
-            for (var i = 0; i < modalOption.length; i++) {
-                modalOption[i].addEventListener("click", handleClickClasify);
+            for (var i = 0; i < clasifyOption.length; i++) {
+                clasifyOption[i].addEventListener("click", handleClickClasify);
             }
             for (var i = 0; i < locationOption.length; i++) {
                 locationOption[i].addEventListener("click", handleClickLocation);
@@ -164,6 +167,9 @@ export class index {
 //         console.log('됨')
 //     });
 // })
+        $(document).ready(() => {
+            $('.carousel-inner').children('div:eq(0)').children('div:eq(0)').addClass('active')
+        })
     }
 }
 

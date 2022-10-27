@@ -2,7 +2,7 @@
 <html lang="en"
       layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
 	<meta charset="UTF-8">
@@ -14,6 +14,7 @@
 	<link href="/css/wedding/plannerDetail.css" rel="stylesheet" type="text/css">
 	<link href="/css/wedding/star.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -49,7 +50,7 @@
 				</div>
 			</div>
 			<div>
-				<button class="btn btn-light mx-3 sortBtn" onclick="controllSortModal()" style="font-size: 0.5rem">
+				<button class="btn btn-light mx-3 sortBtn" style="font-size: 0.5rem">
 					최신순▼
 				</button>
 			</div>
@@ -97,7 +98,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllSortModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>

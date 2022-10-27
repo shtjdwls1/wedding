@@ -19,285 +19,53 @@
 <body>
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
-	<div class="searchHeader d-flex justify-content-between mx-4 my-3">
-		<button class="indexSearchBtn  mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
-		<button class="indexSearchBtn  mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼
-		</button>
-		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" placeholder="날짜선택">
-		<button class="indexSearchBtn  mx-2 my-2" type="button">검색</button>
-	</div>
-	<div class="sticky-top  commentTop mx-2" style="background-color: white">
-		<div>
-			<button class="btn btn-light mx-3 sortBtn" onclick="controllSortModal()" style="font-size: 0.5rem">
-				최신순▼
-			</button>
-		</div>
-	</div>
-	<!--웨딩홀 카드-->
-	<div class="resWedCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">웨딩홀명</div>
-			<div class="my-2">주소</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">예약가능</div>
+	<div class="sticky-top" style="background-color: white">
+		<form action="/searchResult" class="searchHeader d-flex justify-content-between mx-4 my-4">
+			<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" readonly value="분류▼">
+			<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" readonly value="지역▼">
+			<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" placeholder="날짜선택">
+			<button class="indexSearchBtn  mx-2 my-2" type="submit">검색</button>
+		</form>
+		<div class="sticky-top  commentTop px-2" style="background-color: white">
+			<div>
+				<button class="btn btn-light mx-3 sortBtn" style="font-size: 0.5rem">
+					최신순▼
+				</button>
 			</div>
 		</div>
 	</div>
-	<!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
+	<div th:each="ResultData: ${ResultDatas}">
+		<div th:switch="${ResultData.clasify}">
+			<!--웨딩홀 카드-->
+			<div class="resWedCard mx-3 mt-2" th:case="웨딩홀">
+				<div class="imgSec">
+					<img class="mx-2 my-2" src="/imgs/noImage.png">
+				</div>
+				<div class="infoSec mx-2">
+					<div class="my-2" th:text="${ResultData.getUName()}">웨딩홀명</div>
+					<div class="my-2" th:text="${ResultData.getCAddr()}">주소</div>
+					<div class="my-2" th:text="${ResultData.getHPrice()}">금액</div>
+					<div class="reservePrice my-2">
+						<div class="resBtn mx-4">예약가능</div>
+					</div>
+				</div>
+			</div>
+			<!-- 플래너 카드-->
+			<div class="resPlanCard mx-3 mt-2" th:case="플래너">
+				<div class="imgSec">
+					<img class="mx-2 my-2 img" src="/imgs/PlannerPhoto.jpg">
+				</div>
+				<div class="infoSec mx-2">
+					<div class="my-2" th:text="${ResultData.getUName()}">플래너 이름</div>
+					<div class="my-2" th:text="${ResultData.getPGrade()}">★ 4.5</div>
+					<div class="my-2" th:text="${ResultData.getPPrice}">금액</div>
+					<div class="reservePrice my-2">
+						<div class="resBtn mx-4">상세보기</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>    <!-- 플래너 카드-->
-	<div class="resPlanCard mx-3 mt-2">
-		<div class="imgSec">
-			<img class="mx-2 my-2" src="/imgs/noImage.png">
-		</div>
-		<div class="infoSec mx-2">
-			<div class="my-2">플래너 이름</div>
-			<div class="my-2">★ 4.5</div>
-			<div class="my-2">금액</div>
-			<div class="reservePrice my-2">
-				<div class="resBtn mx-4">상세보기</div>
-			</div>
-		</div>
-	</div>
-
 
 	<!--분류 모달-->
 	<div class="testModal hidden clasifyModal">
@@ -306,7 +74,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -323,7 +91,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllLocationModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -355,7 +123,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllSortModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
