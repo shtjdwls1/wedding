@@ -83,16 +83,16 @@ export class Join
 				)
 			}
 		})
-		/*
-		 * 이름 입력시 한글만 입력되도록
-		 */
-		$('#inputName').on('keyup',()=>{
-			const regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:"'\\]/g;
-			let v = $('#inputName').val();
-			if (regexp.test(v)) {
-				$('#inputName').val("");
-			}
-		})
+		// /*
+		//  * 이름 입력시 한글만 입력되도록
+		//  */
+		// $('#inputName').on('keyup',()=>{
+		// 	const regexp = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:"'\\]/g;
+		// 	let v = $('#inputName').val();
+		// 	if (regexp.test(v)) {
+		// 		$('#inputName').val("");
+		// 	}
+		// })
 		/*
 		 * 연락처 입력시 숫자만 입력되도록
 		 */

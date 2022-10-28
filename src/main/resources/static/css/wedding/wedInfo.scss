@@ -111,23 +111,9 @@
   }
 
   .uploadPhoto {
-    .image {
-      display: block;
-      width: 100%;
-    }
-
-    .image-label {
-      position: relative;
-      bottom: 22px;
-      left: 5px;
-      color: white;
-      text-shadow: 2px 2px 2px black;
-    }
-
-    #multipleContainer {
-
+    .file-list-out{
       ::-webkit-scrollbar {
-
+        //display: none;
         width: 3px;
         height: 3px;
       }
@@ -135,22 +121,76 @@
       ::-webkit-scrollbar-thumb {
         background-color: #e2e4e5 /*스크롤바의 색상*/
       }
-
-      .column {
-
+      .file-list{
         display: flex;
         flex-wrap: nowrap;
         overflow-x: scroll;
         overflow-y: hidden;
-
-        .image {
-          height: 20vw;
-          width: 30vw;
+        .filebox{
+          height: 20vh;
           border: 0px;
           flex: 0 0 auto;
-          padding-right: 1vh;
+          .delete{
+            color: #ff5353;
+            margin-left: 5px;
+            .selProductFile{
+              object-fit : contain;
+              width: 30vw;
+              height: 30vw;
+              border: 1px solid black;
+              border-radius: 2vw;
+            }
+            i{
+              color: #ff5353;
+              margin-left: 5px;
+            }
+          }
         }
       }
     }
   }
+.file-list {
+
+  ::-webkit-scrollbar {
+    //display: none;
+    width: 3px;
+    height: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #e2e4e5 /*스크롤바의 색상*/
+  }
+    height: 130px;
+    overflow: auto;
+    border: 1px solid #989898;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+
+    .filebox{
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      font-size: 14px;
+      .delete{
+        color: #ff5353;
+        margin-left: 5px;
+        .selProductFile{
+          object-fit : contain;
+          width: 30vw;
+          height: 30vw;
+          border: 1px solid black;
+          border-radius: 2vw;
+        }
+        i{
+          color: #ff5353;
+          margin-left: 5px;
+        }
+      }
+
+    }
+
+  }
+
 }
