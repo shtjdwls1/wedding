@@ -86,43 +86,43 @@ export class WedImgSlide {
         });
 
 
-        wrapper.on('mousedown', (e) => {
-            console.log('마우스다운')
-            const rect = wrapper.offset();
-            console.log(rect)
-            startX = e.clientX - rect.left;
-            const isActive = items.hasClass('active');
-            if (!isActive) items.addClass('active');
-            items.on('mousemove', onMouseMove);
-            document.onmouseup = (e) => {
-                if (wrapper.hasClass('active')) wrapper.removeClass('active');
-                items.on('mousemove', onMouseMove);
-                document.onmouseup = null;
-                if (moveX > -70 && moveX <= 70) {
-                    //   만약 -70~70이면 초기위치로 이동
-                    return items.css('left', positions[currentIdx] + 'px');
-                }
-                if (moveX > 0 && currentIdx > 0) {
-                    currentIdx = currentIdx - 1;
-                    items.css('left', positions[currentIdx] + 'px');
-                }
-                if (moveX < 0 && currentIdx < itemCount - 1) {
-                    currentIdx = currentIdx + 1;
-                    items.css('left', positions[currentIdx] + 'px');
-                }
-
-            }
-        })
-
-        function onMouseMove(e) {
-            if (!wrapper.hasClass('active')) wrapper.addClass('active');
-            const rect = wrapper.getBoundingClientRect();
-            moveX = e.clientX - rect.left - startX;
-            const left = positions[currentIdx] + moveX;
-            if (currentIdx === 0 && moveX > 0) return;
-            else if (currentIdx === itemCount - 1 && moveX < 0) return;
-            items.css('left', left + 'px');
-        }
+        // wrapper.on('mousedown', (e) => {
+        //     console.log('마우스다운')
+        //     const rect = wrapper.offset();
+        //     console.log(rect)
+        //     startX = e.clientX - rect.left;
+        //     const isActive = items.hasClass('active');
+        //     if (!isActive) items.addClass('active');
+        //     items.on('mousemove', onMouseMove);
+        //     document.onmouseup = (e) => {
+        //         if (wrapper.hasClass('active')) wrapper.removeClass('active');
+        //         items.on('mousemove', onMouseMove);
+        //         document.onmouseup = null;
+        //         if (moveX > -70 && moveX <= 70) {
+        //             //   만약 -70~70이면 초기위치로 이동
+        //             return items.css('left', positions[currentIdx] + 'px');
+        //         }
+        //         if (moveX > 0 && currentIdx > 0) {
+        //             currentIdx = currentIdx - 1;
+        //             items.css('left', positions[currentIdx] + 'px');
+        //         }
+        //         if (moveX < 0 && currentIdx < itemCount - 1) {
+        //             currentIdx = currentIdx + 1;
+        //             items.css('left', positions[currentIdx] + 'px');
+        //         }
+        //
+        //     }
+        // })
+        //
+        // function onMouseMove(e) {
+        //     if (!wrapper.hasClass('active')) wrapper.addClass('active');
+        //     const rect = wrapper.offset();
+        //     moveX = e.clientX - rect.left - startX;
+        //     const left = positions[currentIdx] + moveX;
+        //     if (currentIdx === 0 && moveX > 0) return;
+        //     else if (currentIdx === itemCount - 1 && moveX < 0) return;
+        //     items.css('left', left + 'px');
+        // }
     }
 }
 

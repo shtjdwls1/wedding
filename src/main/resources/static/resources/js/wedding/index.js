@@ -169,9 +169,7 @@ export class index {
 //         console.log('됨')
 //     });
 // })
-        $(document).ready(() => {
-            $('.carousel-inner').children('div:eq(0)').children('div:eq(0)').addClass('active')
-        })
+
     }
 }
 
