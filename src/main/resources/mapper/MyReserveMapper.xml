@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.project.proc.MyReserveService" >
-    <select id="myReserve" resultType="com.smart.project.web.reserve.vo.MyReserveVO" parameterType="int">
-        SELECT hr.h_reserve_idx, DATE_FORMAT(hr.reserve_date, '%Y-%m-%d') AS reserveDate , ht.s_time, ht.e_time, h.h_name, FORMAT(h.h_price , 0) AS h_price, u.u_name, u.u_tel
+    <select id="myReserve" resultType="com.smart.project.web.reserve.vo.MyReserveVO" parameterType="com.smart.project.web.reserve.vo.MyReserveVO">
+        SELECT hr.h_reserve_idx, DATE_FORMAT(hr.reserve_date, '%Y-%m-%d') AS reserveDate ,
+               ht.s_time, ht.e_time, h.h_name, FORMAT(h.h_price , 0) AS h_price, u.u_name, u.u_tel,
+               ci.c_img_name, ci.c_img_path, ci.c_img_type
         FROM hall_reservation AS hr
-        Left join hall_time AS ht on hr.h_time_idx = ht.h_time_idx
-        LEft join hall AS h on ht.u_idx = h.u_idx and ht.h_name = h.h_name
-        LEft join company AS c on h.u_idx = c.u_idx
-        Left join `user` AS u on c.u_idx = u.u_idx
-        where hr.reserve_idx = #{u_idx}
-        ORDER BY reserveDate DESC ;
+        LEFT JOIN hall_time AS ht on hr.h_time_idx = ht.h_time_idx
+        LEFT JOIN hall AS h on ht.u_idx = h.u_idx and ht.h_name = h.h_name
+        LEFT JOIN company AS c on h.u_idx = c.u_idx
+        LEFT JOIN `user` AS u on c.u_idx = u.u_idx
+        LEFT JOIN company_img as ci on ci.u_idx = c.u_idx
+        where hr.reserve_idx = #{uIdx} and ci.c_img_type = 'thumbnail'
+        ORDER BY reserveDate DESC
+        LIMIT 10 OFFSET #{offset};
     </select>
     <delete id="myReserveCancel" parameterType="com.smart.project.web.reserve.vo.MyReserveVO">
         DELETE FROM hall_reservation WHERE h_reserve_idx = #{hReserveIdx};

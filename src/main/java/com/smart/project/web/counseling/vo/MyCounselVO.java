@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class MyCounselVO {
 
+    private int offset;
     private int pCounselingIdx;
     private int uIdx;
     private String pCounselingCk;
@@ -19,4 +20,7 @@ public class MyCounselVO {
     private String pPrice;
     private String uName;
     private String uTel;
+    private String pImgName;
+    private String pImgPath;
+    private String pImgType;
 }

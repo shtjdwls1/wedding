@@ -9,38 +9,70 @@ export class reviewBtn {
 
     eventBindgin() {
 
-        const changeText = (target) => {
+
+        $(document).on('click','.counselBtn' ,(e) => {
+            changeText(e.target)
+        })
+
+
+        function changeText(target){
             let reviewBtn = document.querySelector(`#${target.id}`);
+            console.log("타겟", reviewBtn)
             let targetIndex = reviewBtn.id.substring(9)
-            var star = document.getElementById("star" + targetIndex).value
-            var review = document.getElementById("textArea_byteLimit" + targetIndex).value
-            let planner = document.getElementById("p_idx" + targetIndex).textContent
-            // let counselIdx = 4; // 테스트용 사용자 번호
+            console.log("인덱스", targetIndex)
+            let star = document.getElementById("star" + targetIndex).value
+            console.log("별점", star)
+            let review = document.getElementById("textArea_byteLimit" + targetIndex).value
+            console.log("후기", review)
+            let planner = document.getElementById("u_idx" + targetIndex).textContent
+            console.log("플래너번호", planner)
 
-            const counselIdx = sessionStorage.getItem('u_idx');
+            console.log("클래스리스트", reviewBtn.classList)
+            console.log("클래스체크", reviewBtn.classList[5])
 
-            console.log("tttttttttttttttttttttttt", counselIdx)
             let updateData = {
                 pgrade: star,
                 preview: review,
-                pidx: planner
+                uidx: planner
             }
 
-            if (reviewBtn.textContent === `후기 작성`) {
+            if (reviewBtn.classList[5] === `review_write`) {
+                reviewBtn.classList.remove('review_write')
+                reviewBtn.classList.add('review_submit')
                 reviewBtn.innerHTML = `후기 등록`;
-            } else if (reviewBtn.textContent === `후기 보기`) {
+            } else if (reviewBtn.classList[5] === `review_open`) {
+                reviewBtn.classList.remove('review_open')
+                reviewBtn.classList.add('review_modify')
                 reviewBtn.innerHTML = `후기 수정`
-            } else if (reviewBtn.textContent === `후기 등록` || reviewBtn.textContent === `후기 수정`) {
+            } else if (reviewBtn.classList[5] === `review_submit` || reviewBtn.classList[5] === `review_modify`) {
+                if (reviewBtn.classList[5] === `review_submit`) {
+                    reviewBtn.classList.remove('review_submit')
+                } else if (reviewBtn.classList[5] === `review_modify`) {
+                    reviewBtn.classList.remove('review_modify')
+                }
+                reviewBtn.classList.add('review_open')
                 reviewBtn.innerHTML = `후기 보기`
 
                 axios.post('/myCounsel/reviewWrite', updateData)
                     .then((result) => {
                         console.log(result);
+                        if(result.data > 0) {
+                            console.log("수정성공");
+                        }else{
+                            console.log("수정실패");
+                        }
                     })
 
-    }
+            }
 
         }
+
+
+
+
+
+
+
     }
 }
 

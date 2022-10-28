@@ -9,24 +9,30 @@ export class reserveCancelBtn {
 
     eventBindgin() {
 
-        const madal_idx = (target) => {
-            const madalIdx = target.id.substring(17);
-            console.log(madalIdx)
-            $("#cancelModal1"+madalIdx).modal({backdrop: 'static',keyboard:false});
-            $("#cancelModal2"+madalIdx).modal({backdrop: 'static',keyboard:false});
+        $(document).on('click','.reserve_modal', (e) => {
+            madal_idx(e.target)
+        })
 
-            const targetData = madalIdx;
-            console.log("인덱스 확인 ", targetData)
+        function madal_idx(target){
+            const madalIdx = target.id.substring(17);
+            console.log("인덱스 체크 ",madalIdx)
+
             const updateData = {
-                hreserveIdx: targetData,
+                hreserveIdx: madalIdx,
             }
-            $("#cancelBtn"+madalIdx).on('click',(e)=>{
+            $(document).on('click',"#cancelBtn"+madalIdx,(e)=>{
                 axios.post('/myReserve/cancel', updateData)
                     .then((result) => {
                         console.log(result);
-                        $("#resultBtn"+madalIdx).on('click',(e)=>{
-                            location.href="/myReserve"
-                        })
+                        if(result.data > 0) {
+                            console.log("삭제성공");
+                            $(document).on('click',"#resultBtn" + madalIdx ,(e) => {
+                                location.href = "/myReserve?offset=0&ck=mr"
+                            })
+                        }else{
+                            console.log("삭제실패");
+                        }
+
                     })
             })
 

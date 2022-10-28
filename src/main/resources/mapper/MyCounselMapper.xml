@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.project.proc.MyCounselService">
-    <select id="myCounsel" resultType="com.smart.project.web.counseling.vo.MyCounselVO" parameterType="int">
-        SELECT pc.p_counseling_idx, pc.u_idx, pc.p_counseling_ck, pc.p_grade, pc.p_review, pc.counsel_idx, DATE_FORMAT(pc.counsel_date, '%Y-%m-%d') AS counselDate, FORMAT(p.p_price , 0) AS p_price, u.u_name, u.u_tel
+    <select id="myCounsel" resultType="com.smart.project.web.counseling.vo.MyCounselVO" parameterType="com.smart.project.web.counseling.vo.MyCounselVO">
+        SELECT pc.p_counseling_idx, pc.u_idx, pc.p_counseling_ck, pc.p_grade, pc.p_review, pc.counsel_idx,
+               DATE_FORMAT(pc.counsel_date, '%Y-%m-%d') AS counselDate, FORMAT(p.p_price , 0) AS p_price,
+               u.u_name, u.u_tel, pi2.p_img_name, pi2.p_img_path, pi2.p_img_type
         FROM planner_counseling AS pc
-                 Left join planner AS p on pc.u_idx = p.u_idx
-                 Left join `user` AS u on p.u_idx = u.u_idx
-        where pc.counsel_idx =#{u_idx}
-        ORDER BY counselDate DESC ;
+        LEFT JOIN planner AS p on pc.u_idx = p.u_idx
+        LEFT JOIN `user` AS u on p.u_idx = u.u_idx
+        LEFT JOIN planner_img as pi2 on pi2.u_idx = u.u_idx
+        where pc.counsel_idx =#{uIdx} and pi2.p_img_type ='thumbnail'
+        ORDER BY counselDate DESC
+        LIMIT 10 OFFSET #{offset};
     </select>
     <update id="myCounselUpdate" parameterType="com.smart.project.web.counseling.vo.MyCounselUpdateVO">
         UPDATE planner_counseling

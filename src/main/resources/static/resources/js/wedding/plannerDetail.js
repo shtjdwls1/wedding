@@ -25,12 +25,14 @@ export class plannerDetail {
         $('.sortBtn').on('click', () => {
             controllSortModal()
         })
+        $('.modalCloseBtn').on('click', () => {
+            controllSortModal()
+        })
 
 // 외부 클릭시 모달창 닫기
         window.addEventListener('click', (e) => {
             e.target === sortModal ? sortModal.classList.add('hidden') : false
         })
-
 
 // 옵션 클릭시 색 변경, 체크 추가
         const sortOption = document.getElementsByClassName("sortOption");
@@ -90,6 +92,3 @@ export class plannerDetail {
 
     }
 }
-
-
-

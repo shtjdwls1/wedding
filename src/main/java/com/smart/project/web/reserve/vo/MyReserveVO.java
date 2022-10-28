@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MyReserveVO {
 
+    private int offset;
+    private int uIdx;
     private int hReserveIdx;
     private String reserveDate;
     private String sTime;
@@ -17,5 +19,8 @@ public class MyReserveVO {
     private String hPrice;
     private String uName;
     private String uTel;
+    private String cImgName;
+    private String cImgPath;
+    private String cImgType;
 
 }
