@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smart.project.proc.PlannerService" >
     <select id="plannerReview" resultType="com.smart.project.web.planner.vo.PlannerVO" parameterType="com.smart.project.web.planner.vo.PlannerVO">
-        select u.u_name,pc.p_grade,pc.p_review
+        select u.u_name,pc.p_grade,pc.p_review, pc.counsel_date
         from planner_counseling as pc
         left join `user` as u on u.u_idx = pc.counsel_idx
         where pc.u_idx = #{uIdx} and p_review is not null
-        ORDER by pc.${columnData} ${sort}
+        ORDER by pc.${columnData} ${sortData}
         LIMIT 10 OFFSET #{offset}
     </select>
     <select id="plannerReviewCnt" resultType="int" parameterType="int">

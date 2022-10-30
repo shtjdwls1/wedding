@@ -27,7 +27,8 @@ export class reserveCancelBtn {
                         if(result.data > 0) {
                             console.log("삭제성공");
                             $(document).on('click',"#resultBtn" + madalIdx ,(e) => {
-                                location.href = "/myReserve?offset=0&ck=mr"
+                                $('#cancleNum'+madalIdx).remove()
+                                // location.href = "/myReserve?offset=0&ck=mr"
                             })
                         }else{
                             console.log("삭제실패");

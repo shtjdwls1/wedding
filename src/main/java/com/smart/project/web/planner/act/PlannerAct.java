@@ -41,7 +41,9 @@ public class PlannerAct {
                                      @RequestParam(name = "offset") int offset,
                                      @RequestParam(name = "sortData") String sortData,
                                      @RequestParam(name = "ck") String ck) {
+
         PlannerVO vo = new PlannerVO();
+
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -50,13 +52,16 @@ public class PlannerAct {
         MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
         log.error("세션1 : {}", loginMember.getUIdx());
 
+
         int cnt = plannerService.plannerReviewCnt(loginMember.getUIdx());
+
         model.addAttribute("reviewCnt", cnt);
 
         vo.setColumnData(columnData);
         vo.setOffset(offset);
-        vo.setSort(sortData);
+        vo.setSortData(sortData);
         vo.setUIdx(loginMember.getUIdx());
+
         model.addAttribute("newSort", vo);
 
         List<PlannerVO> list = plannerService.plannerReview(vo);
@@ -86,5 +91,13 @@ public class PlannerAct {
 
         return list;
     }
+
+    @RequestMapping("/plannerCheckCounsel")
+    public String changeMyInfoForm() {
+        return "pages/checkCounselPage";
+    }
+
+
+
 
 }

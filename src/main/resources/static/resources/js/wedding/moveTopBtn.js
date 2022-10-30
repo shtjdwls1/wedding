@@ -9,11 +9,17 @@ export class moveTopBtn {
 
     eventBinding() {
         $(function () {
-            let sessionUname = document.querySelector('.sessionUname').textContent;
             const param = new URLSearchParams(location.search)
             let sortCnt = parseInt(param.get("offset"));
+            let sortData = param.get("sortData");
+            let columnData = param.get("columnData");
             let ck = param.get("ck");
+            let endCk = false;
 
+            // 첫페이지 스크롤바가 생성되지 않았을 경우
+            if ($("body").height() < $(window).height()) {
+                infiniteScroll()
+            }
 
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 100) {
@@ -21,7 +27,6 @@ export class moveTopBtn {
                 } else {
                     $('#moveTopBtn').fadeOut();
                 }
-
                 infiniteScroll()
 
             });
@@ -35,17 +40,19 @@ export class moveTopBtn {
                     if (ck == "pr") {
                         let newSortData = {
                             offset: sortCnt,
-                            columnData: param.get("columnData"),
-                            sortData: param.get("sortData"),
+                            columnData: columnData,
+                            sortData: sortData,
                         }
-                        axios.post("/plannerReviewData", newSortData)
-                            .then((result) => {
-                                console.log("result", result)
-                                let reviewHtml = "";
-                                console.log("result.data[1]", result.data[1])
-                                for (let i = 0; i < result.data.length; i++) {
-                                    reviewHtml +=
-                                        `<div class="comment">
+                        console.log("===============",newSortData)
+                        if(endCk != true) {
+                            axios.post("/plannerReviewData", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    console.log("result.data[1]", result.data[1])
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        reviewHtml +=
+                                            `<div class="comment">
                                             <div class="outerStar mx-3" style="justify-content: flex-start">
                                                 <div class="mt-1 mx-1">${result.data[i].uname}</div>
                                                     <!-- width 값 에 db값 * 10 % 해서 별 출력-->
@@ -54,32 +61,43 @@ export class moveTopBtn {
                                                     <input max="10" min="0" name="star1" step="1" type="range" readonly
                                                         value=${result.data[i].pgrade}>
                                                     </span>
+                                                    <div style="color: dimgrey; margin-left: auto">${result.data[i].counselDate}</div>
                                                 </div>
                                             <div class="plannerIntro mx-3 mb-2">
-                                                <div class="commentView px-2">${result.data[i].preview}</div>
+                                                <div style="display:-webkit-box; -webkit-line-clamp:2;line-height:20px; -webkit-box-orient:vertical;
+                                                    overflow: hidden; text-overflow: ellipsis;" class="commentView px-2 reviewOpen">${result.data[i].preview}</div>
                                             </div>
                                         </div>`
-                                }
-                                $('.plannerReview').append(reviewHtml)
-                            })
+                                    }
+                                    $('.plannerReview').append(reviewHtml)
+                                    if (result.data.length < 10) {
+                                        endCk = true;
+                                    }
+                                })
+                        }
                     }
                     // ck로 각 무한스크롤 페이지 판단
                     if (ck == "mc") {
                         let newSortData = {
                             offset: sortCnt,
                         }
+                        if(endCk != true) {
                         axios.post("/myCounselData", newSortData)
                             .then((result) => {
                                 console.log("result", result)
                                 let reviewHtml = "";
                                 var reviewBtnCk = "";
-                                    console.log("result.data[1]", result.data[1])
+                                    console.log("result.data[4]", result.data[4])
+                                let text = ""
                                 for (let i = 0; i < result.data.length; i++) {
+                                    if(result.data[i].preview != null){
+                                        text = result.data[i].preview.replaceAll('<br>','\r\n')
+                                    }
                                     if(result.data[i].pcounselingCk == 'T' && (result.data[i].preview == null || result.data[i].pgrade == null)){
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false" 
-                                                    class="btn btn-sm btn-light border-dark counselBtn review_write"
+                                                    class="btn btn-sm btn-secondary counselBtn review_write"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#collapseExample${result.data[i].pcounselingIdx}"
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 작성
@@ -89,7 +107,7 @@ export class moveTopBtn {
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
-                                                    class="btn btn-sm btn-light border-dark counselBtn review_open"
+                                                    class="btn btn-sm btn-secondary counselBtn review_open"
                                                     data-bs-toggle="collapse"
                                                     data-bs-target="#collapseExample${result.data[i].pcounselingIdx}"
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 보기
@@ -99,7 +117,7 @@ export class moveTopBtn {
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
-                                                    class="btn btn-sm btn-light border-dark counselBtn confirm_wait"
+                                                    class="btn btn-sm btn-outline-secondary counselBtn confirm_wait"
                                                     data-bs-toggle="collapse" disabled
                                                     data-bs-target="#collapseExample${result.data[i].pcounselingIdx}"
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">확인 대기
@@ -145,7 +163,7 @@ export class moveTopBtn {
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">견적</th>
-                                                            <td>${result.data[i].pprice}원</td>
+                                                            <td class="price">${result.data[i].pprice}원</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">연락처</th>
@@ -180,7 +198,7 @@ export class moveTopBtn {
                                                             <form id="frm_textArea" name="frm_textArea">
                                                                 <textarea class="form-control commentTextarea"
                                                                     name="textArea_byteLimit" rows="10"
-                                                                    id="textArea_byteLimit${result.data[i].pcounselingIdx}">${result.data[i].preview}</textarea>
+                                                                    id="textArea_byteLimit${result.data[i].pcounselingIdx}">${text}</textarea>
                                                             </form>
                                                         </td>
                                                     </tr>
@@ -190,14 +208,21 @@ export class moveTopBtn {
                                     </div>`
                                 }
                                 $('.myCounsel').append(reviewHtml)
+                                if (result.data.length < 10) {
+                                    endCk = true;
+                                }
                             })
+                        }
                     }
 
                     // ck로 각 무한스크롤 페이지 판단
                     if (ck == "mr") {
+                        let sessionUname = document.querySelector('.sessionUname').textContent;
+
                         let newSortData = {
                             offset: sortCnt,
                         }
+                        if(endCk != true) {
                         axios.post("/myReserveData", newSortData)
                             .then((result) => {
                                 console.log("result", result)
@@ -205,7 +230,8 @@ export class moveTopBtn {
                                 console.log("result.data[1]", result.data[1])
                                 for (let i = 0; i < result.data.length; i++) {
                                     reviewHtml +=
-                                    `<!--예약 확인 카드-->
+                                        `<div id="cancleNum${result.data[i].hreserveIdx}">
+                                    <!--예약 확인 카드-->
                                     <div class="reserveCard mx-2 my-2">
                                         <div class="Photosec mx-2 my-2">
                                             <div>
@@ -253,50 +279,42 @@ export class moveTopBtn {
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">금액</th>
-                                                    <td>${result.data[i].hprice}원</td>
+                                                    <td class="price">${result.data[i].hprice}원</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row"></th>
                                                     <td>
-                                                        <button class="btn btn-sm btn-light border-dark reserve_modal"
-                                                                data-bs-toggle="modal"
+                                                        <button type="button" class="btn btn-sm btn-light border-dark reserve_modal" data-bs-toggle="modal"
                                                                 data-bs-target="#cancelModal1${result.data[i].hreserveIdx}"
-                                                                id="reserve_cancelBtn${result.data[i].hreserveIdx}"
-                                                                type="button"
-                                                        >예약 취소</button>
+                                                                id="reserve_cancelBtn${result.data[i].hreserveIdx}">예약 취소</button>
                                                     </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
-                                    <!-- 모달 -->
-                                    <div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade"
-                                         tabindex="0" id="cancelModal1${result.data[i].hreserveIdx}"
-                                         data-backdrop='static' data-keyboard='false'>
+                                    <div class="modal fade" id="cancelModal1${result.data[i].hreserveIdx}"
+                                        data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
                                             <div class="modal-content">
                                                 <div class="modal-body text-center">
-                                                    <button aria-label="Close" class="close float-end bi-x-lg" data-bs-dismiss="modal"></button>
+                                                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     <strong>
                                                         <p>${sessionUname}님,</p>
                                                         예약 취소하시겠습니까?
                                                     </strong>
                                                     <div class="d-grid gap-2 col-4 mx-auto mt-4">
-                                                        <button class="btn btn-light btn-outline-dark"
-                                                                data-bs-dismiss="modal"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#cancelModal2${result.data[i].hreserveIdx}" id="cancelBtn${result.data[i].hreserveIdx}"
-                                                                type="button"
-                                                                data-backdrop='static' data-keyboard='false'>확인</button>
+                                                        <button type="button" class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" data-bs-toggle="modal"
+                                                                data-bs-target="#cancelModal2${result.data[i].hreserveIdx}"
+                                                                id="cancelBtn${result.data[i].hreserveIdx}">확인</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- 삭제 결과 모달 -->
-                                    <div aria-hidden="true" aria-labelledby="cancelModalLabel" class="modal fade"
-                                         tabindex="0" id="cancelModal2${result.data[i].hreserveIdx}">
+                                    <div class="modal fade" id="cancelModal2${result.data[i].hreserveIdx}"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
                                             <div class="modal-content">
                                                 <div class="modal-body text-center">
@@ -304,16 +322,21 @@ export class moveTopBtn {
                                                         삭제되었습니다.
                                                     </strong>
                                                     <div class="d-grid gap-2 col-4 mx-auto mt-4">
-                                                        <button class="btn btn-light btn-outline-dark" id="resultBtn${result.data[i].hreserveIdx}"
-                                                                type="button">확인</button>
+                                                        <button type="button" class="btn btn-light btn-outline-dark" data-bs-dismiss="modal"
+                                                        id="resultBtn${result.data[i].hreserveIdx}">확인</button>
                                                     </div>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>`
                                 }
                                 $('.myReserve').append(reviewHtml)
+                                if (result.data.length < 10) {
+                                    endCk = true;
+                                }
                             })
+                        }
                     }
 
 

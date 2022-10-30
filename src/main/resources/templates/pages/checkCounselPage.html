@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{layouts/otherPageLayout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/wedding/checkCounsel.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- 헤더 -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container mx-3">
+            <a class="navbar-brand" href="/">
+                <img class="logoIcon" src="/imgs/logo.png" style="width: 2rem">
+            </a>
+            <a class="navbar-brand " style="margin-right: 2rem">
+                <strong>상담 확인</strong>
+            </a>
+            <a>
+            </a>
+        </div>
+    </nav>
+    <!-- 컨텐츠 -->
+    <div class="content">
+        <div class="flexDiv mx-3 mt-3">
+            <div class="hallCardSec mt-1 my-1">
+                <div class="hallCard">
+                    <div class="wedInfo mx-3">
+                        <table class="table table-borderless my-2">
+                            <tbody>
+                            <tr>
+                                <th scope="row">상담자명</th>
+                                <td>100명</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">연락처</th>
+                                <td>100명</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-light border-dark confirmBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        상담대기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <strong>
+                            상담을 완료하시겠습니까?
+                        </strong>
+                    </div>
+                    <div class="d-grid gap-2 col-4 mx-auto mt-4 mb-3">
+                        <button type="button" class="btn btn-light btn-outline-dark" data-bs-dismiss="modal">확인</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

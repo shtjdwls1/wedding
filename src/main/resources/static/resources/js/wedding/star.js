@@ -8,7 +8,7 @@ export class drawStar {
     }
 
     eventBindgin() {
-        $('.star').on('change', (e) => {
+        $(document).on('change','.star', (e) => {
             drawStar(e)
         })
 
