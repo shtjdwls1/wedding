@@ -26,49 +26,76 @@
             </a>
         </div>
     </nav>
-    <!-- 컨텐츠 -->
-    <div class="content">
-        <div class="flexDiv mx-3 mt-3">
-            <div class="hallCardSec mt-1 my-1">
-                <div class="hallCard">
-                    <div class="wedInfo mx-3">
-                        <table class="table table-borderless my-2">
-                            <tbody>
-                            <tr>
-                                <th scope="row">상담자명</th>
-                                <td>100명</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">연락처</th>
-                                <td>100명</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-light border-dark confirmBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        상담대기
-                    </button>
-                </div>
-            </div>
 
-        </div>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
-                <div class="modal-content">
-                    <div class="modal-body text-center">
-                        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <strong>
-                            상담을 완료하시겠습니까?
-                        </strong>
+    <div class="plannerCounsel" th:if="${!#lists.isEmpty(counselList)}">
+        <div th:each="counsel : ${counselList}">
+            <!-- 컨텐츠 -->
+            <div class="content">
+                <div class="flexDiv mx-3 mt-3">
+                    <div class="hallCardSec mt-1 my-1">
+                        <div class="hallCard">
+                            <div class="wedInfo mx-3">
+                                <table class="table table-borderless my-2">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row">상담자명</th>
+                                        <td th:text="${counsel.getUName()}">100명</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">연락처</th>
+                                        <td th:text="${counsel.getUTel()}">100명</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div th:if="${counsel.getPCounselingCk() == 'F'}">
+                                <button type="button" class="btn btn-sm btn-secondary counselCheckBtn"
+                                        data-bs-toggle="modal"
+                                        th:id="'counselCheck'+${counsel.getPCounselingIdx()}"
+                                        th:data-bs-target="'#checkCounsel'+${counsel.getPCounselingIdx()}">
+                                    상담대기
+                                </button>
+                            </div>
+                            <div th:if="${counsel.getPCounselingCk() == 'T'}">
+                                <button type="button" class="btn btn-sm btn-outline-secondary counselCheckBtn"
+                                        data-bs-toggle="modal"
+                                        th:id="'counselCheck'+${counsel.getPCounselingIdx()}"
+                                        th:data-bs-target="'#checkCounsel'+${counsel.getPCounselingIdx()}" disabled>
+                                    상담완료
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-grid gap-2 col-4 mx-auto mt-4 mb-3">
-                        <button type="button" class="btn btn-light btn-outline-dark" data-bs-dismiss="modal">확인</button>
+
                 </div>
+                <div class="modal fade" th:id="'checkCounsel'+${counsel.getPCounselingIdx()}" data-bs-backdrop="static" data-bs-keyboard="false"
+                     tabindex="-1"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+                        <div class="modal-content">
+                            <div class="modal-body text-center">
+                                <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                <strong>
+                                    상담을 완료하시겠습니까?
+                                </strong>
+                            </div>
+                            <div class="d-grid gap-2 col-4 mx-auto mt-4 mb-3">
+                                <button type="button" class="btn btn-light btn-outline-dark checkCounselBtn" data-bs-dismiss="modal"
+                                        th:id="'checkCounselBtn'+${counsel.getPCounselingIdx()}">
+                                    확인
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <!-- 리스트가 비어 있는 경우 표시 -->
+    <div th:if="${#lists.isEmpty(counselList)}">
+        <h3 style="color: #898989; text-align: center; margin-top: 100px">상담 내역이 존재하지 않습니다.</h3>
+    </div>
 
 </div>
 

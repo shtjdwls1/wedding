@@ -15,6 +15,18 @@
     <select id="plannerReviewGrade" resultType="float" parameterType="int">
         select SUM(p_grade) from planner_counseling where u_idx = #{u_idx} and p_review is not null
     </select>
+    <select id="plannerCounsel" resultType="com.smart.project.web.planner.vo.PlannerVO" parameterType="com.smart.project.web.planner.vo.PlannerVO">
+        select u.u_name,u.u_tel,pc.p_counseling_idx, pc.p_counseling_ck
+        from planner_counseling as pc
+                 left join `user` as u on u.u_idx = pc.counsel_idx
+        where pc.u_idx = #{uIdx}
+        ORDER by pc.p_counseling_idx DESC
+        LIMIT 10 OFFSET #{offset}
+    </select>
+    <update id="plannerCounselUpdate" parameterType="com.smart.project.web.planner.vo.PlannerVO">
+        UPDATE planner_counseling SET p_counseling_ck = #{pCounselingCk}
+        where p_counseling_idx = #{pCounselingIdx}
+    </update>
 </mapper>
 
 

@@ -43,7 +43,6 @@ export class moveTopBtn {
                             columnData: columnData,
                             sortData: sortData,
                         }
-                        console.log("===============",newSortData)
                         if(endCk != true) {
                             axios.post("/plannerReviewData", newSortData)
                                 .then((result) => {
@@ -341,8 +340,96 @@ export class moveTopBtn {
 
 
 
+                // ck로 각 무한스크롤 페이지 판단
+                    if (ck == "pc") {
+                        let newSortData = {
+                            offset: sortCnt,
+                        }
+                        if(endCk != true) {
+                            axios.post("/plannerCheckCounselDada", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    var counselBtnCk = "";
+                                    console.log("result.data[1]", result.data[1])
 
-                    // 여기에 무한스크롤 추가
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        if(result.data[i].pcounselingCk == 'F'){
+                                            counselBtnCk =
+                                                `<button type = "button"
+                                                    class = "btn btn-sm btn-secondary counselCheckBtn"
+                                                    data-bs-toggle = "modal"
+                                                    id = "counselCheck${result.data[i].pcounselingIdx}"
+                                                    data-bs-target = "#checkCounsel${result.data[i].pcounselingIdx}">상담대기</button>`
+                                        }else if(result.data[i].pcounselingCk == 'T'){
+                                            counselBtnCk =
+                                                `<button type = "button"
+                                                    class = "btn btn-sm btn-outline-secondary counselCheckBtn"
+                                                    data-bs-toggle = "modal"
+                                                    id = "counselCheck${result.data[i].pcounselingIdx}"
+                                                    data-bs-target = "#checkCounsel${result.data[i].pcounselingIdx}" disabled>상담완료</button>`
+                                        }
+                                        reviewHtml +=
+                                            `
+                                            <!-- 컨텐츠 -->
+                                        <div class="content">
+                                            <div class="flexDiv mx-3 mt-3">
+                                                <div class="hallCardSec mt-1 my-1">
+                                                    <div class="hallCard">
+                                                        <div class="wedInfo mx-3">
+                                                            <table class="table table-borderless my-2">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <th scope="row">상담자명</th>
+                                                                    <td>${result.data[i].uname}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">연락처</th>
+                                                                    <td>${result.data[i].utel}</td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                            ${counselBtnCk}
+                                                        </div>
+                                                </div>
+                            
+                                            </div>
+                                            <div class="modal fade" id="checkCounsel${result.data[i].pcounselingIdx}" data-bs-backdrop="static" data-bs-keyboard="false"
+                                                 tabindex="-1"
+                                                 aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center">
+                                                            <button type="button" class="btn-close float-end" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            <strong>
+                                                                상담을 완료하시겠습니까?
+                                                            </strong>
+                                                        </div>
+                                                        <div class="d-grid gap-2 col-4 mx-auto mt-4 mb-3">
+                                                            <button type="button" class="btn btn-light btn-outline-dark checkCounselBtn" data-bs-dismiss="modal"
+                                                                    id="checkCounselBtn${result.data[i].pcounselingIdx}">
+                                                                확인
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            `
+                                    }
+                                    $('.plannerCounsel').append(reviewHtml)
+                                    if (result.data.length < 10) {
+                                        endCk = true;
+                                    }
+                                })
+                        }
+                    }
+
+
+
+
 
 
 
