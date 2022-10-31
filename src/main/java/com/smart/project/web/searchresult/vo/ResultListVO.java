@@ -12,4 +12,5 @@ public class ResultListVO {
     private String sort;
     private int offset;
     private String date;
+    
 }

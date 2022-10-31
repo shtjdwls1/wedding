@@ -12,13 +12,10 @@ import java.util.List;
 @Component
 public interface SearchResultService {
 
-    List<ResultListVO> getList1();
-
-    List<ResultListVO> getList2(String date);
-
-    ResultMemberVO getList3(ResultListVO vo);
 
     List<ResultPlannerVO> getList4(ResultListVO vo);
 
-    ResultMemberVO getSortList1(ResultListVO vo);
+    List<ResultMemberVO> getList5(ResultListVO vo);
+
+
 }

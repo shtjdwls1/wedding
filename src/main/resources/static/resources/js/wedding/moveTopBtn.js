@@ -43,7 +43,7 @@ export class moveTopBtn {
                             columnData: columnData,
                             sortData: sortData,
                         }
-                        if(endCk != true) {
+                        if (endCk != true) {
                             axios.post("/plannerReviewData", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -80,21 +80,21 @@ export class moveTopBtn {
                         let newSortData = {
                             offset: sortCnt,
                         }
-                        if(endCk != true) {
-                        axios.post("/myCounselData", newSortData)
-                            .then((result) => {
-                                console.log("result", result)
-                                let reviewHtml = "";
-                                var reviewBtnCk = "";
+                        if (endCk != true) {
+                            axios.post("/myCounselData", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    var reviewBtnCk = "";
                                     console.log("result.data[4]", result.data[4])
-                                let text = ""
-                                for (let i = 0; i < result.data.length; i++) {
-                                    if(result.data[i].preview != null){
-                                        text = result.data[i].preview.replaceAll('<br>','\r\n')
-                                    }
-                                    if(result.data[i].pcounselingCk == 'T' && (result.data[i].preview == null || result.data[i].pgrade == null)){
-                                        reviewBtnCk =
-                                            `<td>
+                                    let text = ""
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        if (result.data[i].preview != null) {
+                                            text = result.data[i].preview.replaceAll('<br>', '\r\n')
+                                        }
+                                        if (result.data[i].pcounselingCk == 'T' && (result.data[i].preview == null || result.data[i].pgrade == null)) {
+                                            reviewBtnCk =
+                                                `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false" 
                                                     class="btn btn-sm btn-secondary counselBtn review_write"
                                                     data-bs-toggle="collapse"
@@ -102,9 +102,9 @@ export class moveTopBtn {
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 작성
                                                 </button>
                                             </td>`
-                                    } else if (result.data[i].pcounselingCk == 'T' && result.data[i].preview != null && result.data[i].pgrade != null) {
-                                        reviewBtnCk =
-                                            `<td>
+                                        } else if (result.data[i].pcounselingCk == 'T' && result.data[i].preview != null && result.data[i].pgrade != null) {
+                                            reviewBtnCk =
+                                                `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
                                                     class="btn btn-sm btn-secondary counselBtn review_open"
                                                     data-bs-toggle="collapse"
@@ -112,9 +112,9 @@ export class moveTopBtn {
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 보기
                                                 </button>
                                             </td>`
-                                    } else if (result.data[i].pcounselingCk != 'T') {
-                                        reviewBtnCk =
-                                            `<td>
+                                        } else if (result.data[i].pcounselingCk != 'T') {
+                                            reviewBtnCk =
+                                                `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
                                                     class="btn btn-sm btn-outline-secondary counselBtn confirm_wait"
                                                     data-bs-toggle="collapse" disabled
@@ -122,10 +122,10 @@ export class moveTopBtn {
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">확인 대기
                                                 </button>
                                             </td>`
-                                    }
+                                        }
 
-                                    reviewHtml +=
-                                        `<!-- 상담 카드 -->
+                                        reviewHtml +=
+                                            `<!-- 상담 카드 -->
                                     <div class="outer  mt-2 mx-3">
                                         <div class="plannerCard">
                                             <div class="Photosec mx-2 my-2">
@@ -205,12 +205,12 @@ export class moveTopBtn {
                                             </form>
                                         </div>
                                     </div>`
-                                }
-                                $('.myCounsel').append(reviewHtml)
-                                if (result.data.length < 10) {
-                                    endCk = true;
-                                }
-                            })
+                                    }
+                                    $('.myCounsel').append(reviewHtml)
+                                    if (result.data.length < 10) {
+                                        endCk = true;
+                                    }
+                                })
                         }
                     }
 
@@ -221,15 +221,15 @@ export class moveTopBtn {
                         let newSortData = {
                             offset: sortCnt,
                         }
-                        if(endCk != true) {
-                        axios.post("/myReserveData", newSortData)
-                            .then((result) => {
-                                console.log("result", result)
-                                let reviewHtml = "";
-                                console.log("result.data[1]", result.data[1])
-                                for (let i = 0; i < result.data.length; i++) {
-                                    reviewHtml +=
-                                        `<div id="cancleNum${result.data[i].hreserveIdx}">
+                        if (endCk != true) {
+                            axios.post("/myReserveData", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    console.log("result.data[1]", result.data[1])
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        reviewHtml +=
+                                            `<div id="cancleNum${result.data[i].hreserveIdx}">
                                     <!--예약 확인 카드-->
                                     <div class="reserveCard mx-2 my-2">
                                         <div class="Photosec mx-2 my-2">
@@ -329,24 +329,31 @@ export class moveTopBtn {
                                             </div>
                                         </div>
                                     </div>`
-                                }
-                                $('.myReserve').append(reviewHtml)
-                                if (result.data.length < 10) {
-                                    endCk = true;
-                                }
-                            })
+                                    }
+                                    $('.myReserve').append(reviewHtml)
+                                    if (result.data.length < 10) {
+                                        endCk = true;
+                                    }
+                                })
                         }
                     }
 
                     // ck로 각 무한스크롤 페이지 판단 : 검색시 첫 페이지
                     if (ck == "rs") {
+
                         let newSortData = {
                             offset: sortCnt,
                             clasify: param.get("clasify"),
                             ulocation: param.get("location"),
-                            date: param.get("date")
+                            date: param.get("date"),
+                            columnData: columnData,
+                            sort: sortData,
                         }
                         if (param.get("clasify") == "웨딩홀") {
+                            if (newSortData.columnData == null) {
+                                newSortData.columnData = "c_idx"
+                                newSortData.sort = "desc"
+                            }
                             axios.post("/resultDataWed", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -354,24 +361,27 @@ export class moveTopBtn {
                                     console.log("result.data[1]", result.data[1])
                                     for (let i = 0; i < result.data.length; i++) {
                                         reviewHtml +=
-                                            `<div class="comment">
-                                            <div class="outerStar mx-3" style="justify-content: flex-start">
-                                                <div class="mt-1 mx-1">${result.data[i].uname}</div>
-                                                    <!-- width 값 에 db값 * 10 % 해서 별 출력-->
-                                                    <span class="star text" style="font-size: 1rem">★★★★★<span
-                                                        style="width:${result.data[i].pgrade * 10}%">★★★★★</span>
-                                                    <input max="10" min="0" name="star1" step="1" type="range" readonly
-                                                        value=${result.data[i].pgrade}>
-                                                    </span>
+                                            `<div class="resWedCard mx-3 mt-2">
+                                                <div class="imgSec">
+                                                    <img class="mx-2 my-2" src="/imgs/noImage.png">
                                                 </div>
-                                            <div class="plannerIntro mx-3 mb-2">
-                                                <div class="commentView px-2">${result.data[i].preview}</div>
-                                            </div>
-                                        </div>`
+                                                <div class="infoSec mx-2">
+                                                    <div class="my-2">${result.data[i].uname}</div>
+                                                    <div class="my-2">${result.data[i].caddr}</div>
+                                                    <div class="my-2">${result.data[i].hprice}</div>
+                                                    <div class="reservePrice my-2">
+                                                        <div class="resBtn mx-4">예약가능</div>
+                                                    </div>
+                                                </div>
+                                            </div>`
                                     }
-                                    $('.plannerReview').append(reviewHtml)
+                                    $('.mySearch').append(reviewHtml)
                                 })
                         } else if (param.get("clasify") == "플래너") {
+                            if (newSortData.columnData == null) {
+                                newSortData.columnData = "p_idx"
+                                newSortData.sort = "desc"
+                            }
                             axios.post("/resultDataPlan", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -379,33 +389,32 @@ export class moveTopBtn {
                                     console.log("result.data[1]", result.data[1])
                                     for (let i = 0; i < result.data.length; i++) {
                                         reviewHtml +=
-                                            `<div class="comment">
-                                            <div class="outerStar mx-3" style="justify-content: flex-start">
-                                                <div class="mt-1 mx-1">${result.data[i].uname}</div>
-                                                    <!-- width 값 에 db값 * 10 % 해서 별 출력-->
-                                                    <span class="star text" style="font-size: 1rem">★★★★★<span
-                                                        style="width:${result.data[i].pgrade * 10}%">★★★★★</span>
-                                                    <input max="10" min="0" name="star1" step="1" type="range" readonly
-                                                        value=${result.data[i].pgrade}>
-                                                    </span>
+                                            `<div class="resPlanCard mx-3 mt-2">
+                                                <div class="imgSec">
+                                                    <img class="mx-2 my-2 img" src="/imgs/PlannerPhoto.jpg">
                                                 </div>
-                                            <div class="plannerIntro mx-3 mb-2">
-                                                <div class="commentView px-2">${result.data[i].preview}</div>
-                                            </div>
-                                        </div>`
+                                                <div class="infoSec mx-2">
+                                                    <div class="my-2">${result.data[i].uname}</div>
+                                                    <div class="my-2">★ ${result.data[i].pgrade}</div>
+                                                    <div class="my-2">${result.data[i].pprice}</div>
+                                                    <div class="reservePrice my-2">
+                                                        <div class="resBtn mx-4">상세보기</div>
+                                                    </div>
+                                                </div>
+                                            </div>`
                                     }
-                                    $('.plannerReview').append(reviewHtml)
+                                    $('.mySearch').append(reviewHtml)
                                 })
                         }
 
                     }
 
-                // ck로 각 무한스크롤 페이지 판단
+                    // ck로 각 무한스크롤 페이지 판단
                     if (ck == "pc") {
                         let newSortData = {
                             offset: sortCnt,
                         }
-                        if(endCk != true) {
+                        if (endCk != true) {
                             axios.post("/plannerCheckCounselDada", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -414,14 +423,14 @@ export class moveTopBtn {
                                     console.log("result.data[1]", result.data[1])
 
                                     for (let i = 0; i < result.data.length; i++) {
-                                        if(result.data[i].pcounselingCk == 'F'){
+                                        if (result.data[i].pcounselingCk == 'F') {
                                             counselBtnCk =
                                                 `<button type = "button"
                                                     class = "btn btn-sm btn-secondary counselCheckBtn"
                                                     data-bs-toggle = "modal"
                                                     id = "counselCheck${result.data[i].pcounselingIdx}"
                                                     data-bs-target = "#checkCounsel${result.data[i].pcounselingIdx}">상담대기</button>`
-                                        }else if(result.data[i].pcounselingCk == 'T'){
+                                        } else if (result.data[i].pcounselingCk == 'T') {
                                             counselBtnCk =
                                                 `<button type = "button"
                                                     class = "btn btn-sm btn-outline-secondary counselCheckBtn"
@@ -488,14 +497,13 @@ export class moveTopBtn {
                     }
 
 
-
                     if (ck == "pd") {
                         let newSortData = {
                             offset: sortCnt,
                             columnData: columnData,
                             sortData: sortData,
                         }
-                        if(endCk != true) {
+                        if (endCk != true) {
                             axios.post("", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -512,8 +520,6 @@ export class moveTopBtn {
                                 })
                         }
                     }
-
-
 
 
                 }

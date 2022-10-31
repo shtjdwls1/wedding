@@ -26,6 +26,8 @@
 			<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" readonly
 			       th:value="${OriginData[1]}">
 			<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" name="date" th:value="${OriginData[2]}">
+			<input class="hidden" name="ck" readonly value="rs">
+			<input class="hidden" name="offset" readonly value="0">
 			<button class="indexSearchBtn  mx-2 my-2" type="submit">검색</button>
 		</form>
 		<div class="sticky-top  commentTop px-2" style="background-color: white">
@@ -36,33 +38,35 @@
 			</div>
 		</div>
 	</div>
-	<div th:each="ResultData: ${ResultDatas}">
-		<div th:switch="${OriginData[0]}">
-			<!--웨딩홀 카드-->
-			<div class="resWedCard mx-3 mt-2" th:case="웨딩홀">
-				<div class="imgSec">
-					<img class="mx-2 my-2" src="/imgs/noImage.png">
-				</div>
-				<div class="infoSec mx-2">
-					<div class="my-2" th:text="${ResultData.getUName()}">웨딩홀명</div>
-					<div class="my-2" th:text="${ResultData.getCAddr()}">주소</div>
-					<div class="my-2" th:text="${ResultData.getHPrice()}">금액</div>
-					<div class="reservePrice my-2">
-						<div class="resBtn mx-4">예약가능</div>
+	<div class="mySearch">
+		<div th:each="ResultData: ${ResultDatas}">
+			<div th:switch="${OriginData[0]}">
+				<!--웨딩홀 카드-->
+				<div class="resWedCard mx-3 mt-2" th:case="웨딩홀">
+					<div class="imgSec">
+						<img class="mx-2 my-2" src="/imgs/noImage.png">
+					</div>
+					<div class="infoSec mx-2">
+						<div class="my-2" th:text="${ResultData.getUName()}">웨딩홀명</div>
+						<div class="my-2" th:text="${ResultData.getCAddr()}">주소</div>
+						<div class="my-2" th:text="${ResultData.getHPrice()}">금액</div>
+						<div class="reservePrice my-2">
+							<div class="resBtn mx-4">예약가능</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<!-- 플래너 카드-->
-			<div class="resPlanCard mx-3 mt-2" th:case="플래너">
-				<div class="imgSec">
-					<img class="mx-2 my-2 img" src="/imgs/PlannerPhoto.jpg">
-				</div>
-				<div class="infoSec mx-2">
-					<div class="my-2" th:text="${ResultData.getUName()}">플래너 이름</div>
-					<div class="my-2" th:text="'★ ' +${ResultData.getPGrade()}">★ 4.5</div>
-					<div class="my-2" th:text="${ResultData.getPPrice} + '원'">금액</div>
-					<div class="reservePrice my-2">
-						<div class="resBtn mx-4">상세보기</div>
+				<!-- 플래너 카드-->
+				<div class="resPlanCard mx-3 mt-2" th:case="플래너">
+					<div class="imgSec">
+						<img class="mx-2 my-2 img" src="/imgs/PlannerPhoto.jpg">
+					</div>
+					<div class="infoSec mx-2">
+						<div class="my-2" th:text="${ResultData.getUName()}">플래너 이름</div>
+						<div class="my-2" th:text="'★ ' +${ResultData.getPGrade()}">★ 4.5</div>
+						<div class="my-2" th:text="${ResultData.getPPrice} + '원'">금액</div>
+						<div class="reservePrice my-2">
+							<div class="resBtn mx-4">상세보기</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -132,11 +136,11 @@
 				</div>
 				<div class="modal-body">
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=c_idx&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=최신순▼'">최신순▼</a>
+					   th:href="'/searchResult?columnData=c_idx&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=최신순▼'">최신순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=h_price&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격높은순▼'">가격높은순▼</a>
+					   th:href="'/searchResult?columnData=h_price&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격높은순▼'">가격높은순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=h_price&offset=0&sortData=asc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격낮은순▼'">가격낮은순▼</a>
+					   th:href="'/searchResult?columnData=h_price&offset=0&sortData=asc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격낮은순▼'">가격낮은순▼</a>
 				</div>
 			</div>
 		</div>
@@ -152,16 +156,16 @@
 				</div>
 				<div class="modal-body">
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=p_idx&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=최신순▼'">최신순▼</a>
+					   th:href="'/searchResult?columnData=p_idx&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=최신순▼'">최신순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=p_price&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격높은순▼'">가격높은순▼</a>
+					   th:href="'/searchResult?columnData=p_price&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격높은순▼'">가격높은순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=p_price&offset=0&sortData=asc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격낮은순▼'">가격낮은순▼</a>
+					   th:href="'/searchResult?columnData=p_price&offset=0&sortData=asc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=가격낮은순▼'">가격낮은순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=comment&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=후기많은순▼'">후기
+					   th:href="'/searchResult?columnData=comment&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=후기많은순▼'">후기
 						많은순▼</a>
 					<a class="modalOption sortOption"
-					   th:href="'/sortResult?columnData=p_grade&offset=0&sortData=desc&ck=pr&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=별점 높은 순▼'">별점
+					   th:href="'/searchResult?columnData=p_grade&offset=0&sortData=desc&ck=rs&location='+${ResultDatas[0].getULocation()} + '&clasify=' + ${OriginData[0]} + '&date=' + ${OriginData[2]}+'&sorting=별점 높은 순▼'">별점
 						높은순▼</a>
 				</div>
 			</div>
