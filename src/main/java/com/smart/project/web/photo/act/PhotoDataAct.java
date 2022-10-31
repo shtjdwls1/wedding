@@ -221,6 +221,7 @@ public class PhotoDataAct {
         hallVO.setHMin(hallDataVO.getHMin());
         hallVO.setHMax(hallDataVO.getHMax());
         hallVO.setUIdx(uIdx);
+        pm.saveHall(hallVO);
         log.error("hallVO Test ==> {}",hallVO);
         //TODO 2. 홀시간 VO에 담기 -- 값이 들어있을 경우에만
         for(int i =0; i<hallDataVO.getSTime().size();i++){
@@ -230,6 +231,7 @@ public class PhotoDataAct {
                 hallTimeVO.setETime(hallDataVO.getETime().get(i));
                 hallTimeVO.setHName(hallDataVO.getHName());
                 hallTimeVO.setUIdx(uIdx);
+                pm.saveHallTime(hallTimeVO);
                 log.error("hallTimeVO Test ==> {}",hallTimeVO);
             }
         }

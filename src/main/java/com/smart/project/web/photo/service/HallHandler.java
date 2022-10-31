@@ -57,7 +57,7 @@ public class HallHandler {
                         HallImgVO photo = new HallImgVO();
                         photo.setHImgName(newFileName);
                         photo.setHImgPath(newPath);
-                        photo.setHImgName(hallName);
+                        photo.setHName(hallName);
                         photo.setHImgType(type);
                         log.error("newFile ==> {}",photo);
                         returnFiles.add(photo);
@@ -109,6 +109,7 @@ public class HallHandler {
             ImageIO.write(newImage, (String) getLastMem(photo.getHImgName().split("\\.")),file);
             //확인
             File imageFile = new File(fullPath.replace("common",type));
+            log.error("fullPath ===> {}",fullPath);
             if(imageFile.exists()){
                 BufferedImage bi = ImageIO.read(imageFile);
                 log.error("after width/height ===> {}/{}",bi.getWidth(),bi.getHeight());

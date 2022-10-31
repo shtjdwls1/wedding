@@ -42,11 +42,11 @@
     </insert>
     <!--홀 정보 등록-->
     <insert id="saveHall">
-        INSERT INTO hall(h_name, h_price, h_min, h_max, u_idx) VALUES ();
+        INSERT INTO hall(h_name, h_price, h_min, h_max, u_idx) VALUES (#{hName},#{hPrice},#{hMin},#{hMax},#{uIdx});
     </insert>
     <!--홀 시간 등록-->
     <insert id="saveHallTime">
-        INSERT INTO hall_time(s_time, e_time, h_name, u_idx) VALUES ();
+        INSERT INTO hall_time(s_time, e_time, h_name, u_idx) VALUES (#{sTime},#{eTime},#{hName},#{uIdx});
     </insert>
     <!--홀 이미지 수정-->
     <!--홀 정보 수정-->

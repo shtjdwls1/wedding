@@ -1,9 +1,7 @@
 package com.smart.project.proc;
 
 import com.smart.project.annotation.Master;
-import com.smart.project.web.photo.vo.CompanyVO;
-import com.smart.project.web.photo.vo.HallImgVO;
-import com.smart.project.web.photo.vo.PhotoVO;
+import com.smart.project.web.photo.vo.*;
 import org.springframework.stereotype.Component;
 
 @Master
@@ -26,6 +24,8 @@ public interface PhotoMapper {
 
 
     int saveHallImg(HallImgVO photo); // 홀 이미지 등록하기
-    int updateHallImg(HallImgVO photo); // 업체 이미지 수정하기
+    int saveHall(HallVO hallVO); // 홀 정보 등록
+    int saveHallTime(HallTimeVO hallTimeVO); // 홀 시간정보 등록
+    int updateHallImg(HallImgVO photo); // 홀 이미지 수정하기
 
 }
