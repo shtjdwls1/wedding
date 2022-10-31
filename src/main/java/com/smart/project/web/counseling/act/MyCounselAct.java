@@ -46,7 +46,6 @@ public class MyCounselAct {
     }
 
 
-
     @PostMapping("/myCounselData")
     @ResponseBody
     public List<MyCounselVO> myCounselData(Model model, HttpServletRequest request, @RequestBody MyCounselVO vo) {
@@ -64,6 +63,37 @@ public class MyCounselAct {
         return list;
     }
 
+    @PostMapping("/myCounsel/previewCnt")
+    @ResponseBody
+    public int previewCnt(@RequestBody MyCounselVO vo) {
+
+        String review = vo.getPReview();
+        log.error("cnt : {}", vo.getPReview().length());
+
+        int bytes = 0;
+
+        char[] strChar = review.toCharArray();
+        char ch;
+        int code;
+
+        for (int i = 0; i < strChar.length; i++){
+            ch = strChar[i];
+            code = (int) ch;
+
+            // 2bytes
+            if ((ch < '0' || ch > '9') && (ch < 'A' || ch > 'Z') && code > 255) {
+                bytes += 2;
+            }
+
+            // 1bytes
+            else {
+                bytes += 1;
+            }
+        }
+
+
+        return bytes;
+    }
 
 
     @PostMapping("/myCounsel/reviewWrite")

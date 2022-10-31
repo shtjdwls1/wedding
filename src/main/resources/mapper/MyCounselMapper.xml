@@ -10,7 +10,7 @@
         LEFT JOIN `user` AS u on p.u_idx = u.u_idx
         LEFT JOIN planner_img as pi2 on pi2.u_idx = u.u_idx
         where pc.counsel_idx =#{uIdx} and pi2.p_img_type ='thumbnail'
-        ORDER BY counselDate DESC
+        ORDER BY pc.p_counseling_idx DESC
         LIMIT 10 OFFSET #{offset};
     </select>
     <update id="myCounselUpdate" parameterType="com.smart.project.web.counseling.vo.MyCounselUpdateVO">

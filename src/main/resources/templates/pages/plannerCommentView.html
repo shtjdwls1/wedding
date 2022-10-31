@@ -48,6 +48,25 @@
 					  <input max="10" min="0" name="star1" step="1" type="range" readonly th:value="${gradeCnt}">
 					</span>
                     <div class="mt-2 mx-2"><strong th:text="${gradeCnt}">2.5</strong></div>
+                    <div class="countComment mt-2 mx-4" style="color: gray">
+                        <i th:text="${reviewCnt}" class="bi bi-people-fill mx-1">32</i>
+                    </div>
+                </div>
+            </div>
+            <!-- 리스트가 없는 경우 -->
+            <div th:if="${#strings.isEmpty(gradeCnt)}">
+                <div class="outerStar" style="justify-content: flex-start">
+                    <div class="mt-2 mx-3">플래너 후기</div>
+                    <span class="star text" style="font-size: 1.5rem">
+					  ★★★★★
+                        <!-- width 값 에 db값 * 10 % 해서 별 출력-->
+					  <span style="width:0%">★★★★★</span>
+					  <input max="10" min="0" name="star1" step="1" type="range" readonly value="0">
+					</span>
+                    <div class="mt-2 mx-2"><strong>0</strong></div>
+                    <div class="countComment mt-2 mx-4" style="color: gray">
+                        <i class="bi bi-people-fill mx-1">0</i>
+                    </div>
                 </div>
             </div>
             <div th:if="${newSort.getColumnData() == 'p_counseling_idx'}">
@@ -58,7 +77,7 @@
                     </button>
                 </div>
             </div>
-            <div th:if="${newSort.getColumnData() == 'p_grade'} and ${newSort.getSort() == 'desc'}">
+            <div th:if="${newSort.getColumnData() == 'p_grade'} and ${newSort.getSortData() == 'desc'}">
                 <div>
                     <button class="btn btn-light mx-3 sortBtn"
                             style="font-size: 0.5rem">
@@ -66,7 +85,7 @@
                     </button>
                 </div>
             </div>
-            <div th:if="${newSort.getColumnData() == 'p_grade'} and ${newSort.getSort() == 'asc'}">
+            <div th:if="${newSort.getColumnData() == 'p_grade'} and ${newSort.getSortData() == 'asc'}">
                 <div>
                     <button class="btn btn-light mx-3 sortBtn"
                             style="font-size: 0.5rem">
@@ -83,9 +102,6 @@
 
     <!-- 후기 보기 -->
     <div class="commentSec ">
-        <div class="countComment mt-2 mx-4" style="color: gray">
-            <i th:text="${reviewCnt}" class="bi bi-people-fill mx-1">32</i>
-        </div>
         <!-- 리스트가 있는 경우 -->
 
         <div class="plannerReview" th:if="${!#lists.isEmpty(reviewList)}">
@@ -93,24 +109,33 @@
 
                 <!--후기댓글	-->
                 <div class="comment">
-                    <div class="outerStar mx-3" style="justify-content: flex-start">
-                        <div th:text="${review.getUName()}" class="mt-1 mx-1">유저 아이디</div>
+
+
+                    <div class="outerStar mx-3">
+                        <div th:text="${review.getUName()}">유저 아이디</div>
                         <!-- width 값 에 db값 * 10 % 해서 별 출력-->
                         <span class="star text" style="font-size: 1rem">★★★★★<span
                                 th:style="'width:'+${review.getPGrade()}*10+'%'">★★★★★</span>
 					        <input max="10" min="0" name="star1" step="1" type="range" readonly
-                                th:value="${review.getPGrade()}">
+                                   th:value="${review.getPGrade()}">
 				        </span>
+                        <div style="color: dimgrey; margin-left: auto" th:text="${review.getCounselDate()}">2022-01-06
+                            23:25:33
+                        </div>
+
                     </div>
+
+
                     <div class="plannerIntro mx-3 mb-2">
-                        <div th:text="${review.getPReview()}" class="commentView px-2">
+                        <div style="display:-webkit-box; -webkit-line-clamp:2;line-height:20px; -webkit-box-orient:vertical;
+                        overflow: hidden; text-overflow: ellipsis;" th:text="${review.getPReview()}"
+                             class="commentView px-2 reviewOpen">
                             너무 좋아요!
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
     </div>
@@ -137,8 +162,10 @@
             <div class="modal-body">
                 <a class="modalOption sortOption"
                    href="/plannerCommentView?columnData=p_counseling_idx&offset=0&sortData=desc&ck=pr">최신순▼</a>
-                <a class="modalOption sortOption" href="/plannerCommentView?columnData=p_grade&offset=0&sortData=desc&ck=pr">별점높은순▼</a>
-                <a class="modalOption sortOption" href="/plannerCommentView?columnData=p_grade&offset=0&sortData=asc&ck=pr">별점낮은순▼</a>
+                <a class="modalOption sortOption"
+                   href="/plannerCommentView?columnData=p_grade&offset=0&sortData=desc&ck=pr">별점높은순▼</a>
+                <a class="modalOption sortOption"
+                   href="/plannerCommentView?columnData=p_grade&offset=0&sortData=asc&ck=pr">별점낮은순▼</a>
             </div>
         </div>
     </div>

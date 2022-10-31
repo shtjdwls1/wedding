@@ -18,6 +18,17 @@
         from company_result2
         where u_idx = #{uIdx} and u_location = '대전'
     </select>
+    <select id="test4" resultType="com.smart.project.web.home.vo.TestMemberVO"
+            parameterType="com.smart.project.web.home.vo.TestResultVO">
+        SELECT *
+        from company_result2
+        WHERE u_idx in
+              (select u_idx
+               from hall_reservation
+               where reserve_date = #{reserveDate} and u_location = #{uLocation}
+               group by u_idx
+               HAVING count(*) != 25);
+    </select>
 </mapper>
 
 

@@ -12,7 +12,7 @@
         LEFT JOIN `user` AS u on c.u_idx = u.u_idx
         LEFT JOIN company_img as ci on ci.u_idx = c.u_idx
         where hr.reserve_idx = #{uIdx} and ci.c_img_type = 'thumbnail'
-        ORDER BY reserveDate DESC
+        ORDER BY hr.h_reserve_idx DESC
         LIMIT 10 OFFSET #{offset};
     </select>
     <delete id="myReserveCancel" parameterType="com.smart.project.web.reserve.vo.MyReserveVO">

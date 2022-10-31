@@ -21,6 +21,7 @@
         border-radius: 2vw;
       }
     }
+
   }
 
   .commentSection {
@@ -36,4 +37,9 @@
   background-color: white;
   display: flex;
   justify-content: center;
+
+
+}
+.price:hover{
+  cursor : pointer
 }

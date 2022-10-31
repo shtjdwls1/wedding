@@ -32,6 +32,15 @@ public class PlannerAct {
         return "pages/plannerDetailpage";
     }
 
+    @RequestMapping("/plannerDetailData")
+    public String plannerDetailData(Model model) {
+        int u_idx = 4;
+        log.error("세션1 : {}", u_idx);
+
+
+        return "pages/plannerDetailpage";
+    }
+
 
     @GetMapping("/plannerCommentView")
     public String plannerCommentView(Model model, HttpServletRequest request,
@@ -39,7 +48,9 @@ public class PlannerAct {
                                      @RequestParam(name = "offset") int offset,
                                      @RequestParam(name = "sortData") String sortData,
                                      @RequestParam(name = "ck") String ck) {
+
         PlannerVO vo = new PlannerVO();
+
 
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -48,23 +59,24 @@ public class PlannerAct {
         MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
         log.error("세션1 : {}", loginMember.getUIdx());
 
+
         int cnt = plannerService.plannerReviewCnt(loginMember.getUIdx());
+
         model.addAttribute("reviewCnt", cnt);
 
         vo.setColumnData(columnData);
         vo.setOffset(offset);
-        vo.setSort(sortData);
+        vo.setSortData(sortData);
         vo.setUIdx(loginMember.getUIdx());
-
 
         model.addAttribute("newSort", vo);
 
         List<PlannerVO> list = plannerService.plannerReview(vo);
         model.addAttribute("reviewList", list);
-
-        float grade = plannerService.plannerReviewGrade(loginMember.getUIdx());
-
-        model.addAttribute("gradeCnt", String.format("%.1f", grade / cnt / 2));
+        if(cnt >0){
+            float grade = plannerService.plannerReviewGrade(loginMember.getUIdx());
+            model.addAttribute("gradeCnt", String.format("%.1f", grade / cnt / 2));
+        }
 
         log.error("ck2 ===={}", cnt);
         return "pages/plannerCommentView";
@@ -86,5 +98,61 @@ public class PlannerAct {
 
         return list;
     }
+
+    @RequestMapping("/plannerCheckCounsel")
+    public String plannerCheckCounsel(Model model, HttpServletRequest request,
+                                      @RequestParam(name = "offset") int offset,
+                                      @RequestParam(name = "ck") String ck) {
+
+        PlannerVO vo = new PlannerVO();
+
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
+        }
+        MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+        log.error("세션1 : {}", loginMember.getUIdx());
+
+        vo.setOffset(offset);
+        vo.setUIdx(loginMember.getUIdx());
+
+        List<PlannerVO> list = plannerService.plannerCounsel(vo);
+        model.addAttribute("counselList", list);
+
+
+        return "pages/checkCounselPage";
+    }
+
+    @PostMapping("/plannerCheckCounselDada")
+    @ResponseBody
+    public List<PlannerVO> plannerCheckCounselDada(Model model, HttpServletRequest request, @RequestBody PlannerVO vo) {
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
+        }
+        MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+        log.error("세션1 : {}", loginMember.getUIdx());
+        vo.setUIdx(loginMember.getUIdx());
+
+        List<PlannerVO> list = plannerService.plannerCounsel(vo);
+
+
+        return list;
+    }
+
+    @PostMapping("/plannerCounsel/update")
+    @ResponseBody
+    public int plannerCounselUpdate(@RequestBody PlannerVO vo) {
+
+        log.error("입력===>{}", vo);
+        vo.setPCounselingCk("T");
+        log.error("최종===>{}", vo);
+
+        int result = plannerService.plannerCounselUpdate(vo);
+        return result;
+    }
+
 
 }
