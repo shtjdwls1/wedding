@@ -33,7 +33,12 @@ public class PhotoAct {
         String regnum2 = result.getCRegNum().split("-")[1];
         String regnum3 = result.getCRegNum().split("-")[2];
         String address = result.getCAddr().split("/")[0];
-        String detailAddr = result.getCAddr().split("/")[1];
+        String detailAddr;
+        if(result.getCAddr().split("/").length!=2){
+            detailAddr = "";
+        }else{
+            detailAddr = result.getCAddr().split("/")[1];
+        }
         result.setBusiness1(regnum1);
         result.setBusiness2(regnum2);
         result.setBusiness3(regnum3);

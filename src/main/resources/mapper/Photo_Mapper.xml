@@ -5,16 +5,20 @@
     <insert id="savePhoto"  useGeneratedKeys="true">
         INSERT INTO company_img(u_idx, c_img_name, c_img_path, c_img_type) VALUES(#{uIdx},#{cImgName},#{cImgPath},#{cImgType});
     </insert>
-    <update id="updatePhoto">
-        UPDATE company_img SET c_img_name=#{cImgName},c_img_path=#{cImgPath} WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
-    </update>
     <!--업체정보 등록-->
     <insert id="saveCompany">
         INSERT INTO company(c_reg_num, c_addr, u_idx) VALUES(#{cRegNum},#{cAddr},#{uIdx})
     </insert>
+
+    <!--업체 사진 수정-->
+    <update id="updatePhoto">
+        UPDATE company_img SET c_img_name=#{cImgName},c_img_path=#{cImgPath} WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
+    </update>
+    <!--업체 정보 수정-->
     <update id="updateCompany">
         UPDATE company SET c_reg_num=#{cRegNum},c_addr=#{cAddr} WHERE u_idx=#{uIdx}
     </update>
+
     <!--세션에 있는 업체명으로 idx 리턴-->
     <select id="selectIdx" resultType="int">
         SELECT u_idx FROM user WHERE u_name=#{uName};
@@ -31,4 +35,20 @@
     <select id="selectThumbimg" parameterType="com.smart.project.web.photo.vo.PhotoVO" resultType="com.smart.project.web.photo.vo.PhotoVO">
         SELECT * FROM company_img WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
     </select>
+
+    <!--홀 이미지 등록-->
+    <insert id="saveHallImg">
+        INSERT INTO hall_img(u_idx, h_img_name, h_img_path, h_img_type, h_name) VALUES (#{uIdx},#{hImgName},#{hImgPath},#{hImgType},#{hName});
+    </insert>
+    <!--홀 정보 등록-->
+    <insert id="saveHall">
+        INSERT INTO hall(h_name, h_price, h_min, h_max, u_idx) VALUES ();
+    </insert>
+    <!--홀 시간 등록-->
+    <insert id="saveHallTime">
+        INSERT INTO hall_time(s_time, e_time, h_name, u_idx) VALUES ();
+    </insert>
+    <!--홀 이미지 수정-->
+    <!--홀 정보 수정-->
+    <!--홀 시간 수정-->
 </mapper>

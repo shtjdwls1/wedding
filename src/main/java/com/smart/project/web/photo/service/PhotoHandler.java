@@ -3,7 +3,6 @@ package com.smart.project.web.photo.service;
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.photo.vo.PhotoVO;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,10 +12,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -24,18 +22,16 @@ import java.util.List;
 public class PhotoHandler {
 
     private final PhotoMapper photoMapper;
-
-    public List<PhotoVO> saveFile(String companyName, String type, List<MultipartFile> files){
+    public List<PhotoVO> saveFile(int uIdx, String type, List<MultipartFile> files){
         if (files.isEmpty()) {
             return null;
         } else {
             log.error("files ===> {}",files);
             // 반활할 파일리스트
-            int uIdx = photoMapper.selectIdx(companyName); // 업체 인덱스 번호
             List<PhotoVO> returnFiles = new ArrayList<>();
-            String dirPath = "/src/main/resources/static/imgs/"+uIdx+"/representative";
-            File file = new File(dirPath);
-            if (!file.exists()) {
+            String dirPath = "/src/main/resources/static/imgs/company/"+uIdx+"/"+type;
+            File file = new File("c:/test"+dirPath);
+            if (!file.exists()) { // 디렉토리 유무 확인
                 file.mkdirs();
             }
 
@@ -48,16 +44,16 @@ public class PhotoHandler {
                     log.error("originalFileName ==> {}",originFileName);
                     String contentType = (String) getLastMem(originFileName.split("\\."));
                     log.error("contentType ===> {}", contentType);
-
-                    String newFileName = "represent" + type +"."+contentType;
+                    UUID uuid = UUID.randomUUID();
+                    String newFileName = uuid.toString() +"."+contentType;
                     String newPath = "C:/test"+dirPath + "/" + newFileName;
                     log.error("newFileName ===> {}", newFileName);
 
                     File saveFile = new File(newPath);
-                    newPath = dirPath + "/" + newFileName;
                     try {
                         mfile.transferTo(saveFile);
                         PhotoVO photo = new PhotoVO();
+                        newPath = dirPath + "/" + newFileName;
                         photo.setCImgName(newFileName);
                         photo.setCImgPath(newPath);
                         photo.setCImgType(type);
@@ -102,8 +98,12 @@ public class PhotoHandler {
             g.drawImage(resizing, 0, 0, null);
             g.dispose();
 
-            // 변경된 이미지 저장
-            ImageIO.write(newImage, (String) getLastMem(photo.getCImgName().split("\\.")), new File(fullPath.replace("common",type)));
+            // 변경된 이미지 저장 디렉토리
+            File file = new File(fullPath.replace("common",type));
+            if (!file.exists()) {
+                file.mkdirs();
+            };
+            ImageIO.write(newImage, (String) getLastMem(photo.getCImgName().split("\\.")), file);
             //확인
             File imageFile = new File(fullPath.replace("common",type));
             if(imageFile.exists()){
@@ -151,5 +151,19 @@ public class PhotoHandler {
     public Object getLastMem(Object[] objArr) {
         return objArr[objArr.length-1];
     }
+    public void deleteFile(PhotoVO photo){ // 3종류의 파일 전부 삭제
+        String dirPathCommon = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/common/"+photo.getCImgName();
+        String dirPathThumbnail = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/thumbnail/"+photo.getCImgName();
+        String dirPathSmall = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/small/"+photo.getCImgName();
 
+        File fileCommon = new File("c:/test"+dirPathCommon);
+        File fileThumbnail = new File("c:/test"+dirPathThumbnail);
+        File fileSmall = new File("c:/test"+dirPathSmall);
+
+        if (fileCommon.isFile()){
+            fileCommon.delete();
+            fileThumbnail.delete();
+            fileSmall.delete();
+        }
+    }
 }

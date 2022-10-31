@@ -17,8 +17,8 @@ export class wedInfoForm {
         //TODO 등록완료 버튼 클릭시 DB UPDATE 실행 후 "수정완료되었습니다" 모달창, 확인버튼 클릭시 메인으로 이동
         $('#wedInfoSubmit').on('click', name => {
             let wedInfoFormData = new FormData($('#wedInfoForm')[0]);
-            console.log(wedInfoFormData.get("file").size)
-            if(wedInfoFormData.get("file").size!==0){
+            console.log(wedInfoFormData.get("files").size)
+            if(wedInfoFormData.get("files").size!==0){
                 let file = $('#files')[0].files;
                 wedInfoFormData.append("files",file[0])
             }
@@ -30,10 +30,12 @@ export class wedInfoForm {
         //TODO 수정완료 버튼 클릭시 DB UPDATE 실행 후 "수정완료되었습니다" 모달창, 확인버튼 클릭시 메인으로 이동
         $('#wedInfoUpdate').on('click', name => {
             let wedInfoFormData = new FormData($('#wedInfoForm')[0]);
-            console.log(wedInfoFormData.get("file").size)
-            if(wedInfoFormData.get("file").size!==0){
+            if(wedInfoFormData.get("files").size!==0){
                 let file = $('#files')[0].files;
-                wedInfoFormData.append("files",file[0])
+                // wedInfoFormData.append("files",file[0])
+                for (let key of wedInfoFormData.keys()) {
+                    console.log(key, ":", wedInfoFormData.get(key));
+                }
             }
             modalOn();
             $('#wedInfoModalClose').on('click',()=>{

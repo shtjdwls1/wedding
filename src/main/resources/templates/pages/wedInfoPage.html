@@ -76,12 +76,12 @@
 							<th scope="row">1회차 :</th>
 							<td>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime1Start" name="sTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime1Start" name="sTime">
 									<i class="bi bi-clock"></i>
 								</div>
 								<div>~</div>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime1End" name="AddTime1End">
+									<input class="timeInput" placeholder="-- : --" id="AddTime1End" name="eTime">
 									<i class="bi bi-clock"></i>
 								</div>
 						</tr>
@@ -89,12 +89,12 @@
 							<th scope="row">2회차 :</th>
 							<td>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime2Start" name="sTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime2Start" name="sTime">
 									<i class="bi bi-clock"></i>
 								</div>
 								<div>~</div>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime2End" name="eTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime2End" name="eTime">
 									<i class="bi bi-clock"></i>
 								</div>
 							</td>
@@ -103,12 +103,12 @@
 							<th scope="row">3회차 :</th>
 							<td>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime3Start" name="sTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime3Start" name="sTime">
 									<i class="bi bi-clock"></i>
 								</div>
 								<div>~</div>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime3End" name="eTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime3End" name="eTime">
 									<i class="bi bi-clock"></i>
 								</div>
 							</td>
@@ -117,12 +117,12 @@
 							<th scope="row">4회차 :</th>
 							<td>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime4Start" name="sTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime4Start" name="sTime">
 									<i class="bi bi-clock"></i>
 								</div>
 								<div>~</div>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime4End" name="eTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime4End" name="eTime">
 									<i class="bi bi-clock"></i>
 								</div>
 							</td>
@@ -131,12 +131,12 @@
 							<th scope="row">5회차 :</th>
 							<td>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime5Start" name="sTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime5Start" name="sTime">
 									<i class="bi bi-clock"></i>
 								</div>
 								<div>~</div>
 								<div class="inputParent">
-									<input class="timeInput" placeholder="-- -- : --" id="AddTime5End" name="eTime">
+									<input class="timeInput" placeholder="-- : --" id="AddTime5End" name="eTime">
 									<i class="bi bi-clock"></i>
 								</div>
 							</td>
@@ -145,9 +145,14 @@
 					</table>
 				</div>
 				<!--사진등록-->
-				<div class="fileBtn mt-2 mb-2 uploadPhoto">
-					<input multiple="multiple" type="file" name="files" id="files" />
-					<div class="file-list-out">
+				<div class=" mt-2 mb-2 uploadPhoto">
+					<div class="fileBtn">
+						<label for="files">
+							<div class="btnUpload">사진찾기</div>
+						</label>
+						<input type="file" id="files" multiple/>
+					</div>
+					<div class="file-list-out mt-2">
 						<div class="file-list">
 
 						</div>
@@ -217,12 +222,12 @@
 						<th scope="row">1회차 :</th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 					</tr>
@@ -230,12 +235,12 @@
 						<th scope="row">2회차 :</th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 						</td>
@@ -244,12 +249,12 @@
 						<th scope="row">3회차 :</th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 						</td>
@@ -258,12 +263,12 @@
 						<th scope="row">4회차 :</th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 						</td>
@@ -272,12 +277,12 @@
 						<th scope="row">5회차 :</th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- -- : --">
+								<input class="timeInput" placeholder="-- : --">
 								<i class="bi bi-clock"></i>
 							</div>
 						</td>
@@ -300,6 +305,20 @@
 		<div>홀 등록하기</div>
 		<div>
 			<i class="bi bi-plus-lg"></i>
+		</div>
+	</div>
+
+	<!-- 모달	-->
+	<div aria-hidden="true" aria-labelledby="hallInfoModalLabel" class="modal fade" id="hallInfoModal" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered" style="height: 40vh">
+			<div class="modal-content text-center">
+				<div class="modal-body mx-4 mt-4">
+					<strong th:text="'홀정보 등록을 완료하시겠습니까?'"></strong>
+					<div class="d-grid gap-2 col-4 mx-auto mt-4">
+						<button class="btn btn-light btn-outline-dark" data-bs-dismiss="modal" type="button" id="hallInfoModalClose">확인</button>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript" th:src="${@versionComponent.getVersion('/resources/build/wedInfo.bundle.js')}"></script>

@@ -3,15 +3,12 @@ package com.smart.project.web.photo.act;
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.photo.service.AES256;
+import com.smart.project.web.photo.service.HallHandler;
 import com.smart.project.web.photo.service.PhotoHandler;
-import com.smart.project.web.photo.vo.HallDataVO;
-import com.smart.project.web.photo.vo.HallTimeVO;
-import com.smart.project.web.photo.vo.HallVO;
-import com.smart.project.web.photo.vo.PhotoVO;
+import com.smart.project.web.photo.vo.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +27,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class PhotoDataAct {
     final private PhotoHandler ph;
+    final private HallHandler hh;
     final private PhotoMapper pm;
     final private AES256 aes;
     // 업체 정보 및 이미지 등록
@@ -66,7 +64,7 @@ public class PhotoDataAct {
                     log.error("file ==>{}",photo.getContentType());
                 }
 
-                files = ph.saveFile(companyName,"common",photodata.getFiles());
+                files = ph.saveFile(uIdx,"common",photodata.getFiles());
 
                 List<PhotoVO> temp = new ArrayList<>();
                 for (PhotoVO photo : files) {
@@ -98,7 +96,6 @@ public class PhotoDataAct {
         //TODO 세션에서 u_name, u_name으로 db에서 u_idx찾아오기
         HttpSession session = req.getSession(false);
         MemberVO mvo = (MemberVO)session.getAttribute("loginSession");
-        String companyName = mvo.getUName();
         int uIdx = mvo.getUIdx();
 
         //TODO 폼에서 이미지, 주소,사업자등록번호 가져오기
@@ -128,8 +125,13 @@ public class PhotoDataAct {
                         log.error("file ==>{}", photo.getOriginalFilename());
                         log.error("file ==>{}", photo.getContentType());
                     }
-
-                    files = ph.saveFile(companyName, "common", photodata.getFiles());
+                    // 기존파일 삭제 + 신규파일 저장
+                    PhotoVO toFindThumbimg = new PhotoVO();
+                    toFindThumbimg.setUIdx(uIdx);
+                    toFindThumbimg.setCImgType("thumbnail");
+                    PhotoVO oldImg = pm.selectThumbimg(toFindThumbimg);
+                    ph.deleteFile(oldImg);
+                    files = ph.saveFile(uIdx, "common", photodata.getFiles());
 
                     List<PhotoVO> temp = new ArrayList<>();
                     for (PhotoVO photo : files) {
@@ -159,7 +161,7 @@ public class PhotoDataAct {
                         log.error("file ==>{}",photo.getContentType());
                     }
 
-                    files = ph.saveFile(companyName,"common",photodata.getFiles());
+                    files = ph.saveFile(uIdx,"common",photodata.getFiles());
 
                     List<PhotoVO> temp = new ArrayList<>();
                     for (PhotoVO photo : files) {
@@ -211,6 +213,7 @@ public class PhotoDataAct {
         HttpSession session = req.getSession(false);
         MemberVO memberVO = (MemberVO) session.getAttribute("loginSession");
         int uIdx = memberVO.getUIdx();
+        log.error("input data ====> {}",hallDataVO);
         //TODO 1. 홀정보 VO에 담기
         HallVO hallVO = new HallVO();
         hallVO.setHName(hallDataVO.getHName());
@@ -219,9 +222,53 @@ public class PhotoDataAct {
         hallVO.setHMax(hallDataVO.getHMax());
         hallVO.setUIdx(uIdx);
         log.error("hallVO Test ==> {}",hallVO);
-        //TODO 2. 홀시간 VO에 담기
+        //TODO 2. 홀시간 VO에 담기 -- 값이 들어있을 경우에만
+        for(int i =0; i<hallDataVO.getSTime().size();i++){
+            if(!Objects.equals(hallDataVO.getSTime().get(i), "")){
+                HallTimeVO hallTimeVO = new HallTimeVO();
+                hallTimeVO.setSTime(hallDataVO.getSTime().get(i));
+                hallTimeVO.setETime(hallDataVO.getETime().get(i));
+                hallTimeVO.setHName(hallDataVO.getHName());
+                hallTimeVO.setUIdx(uIdx);
+                log.error("hallTimeVO Test ==> {}",hallTimeVO);
+            }
+        }
         //TODO 3. 이미지가 있다면 이미지 VO에 담기
-        return null;
+        log.error("photo ==>{}",hallDataVO.getFiles());
+
+        Map<String,Object> data = new HashMap<>();
+        List<HallImgVO> files = null;
+        if(hallDataVO.getFiles()!=null){
+            try{
+                // 파일형식으로 저장하기
+                for(MultipartFile photo : hallDataVO.getFiles()){
+                    log.error("file ==>{}",photo.getOriginalFilename());
+                    log.error("file ==>{}",photo.getContentType());
+                }
+
+                files = hh.saveFile(uIdx,hallDataVO.getHName(),"common",hallDataVO.getFiles());
+
+                List<HallImgVO> temp = new ArrayList<>();
+                for (HallImgVO photo : files) {
+                    HallImgVO thumbnail;
+                    HallImgVO small;
+                    thumbnail = hh.sizeChange(uIdx,photo, 108, "thumbnail");
+                    small = hh.sizeChange(uIdx,photo, 180, "small");
+                    if (thumbnail != null) {
+                        temp.add(thumbnail);
+                    }
+                    if (small != null) {
+                        temp.add(small);
+                    }
+                }
+                files.addAll(temp);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            hh.save(uIdx,files); // DB에 저장
+            data.put("imgs",files);
+        }
+        return data;
     };
 }
 

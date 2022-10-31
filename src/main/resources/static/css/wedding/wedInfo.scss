@@ -127,7 +127,7 @@
         overflow-x: scroll;
         overflow-y: hidden;
         .filebox{
-          height: 20vh;
+          height: 15vh;
           border: 0px;
           flex: 0 0 auto;
           .delete{
@@ -149,48 +149,22 @@
       }
     }
   }
-.file-list {
-
-  ::-webkit-scrollbar {
-    //display: none;
-    width: 3px;
-    height: 3px;
+}
+.fileBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  #files {
+    display: none;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #e2e4e5 /*스크롤바의 색상*/
+  .btnUpload {
+    width: 20vw;
+    height: 4.5vh;
+    border: 1px solid black;
+    background-color: ghostwhite;
+    border-radius: 2vw;
+    line-height: 4vh;
   }
-    height: 130px;
-    overflow: auto;
-    border: 1px solid #989898;
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-bottom: 5px;
-
-    .filebox{
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      font-size: 14px;
-      .delete{
-        color: #ff5353;
-        margin-left: 5px;
-        .selProductFile{
-          object-fit : contain;
-          width: 30vw;
-          height: 30vw;
-          border: 1px solid black;
-          border-radius: 2vw;
-        }
-        i{
-          color: #ff5353;
-          margin-left: 5px;
-        }
-      }
-
-    }
-
-  }
-
 }
