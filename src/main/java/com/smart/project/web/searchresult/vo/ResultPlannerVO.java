@@ -13,4 +13,5 @@ public class ResultPlannerVO {
     private String uName;
     private String uLocation;
     private String clasify;
+    private int comment;
 }

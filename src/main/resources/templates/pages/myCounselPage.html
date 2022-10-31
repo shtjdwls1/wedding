@@ -29,10 +29,10 @@
 	</nav>
 
 	<!-- 리스트가 있는 경우 -->
-	<div class="myCounsel"  th:if="${!#lists.isEmpty(myCounsels)}">
+	<div th:if="${!#lists.isEmpty(myCounsels)}">
 
 
-		<div th:each="myCounsel : ${myCounsels}">
+		<div class="myCounsel" th:each="myCounsel : ${myCounsels}">
 
 
 			<!-- 상담 카드 -->
@@ -52,15 +52,21 @@
 							</tr>
 							<tr>
 								<th scope="row">플래너사진이름</th>
-								<td th:id="'photoName'+${myCounselStat.index}" th:text="${myCounsel.getPImgName()}">플래너사진이름</td>
+								<td th:id="'photoName'+${myCounselStat.index}" th:text="${myCounsel.getPImgName()}">
+									플래너사진이름
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">플래너사진경로</th>
-								<td th:id="'photoPath'+${myCounselStat.index}" th:text="${myCounsel.getPImgPath()}">플래너사진경로</td>
+								<td th:id="'photoPath'+${myCounselStat.index}" th:text="${myCounsel.getPImgPath()}">
+									플래너사진경로
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">플래너사진타입</th>
-								<td th:id="'photoType'+${myCounselStat.index}" th:text="${myCounsel.getPImgType()}">플래너사진타입</td>
+								<td th:id="'photoType'+${myCounselStat.index}" th:text="${myCounsel.getPImgType()}">
+									플래너사진타입
+								</td>
 							</tr>
 							<tr>
 								<th scope="row">상담사명</th>
@@ -150,7 +156,6 @@
 				</div>
 			</div>
 		</div>
-
 
 
 	</div>

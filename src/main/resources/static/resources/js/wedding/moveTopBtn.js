@@ -73,9 +73,9 @@ export class moveTopBtn {
                                 console.log("result", result)
                                 let reviewHtml = "";
                                 var reviewBtnCk = "";
-                                    console.log("result.data[1]", result.data[1])
+                                console.log("result.data[1]", result.data[1])
                                 for (let i = 0; i < result.data.length; i++) {
-                                    if(result.data[i].pcounselingCk == 'T' && (result.data[i].preview == null || result.data[i].pgrade == null)){
+                                    if (result.data[i].pcounselingCk == 'T' && (result.data[i].preview == null || result.data[i].pgrade == null)) {
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false" 
@@ -85,7 +85,7 @@ export class moveTopBtn {
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 작성
                                                 </button>
                                             </td>`
-                                    }else if(result.data[i].pcounselingCk == 'T' && result.data[i].preview != null && result.data[i].pgrade != null){
+                                    } else if (result.data[i].pcounselingCk == 'T' && result.data[i].preview != null && result.data[i].pgrade != null) {
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
@@ -95,7 +95,7 @@ export class moveTopBtn {
                                                     id="reviewBtn${result.data[i].pcounselingIdx}" type="button">후기 보기
                                                 </button>
                                             </td>`
-                                    }else if(result.data[i].pcounselingCk != 'T'){
+                                    } else if (result.data[i].pcounselingCk != 'T') {
                                         reviewBtnCk =
                                             `<td>
                                                 <button aria-controls="collapseExample" aria-expanded="false"
@@ -108,7 +108,7 @@ export class moveTopBtn {
                                     }
 
                                     reviewHtml +=
-                                    `<!-- 상담 카드 -->
+                                        `<!-- 상담 카드 -->
                                     <div class="outer  mt-2 mx-3">
                                         <div class="plannerCard">
                                             <div class="Photosec mx-2 my-2">
@@ -205,7 +205,7 @@ export class moveTopBtn {
                                 console.log("result.data[1]", result.data[1])
                                 for (let i = 0; i < result.data.length; i++) {
                                     reviewHtml +=
-                                    `<!--예약 확인 카드-->
+                                        `<!--예약 확인 카드-->
                                     <div class="reserveCard mx-2 my-2">
                                         <div class="Photosec mx-2 my-2">
                                             <div>
@@ -316,12 +316,70 @@ export class moveTopBtn {
                             })
                     }
 
+                    // ck로 각 무한스크롤 페이지 판단 : 검색시 첫 페이지
+                    if (ck == "rs") {
+                        let newSortData = {
+                            offset: sortCnt,
+                            clasify: param.get("clasify"),
+                            ulocation: param.get("location"),
+                            date: param.get("date")
+                        }
+                        if (param.get("clasify") == "웨딩홀") {
+                            axios.post("/resultDataWed", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    console.log("result.data[1]", result.data[1])
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        reviewHtml +=
+                                            `<div class="comment">
+                                            <div class="outerStar mx-3" style="justify-content: flex-start">
+                                                <div class="mt-1 mx-1">${result.data[i].uname}</div>
+                                                    <!-- width 값 에 db값 * 10 % 해서 별 출력-->
+                                                    <span class="star text" style="font-size: 1rem">★★★★★<span
+                                                        style="width:${result.data[i].pgrade * 10}%">★★★★★</span>
+                                                    <input max="10" min="0" name="star1" step="1" type="range" readonly
+                                                        value=${result.data[i].pgrade}>
+                                                    </span>
+                                                </div>
+                                            <div class="plannerIntro mx-3 mb-2">
+                                                <div class="commentView px-2">${result.data[i].preview}</div>
+                                            </div>
+                                        </div>`
+                                    }
+                                    $('.plannerReview').append(reviewHtml)
+                                })
+                        } else if (param.get("clasify") == "플래너") {
+                            axios.post("/resultDataPlan", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    console.log("result.data[1]", result.data[1])
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        reviewHtml +=
+                                            `<div class="comment">
+                                            <div class="outerStar mx-3" style="justify-content: flex-start">
+                                                <div class="mt-1 mx-1">${result.data[i].uname}</div>
+                                                    <!-- width 값 에 db값 * 10 % 해서 별 출력-->
+                                                    <span class="star text" style="font-size: 1rem">★★★★★<span
+                                                        style="width:${result.data[i].pgrade * 10}%">★★★★★</span>
+                                                    <input max="10" min="0" name="star1" step="1" type="range" readonly
+                                                        value=${result.data[i].pgrade}>
+                                                    </span>
+                                                </div>
+                                            <div class="plannerIntro mx-3 mb-2">
+                                                <div class="commentView px-2">${result.data[i].preview}</div>
+                                            </div>
+                                        </div>`
+                                    }
+                                    $('.plannerReview').append(reviewHtml)
+                                })
+                        }
 
+                    }
 
 
                     // 여기에 무한스크롤 추가
-
-
 
 
                 }

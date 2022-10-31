@@ -24,14 +24,28 @@
         select u_name,
                p_idx,
                p_img_name,
+               count(p_grade)                                   as comment,
                p_img_path,
                p_img_type,
                TRUNCATE((sum(p_grade) / COUNT(p_grade) / 2), 1) as p_grade,
                u_location,
                p_price
         from planner_main
-        where u_location = #{u_location}
-        group by p_idx, p_img_name, p_img_path, p_img_type;
+        where u_location = #{uLocation}
+        group by p_idx, p_img_name, p_img_path, p_img_type
+        order by ${columnData} ${sort}
+            LIMIT 10
+        OFFSET #{offset};
+    </select>
+    <select id="getSortList1" resultType="com.smart.project.web.searchresult.vo.ResultMemberVO"
+            parameterType="com.smart.project.web.searchresult.vo.ResultListVO">
+        SELECT *
+        from company_result2
+        where u_idx = #{uIdx}
+          and u_location = #{uLocation}
+        order by ${columnData} ${sort}
+            LIMIT 10
+        OFFSET #{offset}
     </select>
 
 </mapper>

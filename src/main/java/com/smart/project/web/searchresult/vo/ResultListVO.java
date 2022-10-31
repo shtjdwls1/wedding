@@ -8,4 +8,8 @@ public class ResultListVO {
     private int uIdx;
     private String uLocation;
     private String clasify;
+    private String columnData;
+    private String sort;
+    private int offset;
+    private String date;
 }

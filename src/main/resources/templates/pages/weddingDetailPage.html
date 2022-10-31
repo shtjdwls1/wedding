@@ -14,12 +14,6 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<!-- Link Swiper's CSS -->
-	<link
-			href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-			rel="stylesheet"
-	/>
-
 
 </head>
 
@@ -42,7 +36,7 @@
 	<div th:each="WedList : ${WedList}">
 		<div class="weddingCard  mt-3 mx-3">
 			<div class="my-2 text-center hallTitle" th:text="${WedList.getHName()}">A홀</div>
-			<div class="slider .mySwiper">
+			<div class="slider">
 				<div class="sliderWrapper">
 					<div class="sliderItems">
 						<div class="sliderItem"></div>

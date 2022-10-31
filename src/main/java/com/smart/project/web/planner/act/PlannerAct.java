@@ -1,12 +1,10 @@
 package com.smart.project.web.planner.act;
 
 import com.smart.project.proc.PlannerService;
-import com.smart.project.web.counseling.vo.MyCounselUpdateVO;
 import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.planner.vo.PlannerVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +55,8 @@ public class PlannerAct {
         vo.setOffset(offset);
         vo.setSort(sortData);
         vo.setUIdx(loginMember.getUIdx());
+
+
         model.addAttribute("newSort", vo);
 
         List<PlannerVO> list = plannerService.plannerReview(vo);

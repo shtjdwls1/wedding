@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const {plannerReviewData} = require("@/wedding/plannerReviewData");
 const context = path.join(__dirname, '');
 
 
@@ -30,7 +29,7 @@ module.exports = {
         changeCommonInfo: path.join(context, '/js/wedding/changeCommonInfo.js'),
         changeCommonInfoForm: path.join(context, '/js/wedding/changeCommonInfoForm.js'),
         wedInfoForm: path.join(context, '/js/wedding/photo/photoUpload.js'),
-        wedImgSlide: path.join(context, '/js/wedding/WedImgSlide.js')
+        wedImgSlide: path.join(context, '/js/wedding/WedImgSlide.js'),
         plannerReviewData: path.join(context, '/js/wedding/plannerReviewData.js')
     },
     devtool: 'eval',//inline-source-map, eval

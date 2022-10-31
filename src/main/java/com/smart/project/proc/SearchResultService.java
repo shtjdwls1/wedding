@@ -18,5 +18,7 @@ public interface SearchResultService {
 
     ResultMemberVO getList3(ResultListVO vo);
 
-    List<ResultPlannerVO> getList4(String uLocation);
+    List<ResultPlannerVO> getList4(ResultListVO vo);
+
+    ResultMemberVO getSortList1(ResultListVO vo);
 }

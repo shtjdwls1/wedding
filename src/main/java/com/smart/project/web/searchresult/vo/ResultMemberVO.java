@@ -14,4 +14,7 @@ public class ResultMemberVO {
     private int hPrice;
     private String uLocation;
     private String clasify;
+    private String columnData;
+    private String sort;
+    private int offset;
 }
