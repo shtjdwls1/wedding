@@ -429,7 +429,29 @@ export class moveTopBtn {
 
 
 
-
+                    if (ck == "pd") {
+                        let newSortData = {
+                            offset: sortCnt,
+                            columnData: columnData,
+                            sortData: sortData,
+                        }
+                        if(endCk != true) {
+                            axios.post("", newSortData)
+                                .then((result) => {
+                                    console.log("result", result)
+                                    let reviewHtml = "";
+                                    console.log("result.data[1]", result.data[1])
+                                    for (let i = 0; i < result.data.length; i++) {
+                                        reviewHtml +=
+                                            `<`
+                                    }
+                                    $('.').append(reviewHtml)
+                                    if (result.data.length < 10) {
+                                        endCk = true;
+                                    }
+                                })
+                        }
+                    }
 
 
 

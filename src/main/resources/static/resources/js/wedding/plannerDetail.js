@@ -77,7 +77,7 @@ export class plannerDetail {
 
         detailBtn.onclick = function () {
             detailSec.classList.remove("hidden");
-            commentSec.classList.add("hidden");
+            commentSec.classList.add("hidden")
             commentTop.classList.add("hidden");
             window.scrollTo({top: 0, behavior: "smooth"});
         }

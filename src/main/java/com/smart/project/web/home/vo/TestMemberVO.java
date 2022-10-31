@@ -7,6 +7,7 @@ public class TestMemberVO {
     private int cIdx;
     private int uIdx;
     private String uName;
+    private String uLocation;
     private String cAddr;
     private String cImgName;
     private String cImgPath;
