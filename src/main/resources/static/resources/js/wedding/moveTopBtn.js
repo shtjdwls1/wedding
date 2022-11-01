@@ -340,7 +340,6 @@ export class moveTopBtn {
 
                     // ck로 각 무한스크롤 페이지 판단 : 검색시 첫 페이지
                     if (ck == "rs") {
-
                         let newSortData = {
                             offset: sortCnt,
                             clasify: param.get("clasify"),
@@ -354,6 +353,8 @@ export class moveTopBtn {
                                 newSortData.columnData = "c_idx"
                                 newSortData.sort = "desc"
                             }
+
+
                             axios.post("/resultDataWed", newSortData)
                                 .then((result) => {
                                     console.log("result", result)
@@ -361,7 +362,7 @@ export class moveTopBtn {
                                     console.log("result.data[1]", result.data[1])
                                     for (let i = 0; i < result.data.length; i++) {
                                         reviewHtml +=
-                                            `<div class="resWedCard mx-3 mt-2">
+                                            `<a class="resWedCard mx-3 mt-2" href='/weddingDetail?uIdx=${result.data[i].uidx}&date=${newSortData.date}&wedName=${result.data[i].uname}'>
                                                 <div class="imgSec">
                                                     <img class="mx-2 my-2" src="/imgs/noImage.png">
                                                 </div>
@@ -373,7 +374,7 @@ export class moveTopBtn {
                                                         <div class="resBtn mx-4">예약가능</div>
                                                     </div>
                                                 </div>
-                                            </div>`
+                                            </a>`
                                     }
                                     $('.mySearch').append(reviewHtml)
                                 })
@@ -389,7 +390,7 @@ export class moveTopBtn {
                                     console.log("result.data[1]", result.data[1])
                                     for (let i = 0; i < result.data.length; i++) {
                                         reviewHtml +=
-                                            `<div class="resPlanCard mx-3 mt-2">
+                                            `<div class="resPlanCard mx-3 mt-2" >
                                                 <div class="imgSec">
                                                     <img class="mx-2 my-2 img" src="/imgs/PlannerPhoto.jpg">
                                                 </div>

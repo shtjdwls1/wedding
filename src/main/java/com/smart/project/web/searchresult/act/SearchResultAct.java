@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,7 +46,7 @@ public class SearchResultAct {
                 log.error("로케이션 세션에서  : {}", location);
 
             } else {
-                location = "대전";
+                location = "서울";
                 log.error("로케이션 없을때는 : {}", location);
             }
         }
@@ -102,9 +99,11 @@ public class SearchResultAct {
             vo.setColumnData(columnData);
             vo.setSort(sortData);
             vo.setOffset(Integer.parseInt(offset));
+            log.error("웨딩홀 검색직전 : {}", vo);
 
 
             List<ResultMemberVO> list = searchResultService.getList5(vo);
+            log.error("웨딩홀 넘겨주기 전 : {}", list);
 
             model.addAttribute("ResultDatas", list);
 
@@ -132,6 +131,25 @@ public class SearchResultAct {
     @PostMapping("/resultDataWed")
     @ResponseBody
     public List<ResultMemberVO> resultDataWed(Model model, HttpServletRequest request, @RequestBody ResultListVO vo) {
+        HttpSession session = request.getSession(false);
+
+        if (vo.getULocation() == null) {
+            if (session != null) {
+                log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
+                MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+                vo.setULocation(loginMember.getULocation());
+                log.error("무한스크롤  세션에서 로케이션 가져옴 : {}", vo.getULocation());
+
+            } else {
+                vo.setULocation("서울");
+                log.error("무한 스크롤 로케이션 없을때 서울? : {}", vo.getULocation());
+            }
+        }
+        if (vo.getDate() == null) {
+            String now = LocalDate.now().toString();
+            vo.setDate(now);
+        }
+
         List<ResultMemberVO> list = searchResultService.getList5(vo);
         return list;
     }
@@ -140,8 +158,43 @@ public class SearchResultAct {
     @PostMapping("/resultDataPlan")
     @ResponseBody
     public List<ResultPlannerVO> resultPlanData(Model model, HttpServletRequest request, @RequestBody ResultListVO vo) {
+        HttpSession session = request.getSession(false);
+        String keyword = request.getParameter("keyword");
+        if (vo.getULocation() == null) {
+            if (session != null) {
+                log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
+                MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+                vo.setULocation(loginMember.getULocation());
+                log.error("무한스크롤  세션에서 로케이션 가져옴 : {}", vo.getULocation());
+
+            } else {
+                vo.setULocation("서울");
+                log.error("무한 스크롤 로케이션 없을때 서울? : {}", vo.getULocation());
+            }
+        }
         List<ResultPlannerVO> list = searchResultService.getList4(vo);
         return list;
+    }
+
+    @GetMapping("/inputSearch")
+    public String inputSearch(HttpServletRequest httpServletRequest, Model model) {
+        String para = httpServletRequest.getParameter("keyword");
+        String keyword = "%" + para + "%";
+        List<ResultMemberVO> list = searchResultService.inputSearch(keyword);
+        log.error("검색결과! : {}", list);
+
+        List<String> originData = new ArrayList<>();
+        originData.add("웨딩홀");
+        originData.add("지역▼");
+        originData.add("날짜선택");
+        originData.add("최신순▼");
+        model.addAttribute("OriginData", originData);
+
+
+        model.addAttribute("ResultDatas", list);
+
+        return "pages/searchResultPage";
+
     }
 
     /*플래너 정렬 클래스*/

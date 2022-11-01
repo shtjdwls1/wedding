@@ -25,7 +25,9 @@ public class WeddingDetailAct {
     public String weddingDetail(HttpServletRequest httpServletRequest, Model model) {
         String uIdx = httpServletRequest.getParameter("uIdx");
         String date = httpServletRequest.getParameter("date");
+        String wedName = httpServletRequest.getParameter("wedName");
 
+        model.addAttribute("WedName", wedName);
         if (date == null) {
             String now = LocalDate.now().toString();
             date = now;
@@ -36,6 +38,7 @@ public class WeddingDetailAct {
         List<WeddingDetailVO> wedList = weddingDetailService.weddingDetail(uIdx);
         log.error("결과1 : {}", wedList);
         model.addAttribute("WedList", wedList);
+
 
         List<WeddingSlideVO> imgList = weddingDetailService.weddingSlide(uIdx);
         log.error("이미지결과: {}", imgList);

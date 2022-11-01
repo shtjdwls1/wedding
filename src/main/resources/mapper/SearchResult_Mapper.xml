@@ -10,9 +10,9 @@
               (select u_idx
                from hall_reservation
                where reserve_date = #{date}
-                 and u_location = #{uLocation}
                group by u_idx
                HAVING count(*) = 25)
+          and u_location = #{uLocation}
         order by ${columnData} ${sort}
             LIMIT
             10
@@ -37,6 +37,11 @@
             LIMIT 10
         OFFSET #{offset};
     </select>
-
+    <select id="inputSearch" resultType="com.smart.project.web.searchresult.vo.ResultMemberVO"
+            parameterType="String">
+        SELECT *
+        from company_result2
+        WHERE u_name like #{keyword}
+    </select>
 
 </mapper>

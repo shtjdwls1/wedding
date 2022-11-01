@@ -12,7 +12,7 @@
                u_location
         from planner_main
         where u_location = #{u_location}
-        group by p_idx, p_img_name, p_img_path, p_img_type;
+        group by p_idx, p_img_name, p_img_path, p_img_type LIMIT 10;
     </select>
 
 

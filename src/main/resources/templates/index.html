@@ -55,14 +55,14 @@
 	<!-- 내 지역 웨딩 -->
 	<div class="mt-3 mx-3 indexLabel">
 		<p>내 지역 웨딩홀</p>
-		<a th:href="'/searchResult?clasify=웨딩홀'">더보기</a>
+		<a th:href="'/searchResult?clasify=웨딩홀&ck=rs'">더보기</a>
 	</div>
 	<!-- 내 지역 웨딩슬라이드 -->
 	<div class="outerMyCityWedding ">
 		<div class="myCityWedding">
 			<div th:each="wedList : ${WeddingData}">
 				<a class="card slide mx-3" style="width: 50vw;"
-				   th:href="@{/weddingDetail(uIdx=${wedList.getUIdx()})}">
+				   th:href="@{/weddingDetail(uIdx=${wedList.getUIdx()},wedName=${wedList.getUName()})}">
 					<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
 					<div class="card-body p-2">
 						<p th:class="card-text" th:text="${wedList.getUName()}">웨딩홀명</p>
@@ -74,7 +74,7 @@
 	<!--내 지역 플레너-->
 	<div class="mt-2 mx-3 indexLabel">
 		<p>내 지역 플래너</p>
-		<p>더보기</p>
+		<a th:href="'/searchResult?clasify=플래너&ck=rs'">더보기</a>
 	</div>
 	<div class="outerMyCityPlanner ">
 		<div class="myCityPlanner">

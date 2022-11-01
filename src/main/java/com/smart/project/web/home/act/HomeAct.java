@@ -6,7 +6,6 @@ import com.smart.project.proc.MainPagePlanner;
 import com.smart.project.proc.MainPageWedding;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
-import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.mainpage.vo.MainCompanyVO;
 import com.smart.project.web.mainpage.vo.MainPlannerVO;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +45,8 @@ public class HomeAct {
 //        }
 //        return "index";
 //    }
+    final private MainPageWedding mainPageMapper;
+    final private MainPagePlanner mainPagePlanner;
 
     @RequestMapping("/login")
     public String login(Model model, InternCookie cookie, HttpServletRequest request) {
@@ -78,6 +79,11 @@ public class HomeAct {
         return "pages/socialJoinPage";
     }
 
+//    @RequestMapping("/weddingDetail")
+//    public String weddingDetail() {
+//        return "pages/weddingDetailPage";
+//    }
+
     @RequestMapping("/changeMyInfo")
     public String changeMyInfo() {
         return "pages/changeMyInfoPage";
@@ -87,11 +93,6 @@ public class HomeAct {
     public String changeMyInfoForm() {
         return "pages/changeMyInfoFormPage";
     }
-
-//    @RequestMapping("/weddingDetail")
-//    public String weddingDetail() {
-//        return "pages/weddingDetailPage";
-//    }
 
     @RequestMapping("/payment")
     public String payment() {
@@ -103,25 +104,14 @@ public class HomeAct {
         return "pages/wedInfoFormPage";
     }
 
+//    @RequestMapping("/adminReserve")
+//    public String adminReserve() {
+//        return "pages/adminReservePage";
+//    }
+
     @RequestMapping("/loadingPayment")
     public String loadingPayment() {
         return "pages/loadingPaymentPage";
-    }
-
-
-    @RequestMapping("/wedInfo")
-    public String wedInfo() {
-        return "pages/wedInfoPage";
-    }
-
-    @RequestMapping("/adminReserve")
-    public String adminReserve() {
-        return "pages/adminReservePage";
-    }
-
-    @RequestMapping("/plannerInfoFrom")
-    public String plannerInfoFrom() {
-        return "pages/plannerInfoFromPage";
     }
 
 //    @RequestMapping("/searchResult")
@@ -129,17 +119,22 @@ public class HomeAct {
 //        return "pages/searchResultPage";
 //    }
 
+    @RequestMapping("/wedInfo")
+    public String wedInfo() {
+        return "pages/wedInfoPage";
+    }
+
+    @RequestMapping("/plannerInfoFrom")
+    public String plannerInfoFrom() {
+        return "pages/plannerInfoFromPage";
+    }
+
     @RequestMapping("/data")
     @ResponseBody
     public String homeData() {
         return "index";
     }
 
-
-
-
-    final private MainPageWedding mainPageMapper;
-    final private MainPagePlanner mainPagePlanner;
     // 로그아웃
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, Model model) {

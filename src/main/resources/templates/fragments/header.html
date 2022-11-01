@@ -15,8 +15,12 @@
 			<a class="navbar-brand mx-3">
 				<img class="logoIcon" onClick="location.href='/'" src="/imgs/logo.png" style="width: 2rem">
 			</a>
-			<form class="d-flex searchSec">
-				<input class="form-control searchInput text-center" placeholder="웨딩홀 명을 입력하세요" type="search">
+			<form action="/inputSearch" class="d-flex searchSec">
+				<input class="form-control searchInput text-center" name="keyword" placeholder="웨딩홀 명을 입력하세요"
+				       type="search">
+				<!--				<input class="hidden" name="ck" value="rs">-->
+				<!--				<input class="hidden" name="clasify" value="웨딩홀">-->
+				<!--				<input class="hidden" name="offset" value="0">-->
 				<button class="searchBtn " type="submit"><i class="bi bi-search"></i></button>
 			</form>
 		</div>
