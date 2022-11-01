@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.TestService">
+    <select id="test1" resultType="com.smart.project.web.home.vo.TestListVO">
+        SELECT u_idx, count(*) as count
+        from hall_time
+        group by u_idx;
+    </select>
+    <select id="test2" resultType="com.smart.project.web.home.vo.TestListVO">
+        SELECT u_idx, count(*) as count
+        from hall_reservation
+        where reserve_date = '2022-10-25'
+        group by u_idx;
+    </select>
+    <select id="test3" resultType="com.smart.project.web.home.vo.TestMemberVO"
+            parameterType="com.smart.project.web.home.vo.TestListVO">
+        SELECT *
+        from company_result2
+        where u_idx = #{uIdx} and u_location = '대전'
+    </select>
+    <select id="test4" resultType="com.smart.project.web.home.vo.TestMemberVO"
+            parameterType="com.smart.project.web.home.vo.TestResultVO">
+        SELECT *
+        from company_result2
+        WHERE u_idx in
+              (select u_idx
+               from hall_reservation
+               where reserve_date = #{reserveDate} and u_location = #{uLocation}
+               group by u_idx
+               HAVING count(*) != 25);
+    </select>
+</mapper>
+
+

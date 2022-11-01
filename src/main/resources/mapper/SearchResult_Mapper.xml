@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.SearchResultService">
+
+    <select id="getList5" resultType="com.smart.project.web.searchresult.vo.ResultMemberVO"
+            parameterType="com.smart.project.web.searchresult.vo.ResultListVO">
+        SELECT *
+        from company_result2
+        WHERE u_idx not in
+              (select u_idx
+               from hall_reservation
+               where reserve_date = #{date}
+                 and u_location = #{uLocation}
+               group by u_idx
+               HAVING count(*) = 25)
+        order by ${columnData} ${sort}
+            LIMIT
+            10
+        OFFSET #{offset};
+    </select>
+
+    <select id="getList4" resultType="com.smart.project.web.searchresult.vo.ResultPlannerVO"
+            parameterType="String">
+        select u_name,
+               p_idx,
+               p_img_name,
+               count(p_grade)                                   as comment,
+               p_img_path,
+               p_img_type,
+               TRUNCATE((sum(p_grade) / COUNT(p_grade) / 2), 1) as p_grade,
+               u_location,
+               p_price
+        from planner_main
+        where u_location = #{uLocation}
+        group by p_idx, p_img_name, p_img_path, p_img_type
+        order by ${columnData} ${sort}
+            LIMIT 10
+        OFFSET #{offset};
+    </select>
+
+
+</mapper>

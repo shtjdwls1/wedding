@@ -1,7 +1,24 @@
-const drawStar = (target) => {
-    console.log(target);
-    console.log(this)
-    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+$(() => {
+    new drawStar();
+})
+
+export class drawStar {
+    constructor() {
+        this.eventBindgin()
+    }
+
+    eventBindgin() {
+        $(document).on('change','.star', (e) => {
+            drawStar(e)
+        })
+
+        function drawStar(e) {
+            document.querySelector(`.star .${e.target.id}`).style.width = `${e.target.value * 10}%`;
+        }
+
+
+    }
 }
+
 
 

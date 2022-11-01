@@ -2,6 +2,7 @@
 <html lang="en"
       layout:decorate="~{layouts/otherPageLayout.html}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
 	<meta charset="UTF-8">
@@ -9,9 +10,14 @@
 	<link href="/css/wedding/weddingDetail.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
 	<link rel="stylesheet" th:href="@{/css/wedding/imgToBig.css}">
+	<link rel="stylesheet" th:href="@{/css/wedding/WedImgSlide.css}">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 </head>
+
+
 <body>
 <div layout:fragment="content">
 	<!-- 헤더 -->
@@ -27,123 +33,38 @@
 			</a>
 		</div>
 	</nav>
-	<!-- 웨딩홀 카드 - 타임리프로 데이터 꺼내와서 인덱스 아이디 주고 data-bs-target에 집어넣어야 되요.-->
-	<div class="weddingCard  mt-3 mx-3">
-		<div class="my-2 text-center hallTitle">A홀</div>
-		<!-- 웨딩홀 캐러셀 -->
-		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding1">
-			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
-				<div class="carousel-item active" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
+	<div th:each="WedList : ${WedList}">
+		<div class="weddingCard  mt-3 mx-3">
+			<div class="my-2 text-center hallTitle" th:text="${WedList.getHName()}">A홀</div>
+			<div class="slider">
+				<div class="sliderWrapper">
+					<div class="sliderItems">
+						<div class="sliderItem"></div>
+						<div class="sliderItem" th:each="ImgList : ${ImgList}"
+						     th:if="${WedList.getHName == ImgList.getHName}">
+							<img class="sliderContent pink img" th:src="${ImgList.getHImgPath}">
+						</div>
+						<div class="sliderItem"></div>
+					</div>
 				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
-				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed3.jpg">
-				</div>
+				<button class="sliderBtn sliderPrev"><</button>
+				<button class="sliderBtn sliderNext">></button>
 			</div>
-			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding1"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding1"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-next-icon"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
-
-		<div class="hallChoice">
-			<div class="minMax">
-				<div>인원수 : 최소 ~ 최대</div>
-				<div>금액 : 1,000,000</div>
-			</div>
-			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllHallModal('A홀')" type="button">시간 선택
-				</button>
+			<div class="hallChoice">
+				<div class="minMax">
+					<div th:text="'인원수 : ' + ${WedList.getHMin()} + ' ~ ' + ${WedList.getHMax()}">인원수 : 최소 ~ 최대</div>
+					<div th:text="'금액 : ' + ${WedList.getHPrice()}">금액 : 1,000,000</div>
+				</div>
+				<div class="choiceBtn">
+					<button class="btn btn-light border-dark timeBtn" th:value="${WedList.getHName()}" type="button">시간
+						선택
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 웨딩홀 카드 - 타임리프로 데이터 꺼내와서 인덱스 아이디 주고 data-bs-target에 집어넣어야 되요.-->
-	<div class="weddingCard  mt-3 mx-3">
-		<div class="my-2 text-center hallTitle">B홀</div>
-		<!-- 웨딩홀 캐러셀 -->
-		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding2">
-			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
-				<div class="carousel-item active" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
-				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
-				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100  img" src="/imgs/thumbWed3.jpg">
-				</div>
-			</div>
-			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding2"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding2"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-next-icon"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
 
-		<div class="hallChoice">
-			<div class="minMax">
-				<div>인원수 : 최소 ~ 최대</div>
-				<div>금액 : 1,000,000</div>
-			</div>
-			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllHallModal('B홀')" type="button">시간 선택
-				</button>
-			</div>
-		</div>
-	</div>
-	<!-- 웨딩홀 카드 -->
-	<div class="weddingCard  mt-3 mx-3">
-		<div class="my-2 text-center hallTitle">C홀</div>
-		<!-- 웨딩홀 캐러셀 -->
-		<div class="carousel carousel-dark slide" data-bs-ride="carousel" id="carouselWedding3">
-			<div class="carousel-inner" style="margin-left: 11vw; width: 90%;">
-				<div class="carousel-item active" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed1.jpg">
-				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed2.jpg">
-				</div>
-				<div class="carousel-item" style="width: 70vw">
-					<img alt="..." class="d-block w-100 img" src="/imgs/thumbWed3.jpg">
-				</div>
-			</div>
-			<button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#carouselWedding3"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-prev-icon"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" data-bs-slide="next" data-bs-target="#carouselWedding3"
-			        type="button">
-				<span aria-hidden="true" class="carousel-control-next-icon"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
-		</div>
 
-		<div class="hallChoice">
-			<div class="minMax">
-				<div>인원수 : 최소 ~ 최대</div>
-				<div>금액 : 1,000,000</div>
-			</div>
-			<div class="choiceBtn">
-				<button class="btn btn-light border-dark" onclick="controllHallModal('C홀')" type="button">시간 선택
-				</button>
-			</div>
-		</div>
-	</div>
 	<!-- 예약 확인 영역과 간격을 위한 div-->
 	<div style="height: 8vh"></div>
 	<!--예약 확인 영역 -->
@@ -159,7 +80,7 @@
 				<h5 class="modal-title">
 					시간선택
 				</h5>
-				<button class="modalCloseBtn" onclick="controllHallModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -179,6 +100,73 @@
 		<img class="modal_content">
 	</div>
 
+	<script th:inline="javascript">
+		const timeBtn = document.querySelectorAll('.timeBtn')
+		const modalBody = document.querySelector(".modal-body")
+		let TimeList = [[${TimeList}]]
+		let HallName = [[${HallName}]]
+		const hallTimeModal = document.querySelector('.hallTimeModal');
+		const checkTimeInput = document.querySelector(".checkTimeInput")
+		let test
+
+
+		for (let i = 0; i < timeBtn.length; i++) {
+			timeBtn[i].addEventListener("click", (e) => {
+				console.log(e.target.value)
+				modalBody.replaceChildren();
+				for (let j = 0; j < TimeList.length; j++) {
+					const div1 = document.createElement("div");
+					div1.className = 'modalOption hallTimeOption';
+					if (e.target.value == TimeList[j].hname) {
+						div1.innerText = TimeList[j].stime + " ~ " + TimeList[j].etime
+						modalBody.appendChild(div1)
+						init();
+					}
+				}
+			})
+		}
+		const hallTimeOption = document.getElementsByClassName("hallTimeOption");
+
+		function handleClickHallTime(event) {
+			console.log(event.target);
+			// console.log(this);
+			// 콘솔창을 보면 둘다 동일한 값이 나온다
+
+			console.log("event.target.classList", event.target.classList);
+
+			if (event.target.classList[1] === "clicked") {
+				event.target.classList.remove("clicked");
+
+			} else {
+				for (var i = 0; i < hallTimeOption.length; i++) {
+					hallTimeOption[i].classList.remove("clicked");
+				}
+
+				event.target.classList.add("clicked");
+				console.log("누른거!" + event.target.textContent)
+				console.log(test)
+				checkTimeInput.innerHTML = `<div>홀 선택 : ${test}</div><div>${event.target.textContent}</div>`
+				controllHallModal();
+
+			}
+		}
+
+		function init() {
+			for (var i = 0; i < hallTimeOption.length; i++) {
+				hallTimeOption[i].addEventListener("click", handleClickHallTime);
+			}
+
+		}
+
+		function controllHallModal(hallName) {
+			if ($('.hallTimeModal').hasClass('hidden')) {
+				$('.hallTimeModal').removeClass('hidden')
+			} else {
+				$('.hallTimeModal').addClass('hidden')
+			}
+			test = hallName
+		}
+	</script>
 </div>
 
 

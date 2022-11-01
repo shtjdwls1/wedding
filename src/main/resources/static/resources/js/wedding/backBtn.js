@@ -1,7 +1,20 @@
-const backBtn = document.querySelector('.backBtn')
+$(() => {
+    new backBtn();
+})
 
-function goBack() {
-    window.history.back();
+export class backBtn {
+    constructor() {
+        this.eventBindgin()
+    }
+
+    eventBindgin() {
+        const backBtn = document.querySelector('.backBtn')
+
+        function goBack() {
+            window.history.back();
+        }
+
+        backBtn.addEventListener("click", goBack)
+    }
 }
 
-backBtn.addEventListener("click", goBack)

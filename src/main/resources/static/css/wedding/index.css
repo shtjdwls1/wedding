@@ -2,6 +2,10 @@
   border: 1px solid black;
   border-radius: 10px;
 }
+.searchHeader .indexSearchBtn {
+  background-color: white;
+  text-align: center;
+}
 
 .carousel-inner {
   height: 20vh;

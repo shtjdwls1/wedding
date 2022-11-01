@@ -17,13 +17,16 @@
 <body>
 <div layout:fragment="mainpage">
 	<!-- 분류 지역 날짜선택 검색 바	-->
-	<div class="searchHeader d-flex justify-content-between mx-4 my-4">
-		<button class="indexSearchBtn  mx-2 my-2 clasifyBtn" onclick="controllClasifyModal()" type="button">분류▼</button>
-		<button class="indexSearchBtn  mx-2 my-2 locationBtn" onclick="controllLocationModal()" type="button">지역▼
-		</button>
-		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" placeholder="날짜선택">
-		<button class="indexSearchBtn  mx-2 my-2" type="button">검색</button>
-	</div>
+	<form action="/searchResult" class="searchHeader d-flex justify-content-between mx-4 my-4">
+		<input class="indexSearchBtn  mx-2 my-2 clasifyBtn" name="clasify" readonly value="분류▼">
+		<input class="indexSearchBtn  mx-2 my-2 locationBtn" name="location" readonly value="지역▼">
+		<input class="indexSearchBtn  mx-2 my-2 text-center" id="date" name="date" placeholder="날짜선택">
+		<input class="hidden" name="ck" readonly value="rs">
+		<input class="hidden" name="offset" readonly value="0">
+		<!--		<input class="hidden" name="columnData" readonly value="p_idx">-->
+
+		<button class="indexSearchBtn  mx-2 my-2" type="submit">검색</button>
+	</form>
 
 	<!-- 이벤트 배너	-->
 	<div class="carousel slide mx-3" data-bs-ride="carousel" id="carouselEventControl">
@@ -52,49 +55,20 @@
 	<!-- 내 지역 웨딩 -->
 	<div class="mt-3 mx-3 indexLabel">
 		<p>내 지역 웨딩홀</p>
-		<p>더보기</p>
+		<a th:href="'/searchResult?clasify=웨딩홀'">더보기</a>
 	</div>
 	<!-- 내 지역 웨딩슬라이드 -->
 	<div class="outerMyCityWedding ">
 		<div class="myCityWedding">
-			<div class="card slide mx-3" onClick="location.href='/weddingDetail'" style="width: 50vw;">
-				<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
-				<div class="card-body p-2">
-					<p class="card-text ">상무예식장</p>
-				</div>
+			<div th:each="wedList : ${WeddingData}">
+				<a class="card slide mx-3" style="width: 50vw;"
+				   th:href="@{/weddingDetail(uIdx=${wedList.getUIdx()})}">
+					<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
+					<div class="card-body p-2">
+						<p th:class="card-text" th:text="${wedList.getUName()}">웨딩홀명</p>
+					</div>
+				</a>
 			</div>
-			<div class="card slide mx-3" style="width: 50vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed2.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">드메르 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 50vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed3.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">광화문 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 50vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed4.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">남대문 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 50vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed5.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">강남 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 50vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed6.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">세종 웨딩홀</p>
-				</div>
-			</div>
-
-
 		</div>
 	</div>
 	<!--내 지역 플레너-->
@@ -104,47 +78,12 @@
 	</div>
 	<div class="outerMyCityPlanner ">
 		<div class="myCityPlanner">
-			<div class="card slide mx-3" onClick="location.href='/plannerDetail'" style="width: 33vw;">
-				<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
-				<div class="card-body p-2">
-					<p class="card-text ">상무예식장</p>
-				</div>
-				<!--				<div class="hoverSec text-center">-->
-				<!--					<div class="hoverInfo">-->
-				<!--						<div class="my-3">김떙떙</div>-->
-				<!--						<div class="my-3">광주</div>-->
-				<!--						<div class="my-3">200만원~</div>-->
-				<!--					</div>-->
-				<!--				</div>-->
-			</div>
-			<div class="card slide mx-3" style="width: 33vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed2.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">드메르 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 33vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed3.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">광화문 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 33vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed4.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">남대문 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 33vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed5.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">강남 웨딩홀</p>
-				</div>
-			</div>
-			<div class="card slide mx-3" style="width: 33vw;">
-				<img alt="..." class="card-img-top" src="/imgs/thumbWed6.jpg">
-				<div class="card-body p-2">
-					<p class="card-text">세종 웨딩홀</p>
+			<div th:each="planList : ${PlannerData}">
+				<div class="card slide mx-3" onClick="location.href='/plannerDetail'" style="width: 33vw;">
+					<img alt="..." class="card-img-top " src="/imgs/thumbWed1.jpg">
+					<div class="card-body p-2">
+						<p th:class="card-text" th:text="'★'+${planList.getPGrade()}">별점</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -157,7 +96,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -174,7 +113,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllLocationModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>

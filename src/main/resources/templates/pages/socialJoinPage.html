@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>Title</title>
 	<link rel="stylesheet" th:href="@{/css/wedding/AreaModal.css}">
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div layout:fragment="content">
@@ -16,14 +16,12 @@
 		<form class="mx-5 mt-5">
 			<label class="form-label" for="clasify">회원분류</label>
 			<div class="input-group mb-3">
-				<div aria-describedby="button-addon2" aria-label="Recipient's username"
-				     class="form-control text-center clasifyInput"
-				     id="clasify" readonly type="text" value="">
-					일반 회원
-				</div>
-				<button class="btn btn-outline-secondary" id="clasifyBtn" type="button">
-					<i class="bi bi-caret-down" onclick="controllClasifyModal()"></i>
-				</button>
+				<input aria-describedby="button-addon2" aria-label="Recipient's username"
+				     class="form-control text-center clasifyInput clasifyBtn"
+				     id="clasify" readonly type="text" value="일반회원">
+				<label for="clasify" class="btn btn-outline-secondary" id="clasifyBtn" type="button">
+					<i class="bi bi-caret-down" ></i>
+				</label>
 			</div>
 			<div class="mb-3">
 
@@ -50,12 +48,12 @@
 			<label class="form-label" for="checkCity">지역</label>
 			<div class="input-group mb-3">
 				<input aria-describedby="button-addon2" aria-label="Recipient's username"
-				       class="text-center form-control"
+				       class="text-center form-control locationBtn"
 				       id="checkCity" readonly type="text" value="서울">
-				<button class="btn btn-outline-secondary" id="checkCityBtn" onclick="controllLocationModal()"
+				<label for="checkCity" class="btn btn-outline-secondary" id="checkCityBtn" onclick="controllLocationModal()"
 				        type="button">
 					<i class="bi bi-caret-down"></i>
-				</button>
+				</label>
 			</div>
 			<div class="d-grid gap-2 col-6 mx-auto mt-5">
 				<button class="btn btn-light btn-outline-dark" type="submit">
@@ -72,7 +70,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllClasifyModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>
@@ -92,7 +90,7 @@
 				<h5 class="modal-title">
 					분류
 				</h5>
-				<button class="modalCloseBtn" onclick="controllLocationModal()">
+				<button class="modalCloseBtn">
 					<i class="bi bi-x-circle"></i>
 				</button>
 			</div>

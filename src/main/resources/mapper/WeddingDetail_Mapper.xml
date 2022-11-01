@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.WeddingDetailService">
+    <select id="weddingDetail" resultType="com.smart.project.web.weddingdetail.vo.WeddingDetailVO"
+            parameterType="String">
+        SELECT *
+        from hall
+        where u_idx = #{uIdx};
+    </select>
+    <select id="weddingSlide" resultType="com.smart.project.web.weddingdetail.vo.WeddingSlideVO"
+            parameterType="String">
+        SELECT *
+        from hall_img
+        where u_idx = #{uIdx}
+          and h_img_type = "common";
+    </select>
+    <select id="weddingTime" resultType="com.smart.project.web.weddingdetail.vo.WeddingTimeVO"
+            parameterType="String">
+        SELECT *
+        from hall_time
+        where u_idx = #{uIdx}
+    </select>
+    <select id="hallName" resultType="com.smart.project.web.weddingdetail.vo.WeddingTimeVO"
+            parameterType="String">
+        SELECT h_name
+        from hall_time
+        where u_idx = #{uIdx}
+        group by h_name
+    </select>
+</mapper>

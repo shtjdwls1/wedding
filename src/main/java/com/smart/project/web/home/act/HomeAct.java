@@ -2,12 +2,15 @@ package com.smart.project.web.home.act;
 
 import com.smart.project.common.vo.InternCookie;
 import com.smart.project.component.CommonCodeComponent;
+import com.smart.project.proc.MainPagePlanner;
+import com.smart.project.proc.MainPageWedding;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
 import com.smart.project.web.home.vo.MemberVO;
+import com.smart.project.web.mainpage.vo.MainCompanyVO;
+import com.smart.project.web.mainpage.vo.MainPlannerVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -30,18 +34,18 @@ public class HomeAct {
     final private Test test;
 
     // 메인 들어올때
-    @RequestMapping("/")
-    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
-        if (StringUtils.isNotEmpty(cookie.getUserId())) {
-            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
-        }
-        // 서블릿 HTTP 세션 사용
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
-        }
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String home(Model model, InternCookie cookie, HttpServletRequest request) {
+//        if (StringUtils.isNotEmpty(cookie.getUserId())) {
+//            log.error("cookie check==>{}//{}//{}", cookie.getUserId(), cookie.getName(), cookie.getEmpNo());
+//        }
+//        // 서블릿 HTTP 세션 사용
+//        HttpSession session = request.getSession(false);
+//        if (session != null) {
+//            MemberVO loginMember = (MemberVO) session.getAttribute("loginSession");
+//        }
+//        return "index";
+//    }
 
     @RequestMapping("/login")
     public String login(Model model, InternCookie cookie, HttpServletRequest request) {
@@ -74,18 +78,6 @@ public class HomeAct {
         return "pages/socialJoinPage";
     }
 
-    //내상담페이지
-    @RequestMapping("/myCounsel")
-    public String myCounsel() {
-        return "pages/myCounselPage";
-    }
-
-    //내 예약페이지
-    @RequestMapping("/myReserve")
-    public String myReserve() {
-        return "pages/myReservePage";
-    }
-
     @RequestMapping("/changeMyInfo")
     public String changeMyInfo() {
         return "pages/changeMyInfoPage";
@@ -96,15 +88,10 @@ public class HomeAct {
         return "pages/changeMyInfoFormPage";
     }
 
-    @RequestMapping("/weddingDetail")
-    public String weddingDetail() {
-        return "pages/weddingDetailPage";
-    }
-
-    @RequestMapping("/plannerDetail")
-    public String plannerDetail() {
-        return "pages/plannerDetailpage";
-    }
+//    @RequestMapping("/weddingDetail")
+//    public String weddingDetail() {
+//        return "pages/weddingDetailPage";
+//    }
 
     @RequestMapping("/payment")
     public String payment() {
@@ -132,16 +119,10 @@ public class HomeAct {
         return "pages/plannerInfoFromPage";
     }
 
-    @RequestMapping("/plannerCommentView")
-    public String plannerCommentView() {
-        return "pages/plannerCommentView";
-    }
-
-
-    @RequestMapping("/searchResult")
-    public String searchResult() {
-        return "pages/searchResultPage";
-    }
+//    @RequestMapping("/searchResult")
+//    public String searchResult() {
+//        return "pages/searchResultPage";
+//    }
 
     @RequestMapping("/data")
     @ResponseBody
@@ -149,14 +130,28 @@ public class HomeAct {
         return "index";
     }
 
+
+
+
+    final private MainPageWedding mainPageMapper;
+    final private MainPagePlanner mainPagePlanner;
     // 로그아웃
     @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public String logout(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             log.error("deleteSessionbefore ==>{}", session.getAttribute("loginSession"));
             session.invalidate();
         }
+        String u_location = "서울";
+
+        List<MainCompanyVO> wedList = mainPageMapper.getStartWed(u_location);
+        List<MainPlannerVO> planList = mainPagePlanner.getStartPlan(u_location);
+
+
+        model.addAttribute("WeddingData", wedList);
+        model.addAttribute("PlannerData", planList);
+
         return "index";
     }
 
