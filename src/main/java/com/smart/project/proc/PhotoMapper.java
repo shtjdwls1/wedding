@@ -4,6 +4,8 @@ import com.smart.project.annotation.Master;
 import com.smart.project.web.photo.vo.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Master
 @Component
 public interface PhotoMapper {
@@ -28,4 +30,7 @@ public interface PhotoMapper {
     int saveHallTime(HallTimeVO hallTimeVO); // 홀 시간정보 등록
     int updateHallImg(HallImgVO photo); // 홀 이미지 수정하기
 
+    List<HallVO> selectHall(int uidx); // 홀 정보 불러오기
+    List<HallTimeVO> selectHallTime(SelectVO selectVO); // 홀 시간 불러오기
+    List<HallImgVO> selectHallImg(SelectVO selectVO); // 홀 이미지 불러오기
 }

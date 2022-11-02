@@ -153,8 +153,8 @@ public class PhotoHandler {
     }
     public void deleteFile(PhotoVO photo){ // 3종류의 파일 전부 삭제
         String dirPathCommon = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/common/"+photo.getCImgName();
-        String dirPathThumbnail = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/thumbnail/"+photo.getCImgName();
-        String dirPathSmall = "/src/main/resources/static/imgs/company/"+photo.getUIdx()+"/small/"+photo.getCImgName();
+        String dirPathThumbnail = dirPathCommon.replace("common","thumbnail");
+        String dirPathSmall = dirPathCommon.replace("common","small");
 
         File fileCommon = new File("c:/test"+dirPathCommon);
         File fileThumbnail = new File("c:/test"+dirPathThumbnail);

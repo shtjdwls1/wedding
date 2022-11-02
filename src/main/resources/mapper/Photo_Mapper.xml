@@ -35,7 +35,16 @@
     <select id="selectThumbimg" parameterType="com.smart.project.web.photo.vo.PhotoVO" resultType="com.smart.project.web.photo.vo.PhotoVO">
         SELECT * FROM company_img WHERE u_idx=#{uIdx} AND c_img_type=#{cImgType};
     </select>
-
+    <!--idx로 홀정보,홀시간,홀 이미지 불러오기-->
+    <select id="selectHall" resultType="com.smart.project.web.photo.vo.HallVO">
+        SELECT * FROM hall WHERE u_idx=#{uIdx};
+    </select>
+    <select id="selectHallTime" resultType="com.smart.project.web.photo.vo.HallTimeVO">
+        SELECT * FROM hall_time WHERE u_idx=#{uIdx} AND h_name=#{hName};
+    </select>
+    <select id="selectHallImg" resultType="com.smart.project.web.photo.vo.HallImgVO">
+        SELECT * FROM hall_img WHERE u_idx=#{uIdx} AND h_img_type='thumbnail' AND h_name=#{hName}
+    </select>
     <!--홀 이미지 등록-->
     <insert id="saveHallImg">
         INSERT INTO hall_img(u_idx, h_img_name, h_img_path, h_img_type, h_name) VALUES (#{uIdx},#{hImgName},#{hImgPath},#{hImgType},#{hName});

@@ -13,29 +13,21 @@ export class wedInfo {
         this.eventBinding();
     }
     eventBinding() {
+        // 수정하기 버튼 클릭시 홀 정보 수정 이벤트
+        $('.changeHallBtn').on('click',(e)=> {
+            let idx = e.target.id.substring(6, e.target.id.length + 1)
+            console.log(idx)
+            let existFileNo = $('#dbfile1');
+            console.log(existFileNo)
+            $('#updateFiles').off('change').on('change',(e)=>{
+                addFile(e.target,idx)
+            })
+        });
         // 업체정보 수정페이지로 이동
         $('.changeWedBtn').on('click',()=>{
             location.href = "/wedInfoForm"
         })
-
-        // 홀 수정하기 버튼 클릭시 페이지 열기닫기
-        $('.changeHallBtn').on('click',()=>{
-            if($('.updateHallForm').hasClass('hidden')){
-                $('.hallCard').css('border-bottom-right-radius','0vh')
-                    .css('border-bottom-left-radius','0vh')
-                    .css('border-bottom', '0px solid black')
-                $('.updateHallForm').removeClass('hidden')
-                    .css('border-top-right-radius','0vw')
-                    .css('border-top-left-radius','0vw')
-            }else{
-                $('.hallCard').css('border-bottom-right-radius','2vh')
-                    .css('border-bottom-left-radius','2vh')
-                    .css('border-bottom', '1px solid black')
-                $('.updateHallForm').addClass('hidden')
-                    .css('border-top-right-radius','2vw')
-                    .css('border-top-left-radius','2vw')
-            }
-        })
+        // 홀 등록하기 버튼 클릭이벤트
         $('#addHallBtn').on('click',()=>{
             if($('.addHallForm').hasClass('hidden')){
                 $('.addHallForm').removeClass('hidden')
@@ -50,26 +42,23 @@ export class wedInfo {
         let fileNo = 0;
         let filesArr = [];
         let curFileCnt
-        $('#files').on('change',(e)=>{
-            addFile(e.target)
-
-        });
-        // 미리보기 이미지 클릭이벤트
-        // 리스트에서 삭제됨
-        $(document).on('click',".delete",(e)=>{
-            let id = $(e.target).closest('div').attr('id') // 인덱스를 갖고있는 id가져오기
-            let idlen = id.length // 길이확인 2자리일수도 있으니까
-            let idx = id.substring(4,idlen+1) //filexx 뒤에서부터 자르기
-            deleteFile(idx)
-
-        })
+        // 이미지 추가시 변경 이벤트
+        // $('#uploadFiles , #updateFiles').on('change',(e)=>{
+        //     console.log(e.currentTarget)
+        //     addFile(e.currentTarget)
+        // });
         // 업로드 할 이미지 추가
-        function addFile(obj){
+        function addFile(obj,idx){
+            let existFileNo = $('#file-list'+idx).find('.filebox');
+            console.log("존재하는파일개수 ==>{}",existFileNo)
             let maxFileCnt = 12;   // 첨부파일 최대 개수
-            let attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+            let attFileCnt = obj.parentNode.parentNode.childNodes[3].childNodes[1].childNodes.length-1;
+            console.log("기존 추가된 첨부파일 개수"+attFileCnt)
+            // 기존 추가된 첨부파일 개수
+            //document.querySelectorAll('.filebox').length;
             let remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
             curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
-
+            console.log("파일개수 : "+curFileCnt)
             // 첨부파일 개수 확인
             if (curFileCnt > remainFileCnt) {
                 alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
@@ -90,7 +79,7 @@ export class wedInfo {
                         htmlData = `<div id="file${fileNo}" class="filebox">
                                     <a class="delete">x<img src="${e.target.result}" data-file="${file.name}" class="selProductFile" title="Click to remove" ><i class="fa fa-minus-square"></i></a>
                                 </div>`
-                        $('.file-list').append(htmlData);
+                        $('#file-list'+idx).append(htmlData);
                         fileNo++;
 
                     };
@@ -123,6 +112,14 @@ export class wedInfo {
                 return true;
             }
         }
+        // 미리보기 이미지 클릭이벤트
+        // 리스트에서 삭제됨
+        $(document).on('click',".delete",(e)=>{
+            let id = $(e.target).closest('div').attr('id') // 인덱스를 갖고있는 id가져오기
+            let idlen = id.length // 길이확인 2자리일수도 있으니까
+            let idx = id.substring(4,idlen+1) //filexx 뒤에서부터 자르기
+            deleteFile(idx)
+        })
         /* 첨부파일 삭제 */
         function deleteFile(num) {
             document.querySelector("#file" + num).remove();
@@ -156,6 +153,8 @@ export class wedInfo {
             })
 
         })
+        // 홀 정보수정버튼 클릭이벤트
+        $('#updateHallData')
         // 모달창 닫기
         function modalClose(){
             $('body').removeClass('modal-open')

@@ -147,10 +147,10 @@
 				<!--사진등록-->
 				<div class=" mt-2 mb-2 uploadPhoto">
 					<div class="fileBtn">
-						<label for="files">
+						<label for="uploadFiles">
 							<div class="btnUpload">사진찾기</div>
 						</label>
-						<input type="file" id="files" multiple/>
+						<input type="file" id="uploadFiles" multiple/>
 					</div>
 					<div class="file-list-out mt-2">
 						<div class="file-list">
@@ -166,123 +166,72 @@
 	</div>
 	<!-- 홀 정보 카드 -->
 	<div class="mt-3 mx-3">홀정보</div>
-	<div class="hallCardSec mt-1 mx-3">
-		<div class="hallCard">
-			<div class="wedInfo mx-3">
-				<table class="table table-borderless my-2">
-					<tbody>
-					<tr>
-						<th scope="row">홀 명</th>
-						<td>A 홀</td>
-					</tr>
-					<tr>
-						<th scope="row">가격</th>
-						<td>1,000,000</td>
-					</tr>
-					<tr>
-						<th scope="row">인원수</th>
-						<td>50~100</td>
-					</tr>
-					</tbody>
-				</table>
+	<div th:each="hall,i : ${hallList}" th:class="${'card'+i.count}">
+		<div class="hallCardSec mt-1 mx-3">
+			<div class="hallCard">
+				<div class="wedInfo mx-3">
+					<table class="table table-borderless my-2">
+						<tbody>
+						<tr>
+							<th scope="row">홀 명</th>
+							<td th:text="${hall.hName}">A 홀</td>
+						</tr>
+						<tr>
+							<th scope="row">가격</th>
+							<td th:text="${hall.hPrice}">1,000,000</td>
+						</tr>
+						<tr>
+							<th scope="row">인원수</th>
+							<td th:text="${hall.hMin}+'~'+${hall.hMax}">50~100</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<button aria-expanded="false" class="changeHallBtn" th:id="'update'+${i.count}"
+						data-bs-toggle="collapse"
+						th:aria-controls="'collapse'+${i.count}"
+						th:data-bs-target="'#collapse'+${i.count}" type="button">수정하기</button>
 			</div>
-			<button class="changeHallBtn" type="button">수정하기</button>
 		</div>
-	</div>
-	<div class="updateHallForm mx-3 hidden">
-		<form class="mx-4 mt-2">
+		<div class="collapse updateHallForm mx-3" th:id="'collapse'+${i.count}">
+			<form class="mx-4 mt-2" th:id="'updateHallDataForm'+${i.count}">
 			<div>
 				<label class="form-label" for="hallName">홀 이름</label>
-				<input class="form-control" id="hallName" type="text">
+				<input class="form-control" id="hallName" type="text" th:value="${hall.hName}">
 			</div>
 			<div>
 				<label class="form-label" for="hallPrice">가격</label>
-				<input class="form-control" id="hallPrice" type="text">
+				<input class="form-control" id="hallPrice" type="text" th:value="${hall.hPrice}">
 			</div>
 			<label class="form-label">인원수</label>
 			<div class="minMaxPeople">
 				<div class="row mx-3">
 					<div class="col">
-						<input class="form-control minPeoInput" placeholder="최소" type="number">
+						<input class="form-control minPeoInput" placeholder="최소" type="number" th:value="${hall.hMin}">
 					</div>
 					<div class="col text-center">
 						~
 					</div>
 					<div class="col">
-						<input class="form-control maxPeoInput" placeholder="최대" type="number">
+						<input class="form-control maxPeoInput" placeholder="최대" type="number" th:value="${hall.hMax}">
 					</div>
 				</div>
 			</div>
 			<!--시간등록-->
 			<label class="form-label">운영회차</label>
-			<div class="timeForm">
+			<div class="timeForm" th:each="hallTime,i:${hall.hallTimeVO}">
 				<table class="table">
 					<tbody>
 					<tr>
-						<th scope="row">1회차 :</th>
+						<th scope="row" th:text="${i.count}+'회차 : '"></th>
 						<td>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
+								<input class="timeInput" placeholder="-- : --" th:value="${hallTime.sTime}">
 								<i class="bi bi-clock"></i>
 							</div>
 							<div>~</div>
 							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-					</tr>
-					<tr>
-						<th scope="row">2회차 :</th>
-						<td>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-							<div>~</div>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">3회차 :</th>
-						<td>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-							<div>~</div>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">4회차 :</th>
-						<td>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-							<div>~</div>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">5회차 :</th>
-						<td>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
-								<i class="bi bi-clock"></i>
-							</div>
-							<div>~</div>
-							<div class="inputParent">
-								<input class="timeInput" placeholder="-- : --">
+								<input class="timeInput" placeholder="-- : --" th:value="${hallTime.eTime}">
 								<i class="bi bi-clock"></i>
 							</div>
 						</td>
@@ -291,15 +240,28 @@
 				</table>
 			</div>
 			<!--사진등록-->
-			<div class="uploadPhoto">
-				사진등록
+			<div class=" mt-2 mb-2 uploadPhoto">
+				<div class="fileBtn">
+					<label for="updateFiles">
+						<div class="btnUpload">사진찾기</div>
+					</label>
+					<input type="file" id="updateFiles" multiple/>
+				</div>
+				<div class="file-list-out mt-2">
+					<div class="file-list" th:id="'file-list'+${i.count}">
+						<div th:id="dbfile+${i.count}" class="filebox" th:each="hallImg,i:${hall.hallImgVO}">
+							<a class="delete">x<img th:src="'/image/'+${hallImg.hImgPath}" data-file="${file.name}" class="selProductFile" title="Click to remove" ><i class="fa fa-minus-square"></i></a>
+						</div>
+					</div>
+				</div>
 			</div>
+
 			<div class="d-grid gap-2 col-6 mx-auto mb-3">
-				<button class="btn btn-light border-dark" type="button">정보 수정</button>
+				<button class="btn btn-light border-dark" type="button" th:id="'updateHallDataBtn'+${i.count}">정보 수정</button>
 			</div>
 		</form>
+		</div>
 	</div>
-
 	<!--홀 추가 등록하기-->
 	<div class="addHall mt-2" type="button" id="addHallBtn">
 		<div>홀 등록하기</div>

@@ -3,8 +3,7 @@ package com.smart.project.web.photo.act;
 import com.smart.project.proc.PhotoMapper;
 import com.smart.project.web.photo.service.AES256;
 import com.smart.project.web.photo.service.PhotoHandler;
-import com.smart.project.web.photo.vo.CompanyVO;
-import com.smart.project.web.photo.vo.PhotoVO;
+import com.smart.project.web.photo.vo.*;
 import com.smart.project.web.home.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -61,7 +62,7 @@ public class PhotoAct {
     public String chkWedInfo(HttpServletRequest req, Model model){
         HttpSession session = req.getSession(false);
         MemberVO vo = (MemberVO) session.getAttribute("loginSession");
-        int uidx = vo.getUIdx();
+        int uidx = vo.getUIdx(); // 유저 idx값
         CompanyVO result = pm.findByIdx(uidx);
         log.error("result ==> {}",result);
         // 정보 유무 체크
@@ -85,6 +86,31 @@ public class PhotoAct {
                 String dataurl = aes.encrypt("C:/test"+photoVO.getCImgPath());
                 model.addAttribute("imgUrl", dataurl);
                 log.error("imgURL ==> {}",dataurl);
+
+                // TODO 홀데이터 조회해서 넘겨주기
+                //  - 1.홀정보,홀시간,홀이미지 불러오기
+                //  - 2.객체 하나로 묶어서 넘겨주기
+
+                // 1.
+                List<HallVO> hallVO = pm.selectHall(uidx);
+                for (HallVO hall : hallVO) {
+                    List<HallTimeVO> hallTimeVO = pm.selectHallTime(new SelectVO(uidx, hall.getHName()));
+                    hall.setHallTimeVO(hallTimeVO);
+                    List<HallImgVO> hallImgVO = pm.selectHallImg(new SelectVO(uidx, hall.getHName()));
+                    for (HallImgVO hivo : hallImgVO){
+                        dataurl = aes.encrypt("C:/test"+hivo.getHImgPath());
+                        hivo.setHImgPath(dataurl);
+                    }
+                    hall.setHallImgVO(hallImgVO);
+                }
+
+                model.addAttribute("hallList",hallVO);
+
+
+
+
+
+
                 return "pages/wedInfoPage"; // 있으면 사진도 가지고
             }
 
