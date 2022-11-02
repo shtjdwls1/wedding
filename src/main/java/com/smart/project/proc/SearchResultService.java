@@ -17,5 +17,5 @@ public interface SearchResultService {
 
     List<ResultMemberVO> getList5(ResultListVO vo);
 
-
+    List<ResultMemberVO> inputSearch(String keyword);
 }

@@ -5,7 +5,7 @@
     <select id="getStartWed" resultType="com.smart.project.web.mainpage.vo.MainCompanyVO" parameterType="String">
         select u_name, c_img_name, c_img_path, u_idx
         from company_result2
-        where u_location = #{u_location};
+        where u_location = #{u_location} LIMIT 10;
     </select>
 
 

@@ -14,7 +14,8 @@
 <body>
 <div th:fragment="footerFragment">
 	<!-- 세션 없을때 -->
-	<ul th:if="${session.loginSession == null}" class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6">
+	<ul class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6"
+	    th:if="${session.loginSession == null}">
 		<!-- 홈버튼 -->
 		<li class="nav-item">
 			<a aria-current="page" class="nav-link active" href="/">
@@ -43,7 +44,8 @@
 	</ul>
 
 	<!-- 세션 있을때 -->
-	<ul th:unless="${session.loginSession == null}"  class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6">
+	<ul class="nav nav-fill fixed-bottom" style="height: 8vh;background-color: #e6e6e6"
+	    th:unless="${session.loginSession == null}">
 		<!-- 홈버튼 -->
 		<li class="nav-item">
 			<a aria-current="page" class="nav-link active" href="/">
@@ -51,43 +53,43 @@
 			</a>
 		</li>
 		<!-- 업체정보버튼 -->
-		<li th:if="${session.loginSession.UAuth.equals('company')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('company')}">
 			<a class="nav-link" href="/chkWedInfo">
 				<i class="bi bi-building footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!--플래너 정보 버튼-->
-		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('planner')}">
 			<a class="nav-link" href="/plannerInfoFrom">
 				<i class="bi bi-person" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!-- 내상담 -->
-		<li th:if="${session.loginSession.UAuth.equals('common')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('common')}">
 			<a class="nav-link" href="/myCounsel?offset=0&ck=mc">
 				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!-- 상담확인 -->
-		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('planner')}">
 			<a class="nav-link" href="/plannerCheckCounsel?offset=0&ck=pc">
 				<i class="bi bi-chat-right-text footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!--관리-->
-		<li th:if="${session.loginSession.UAuth.equals('company')}" class="nav-item">
-			<a class="nav-link" href="/">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('company')}">
+			<a class="nav-link" href="/adminReserve">
 				<i class="bi bi-calendar-check footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!--예약확인-->
-		<li th:if="${session.loginSession.UAuth.equals('common')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('common')}">
 			<a class="nav-link" href="/myReserve?offset=0&ck=mr">
 				<i class="bi bi-calendar-check footerIcon" style="font-size: 30px; color: black;"></i>
 			</a>
 		</li>
 		<!--후기보기 별 버튼-->
-		<li th:if="${session.loginSession.UAuth.equals('planner')}" class="nav-item">
+		<li class="nav-item" th:if="${session.loginSession.UAuth.equals('planner')}">
 			<a class="nav-link" href="/plannerCommentView?columnData=p_counseling_idx&offset=0&sortData=desc&ck=pr">
 				<i class="bi bi-star" style="font-size: 30px; color: black;"></i>
 			</a>

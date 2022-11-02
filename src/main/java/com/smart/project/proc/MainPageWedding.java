@@ -10,5 +10,7 @@ import java.util.List;
 @Component
 public interface MainPageWedding {
     List<MainCompanyVO> getStartWed(String location);
+
+
 }
 

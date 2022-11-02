@@ -157,19 +157,14 @@ export class index {
             timeFormat: 'HH:mm',
             touchUi: true
         })
+        // AdminReserve, 예약관리 페이지에서 날짜 검색 value 변경시 페이지 새로고침
 
-// const hoverSec = document.querySelectorAll('.hoverSec')
-//
-// $(document).ready(function () {
-//     $(".hoverSec").mouseover(function () {
-//         $(this).addClass('hidden')
-//     });
-//     $(".hoverSec").mouseout(function () {
-//         $(this).remove('hidden')
-//         console.log('됨')
-//     });
-// })
+        $('.searchDateBtn').on('change', () => {
+            let date = $('.searchDateBtn').val()
+            $(location).attr('href', `/adminReserve?date=${date}`);
+        })
 
+        
     }
 }
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.project.proc.AdminReserveService">
+
+    <select id="hallAll" resultType="com.smart.project.web.adminreserve.vo.AdminReserveVO"
+            parameterType="int">
+        select *
+        from hall
+        where u_idx = #{uIdx}
+    </select>
+
+    <select id="reserveUser" resultType="com.smart.project.web.adminreserve.vo.AdminReserveVO"
+            parameterType="com.smart.project.web.adminreserve.vo.AdminReserveVO">
+        select ht.h_time_idx as h_time_idx, s_time, e_time, h_name, test.u_name as u_name, test.u_tel as u_tel
+        from hall_time ht
+                 left join (select reserve_idx, u.u_idx, u.u_name, u.u_tel, hr.h_time_idx
+                            from hall_reservation hr
+                                     left join user u on hr.reserve_idx = u.u_idx
+                            where reserve_date = #{date}
+                              and hr.u_idx = #{uIdx}) test on ht.h_time_idx = test.h_time_idx
+        where ht.u_idx = #{uIdx};
+    </select>
+
+</mapper>

@@ -29,21 +29,16 @@
 	<!-- 컨텐츠 -->
 	<div class="content">
 		<div class="searchDate">
-			<input class="searchDateBtn  mx-3 my-2 text-center" id="date" placeholder="날짜 검색">
+			<input class="searchDateBtn  mx-3 my-2 text-center" id="date" th:placeholder="${Date}">
 		</div>
-		<div class="flexDiv mx-3 mt-3">
+		<div class="flexDiv mx-3 mt-3" th:each="HallList:${HallList}">
 			<div class="hallCardSec mt-1 ">
 				<div class="hallCard">
 					<div class="wedInfo mx-3">
 						<table class="table table-borderless my-2">
 							<tbody>
 							<tr>
-								<th scope="row">1번홀</th>
-
-							</tr>
-							<tr>
-								<th scope="row">인원수</th>
-								<td>100명</td>
+								<th scope="row" th:text="${HallList.getHName()}">1번홀</th>
 							</tr>
 							<tr>
 								<th scope="row">예약된 회차</th>
@@ -52,41 +47,34 @@
 							</tbody>
 						</table>
 					</div>
-					<button aria-controls="collapseExample" aria-expanded="false" class="changeHallBtn"
-					        data-bs-target="#collapseExample"
-					        data-bs-toggle="collapse" type="button">예약보기
+					<button aria-expanded="false" class="changeHallBtn"
+					        data-bs-toggle="collapse"
+					        th:aria-controls="'collapse'+${HallList.getHIdx()}"
+					        th:data-bs-target="'#collapse'+${HallList.getHIdx()}" type="button">예약보기
 					</button>
 				</div>
 			</div>
 			<!--홀 시간 보기 아코디언-->
-			<div class="collapse mx-3" id="collapseExample">
-				<div class="timeTable mx-2 my-2">
-					<div>10:00~12:00</div>
-					<div>홍길동</div>
-					<div>010-0100-0000</div>
-				</div>
-				<div class="timeTable my-2 mx-2">
-					<div>12:00~14:00</div>
-					<div>홍길동</div>
-					<div>010-0100-0000</div>
-				</div>
-				<div class="timeTable my-2 mx-2">
-					<div>14:00~16:00</div>
-					<div>홍길동</div>
-					<div>010-0100-0000</div>
-				</div>
-				<div class="timeTable my-2 mx-2">
-					<div>16:00~18:00</div>
-					<div>홍길동</div>
-					<div>010-0100-0000</div>
-				</div>
-				<div class="timeTable my-2 mx-2 disabled">
-					<div>18:00~20:00</div>
-					<div>비어있음</div>
-					<div></div>
+			<div class="collapse mx-3 my-2" th:id="'collapse'+${HallList.getHIdx()}">
+				<div class="timeTable mx-2 my-2" th:each="HallTimeList:${HallTimeList}"
+				     th:if="${HallList.getHName()} == ${HallTimeList.getHName()}">
+					<div th:text="${HallTimeList.getSTime()} + ' ~ ' + ${HallTimeList.getETime()}">10:00~12:00</div>
+					<div th:if="${not #strings.isEmpty(HallTimeList.getUName())}" th:text="${HallTimeList.getUName()}">
+						홍길동
+					</div>
+					<div th:if="${not #strings.isEmpty(HallTimeList.getUTel())}" th:text="${HallTimeList.getUTel()}">
+						010-0000-0000
+					</div>
+					<div th:if="${#strings.isEmpty(HallTimeList.getUName())}" th:text="비어있음">홍길동</div>
+					<div th:if="${#strings.isEmpty(HallTimeList.getUTel())}" th:text=" ' '">
+						010-0000-0000
+					</div>
+
+
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 

@@ -6,7 +6,6 @@ import com.smart.project.proc.MainPagePlanner;
 import com.smart.project.proc.MainPageWedding;
 import com.smart.project.proc.Test;
 import com.smart.project.security.StudyCookieService;
-import com.smart.project.web.home.vo.MemberVO;
 import com.smart.project.web.mainpage.vo.MainCompanyVO;
 import com.smart.project.web.mainpage.vo.MainPlannerVO;
 import lombok.RequiredArgsConstructor;
@@ -46,6 +45,8 @@ public class HomeAct {
 //        }
 //        return "index";
 //    }
+    final private MainPageWedding mainPageMapper;
+    final private MainPagePlanner mainPagePlanner;
 
     @RequestMapping("/login")
     public String login(Model model, InternCookie cookie, HttpServletRequest request) {
@@ -88,14 +89,14 @@ public class HomeAct {
         return "pages/changeMyInfoFormPage";
     }
 
-//    @RequestMapping("/weddingDetail")
-//    public String weddingDetail() {
-//        return "pages/weddingDetailPage";
-//    }
-
     @RequestMapping("/payment")
     public String payment() {
         return "pages/paymentPage";
+    }
+
+    @RequestMapping("/wedInfoForm")
+    public String wedInfoForm() {
+        return "pages/wedInfoFormPage";
     }
 
     @RequestMapping("/loadingPayment")
@@ -109,20 +110,10 @@ public class HomeAct {
         return "pages/wedInfoPage";
     }
 
-    @RequestMapping("/adminReserve")
-    public String adminReserve() {
-        return "pages/adminReservePage";
-    }
-
     @RequestMapping("/plannerInfoFrom")
     public String plannerInfoFrom() {
         return "pages/plannerInfoFromPage";
     }
-
-//    @RequestMapping("/searchResult")
-//    public String searchResult() {
-//        return "pages/searchResultPage";
-//    }
 
     @RequestMapping("/data")
     @ResponseBody
@@ -130,11 +121,6 @@ public class HomeAct {
         return "index";
     }
 
-
-
-
-    final private MainPageWedding mainPageMapper;
-    final private MainPagePlanner mainPagePlanner;
     // 로그아웃
     @RequestMapping("/logout")
     public String logout(HttpServletRequest request, Model model) {
