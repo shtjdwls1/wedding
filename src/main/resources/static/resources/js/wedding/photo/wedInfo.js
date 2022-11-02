@@ -13,52 +13,120 @@ export class wedInfo {
         this.eventBinding();
     }
     eventBinding() {
-        // 수정하기 버튼 클릭시 홀 정보 수정 이벤트
-        $('.changeHallBtn').on('click',(e)=> {
-            let idx = e.target.id.substring(6, e.target.id.length + 1)
-            console.log(idx)
-            let existFileNo = $('#dbfile1');
-            console.log(existFileNo)
-            $('#updateFiles').off('change').on('change',(e)=>{
-                addFile(e.target,idx)
-            })
-        });
         // 업체정보 수정페이지로 이동
         $('.changeWedBtn').on('click',()=>{
             location.href = "/wedInfoForm"
         })
-        // 홀 등록하기 버튼 클릭이벤트
-        $('#addHallBtn').on('click',()=>{
-            if($('.addHallForm').hasClass('hidden')){
-                $('.addHallForm').removeClass('hidden')
-                    .css('border-top-right-radius','0vw')
-                    .css('border-top-left-radius','0vw')
-            }else{
-                $('.addHallForm').addClass('hidden')
-                    .css('border-top-right-radius','2vw')
-                    .css('border-top-left-radius','2vw')
-            }
-        })
+        // 수정하기 버튼 클릭시 홀 정보 수정 이벤트
+        $('.changeHallBtn').on('click',(e)=> {
+            let idx = e.target.id.substring(6, e.target.id.length + 1)
+            console.log(idx)
+            let existFileNo;
+            $('#updateFiles').off('click').on('click',(e)=>{
+                existFileNo = $('#file-list'+idx).find('.filebox').length;
+                console.log("기존 존재하는 파일개수 == "+existFileNo)
+            })
+            $('#updateFiles').off('change').on('change',(e)=>{
+                updateFile(e.target,idx,existFileNo)
+            })
+
+            // 홀 정보수정버튼 클릭이벤트
+            $('#updateHallDataBtn'+idx).off('click').on('click',(e)=>{
+                let uhdFormData = new FormData($('#updateHallDataForm'+idx)[0]);
+                for (let value of uhdFormData.values()) {
+                    console.log(value);
+                }
+                if(filesArr.length!==0){ // 파일이 존재한다면
+                    console.log(filesArr)
+                    console.log('expected append : ')
+                    for (let i = 0; i< filesArr.length; i++){
+                        // 삭제되지 않은 파일만 폼데이터에 담기
+                        if (!filesArr[i].is_delete) {
+                            uhdFormData.append("files", filesArr[i])
+
+                            console.log(filesArr[i])
+                        }
+                    }
+                    console.log('append result : ')
+                    for (let value of uhdFormData.values()){
+                        console.log(value);
+                    }
+                }
+                modalOn();
+                $('#hallInfoModalClose').off('click').on('click',()=>{
+                    axios.post("/data/hall/update",uhdFormData).then((result)=>{
+                        if(result.data===1) {
+                            console.log("수정 성공")
+                        }else{
+                            console.log("수정 실패")
+                        }
+                    })
+                    modalClose();
+                    // axios.post("/data/hall/upload",addHallDataFormData).then((result)=>{
+                    //     console.log(result.data);
+                        // location.href = "/chkWedInfo"
+                })
+            })
+        });
         let fileNo = 0;
         let filesArr = [];
         let curFileCnt
         // 이미지 추가시 변경 이벤트
-        // $('#uploadFiles , #updateFiles').on('change',(e)=>{
+        // $('#uploadFiles').on('change',(e)=>{
         //     console.log(e.currentTarget)
         //     addFile(e.currentTarget)
         // });
-        // 업로드 할 이미지 추가
-        function addFile(obj,idx){
-            let existFileNo = $('#file-list'+idx).find('.filebox');
-            console.log("존재하는파일개수 ==>{}",existFileNo)
+        // 등록시 이미지 추가
+        function addFile(obj){
             let maxFileCnt = 12;   // 첨부파일 최대 개수
-            let attFileCnt = obj.parentNode.parentNode.childNodes[3].childNodes[1].childNodes.length-1;
-            console.log("기존 추가된 첨부파일 개수"+attFileCnt)
+            let attFileCnt = document.querySelectorAll('.filebox').length;    // 기존 추가된 첨부파일 개수
+            let remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
+            let curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
+
+            // 첨부파일 개수 확인
+            if (curFileCnt > remainFileCnt) {
+                alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
+            }
+
+            for (let i = 0; i < Math.min(curFileCnt, remainFileCnt); i++) {
+
+                const file = obj.files[i];
+
+                // 첨부파일 검증
+                if (validation(file)) {
+                    // 파일 배열에 담기
+                    let reader = new FileReader();
+                    reader.onload = function (e) {
+                        filesArr.push(file);
+
+                        let htmlData = '';
+                        htmlData = `<div id="file${fileNo}" class="filebox">
+                                    <a class="delete"><img src="${e.target.result}" data-file="${file.name}" class="selProductFile" title="Click to remove" ><i class="far fa-minus-square"></i></a>
+                                </div>`
+                        $('.file-list').append(htmlData);
+                        fileNo++;
+
+                    };
+                    reader.readAsDataURL(file)
+                    // 목록 추가
+
+                } else {
+                    continue;
+                }
+            }
+            // 초기화
+            document.querySelector("input[type=file]").value = "";
+        }
+        // 수정시 할 이미지 추가
+        function updateFile(obj,idx,existFileNo){
+
+            let maxFileCnt = 12;   // 첨부파일 최대 개수
+            let attFileCnt = existFileNo;
             // 기존 추가된 첨부파일 개수
             //document.querySelectorAll('.filebox').length;
             let remainFileCnt = maxFileCnt - attFileCnt;    // 추가로 첨부가능한 개수
             curFileCnt = obj.files.length;  // 현재 선택된 첨부파일 개수
-            console.log("파일개수 : "+curFileCnt)
+            console.log("추가한 파일개수 : "+curFileCnt)
             // 첨부파일 개수 확인
             if (curFileCnt > remainFileCnt) {
                 alert("첨부파일은 최대 " + maxFileCnt + "개 까지 첨부 가능합니다.");
@@ -90,6 +158,7 @@ export class wedInfo {
                     continue;
                 }
             }
+            // $('#cntFile').text('  '+existFileNo+' / 12장')
             // 초기화
             document.querySelector("input[type=file]").value = "";
         }
@@ -124,6 +193,29 @@ export class wedInfo {
         function deleteFile(num) {
             document.querySelector("#file" + num).remove();
             filesArr[num].is_delete = true;
+            // let cnt = filesArr.length-1
+            // $('#cntFile').text('  '+cnt+' / 12장')
+        }
+        /* 기존DB파일 삭제 */
+        $(document).on('click','.deletedb',(e)=>{
+            let id = $(e.target).closest('div').attr('id') // 인덱스를 갖고있는 id가져오기
+            let idlen = id.length // 길이확인 2자리일수도 있으니까
+            let idx = id.substring(6,idlen+1) //filexx 뒤에서부터 자르기
+            deleteDbFile(idx)
+        })
+        function deleteDbFile(num) {
+
+            let imgsrc = document.querySelector("#dbfile" + num).querySelector('img').src;
+            console.log(imgsrc)
+            axios.get('/data/photo/deleteImg',{params :{'imgsrc':imgsrc}}).then((result)=>{
+                if(result.data===1) {
+                    console.log("삭제 성공")
+                }else{
+                    console.log("삭제 실패")
+                }
+            });
+            // document.querySelector("#dbfile" + num).remove();
+
         }
         // 홀 정보등록버튼 클릭이벤트
         $('#addHallData').on('click',()=>{
@@ -153,8 +245,7 @@ export class wedInfo {
             })
 
         })
-        // 홀 정보수정버튼 클릭이벤트
-        $('#updateHallData')
+
         // 모달창 닫기
         function modalClose(){
             $('body').removeClass('modal-open')

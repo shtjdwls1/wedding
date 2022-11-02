@@ -10,10 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -272,6 +270,37 @@ public class PhotoDataAct {
         }
         return data;
     };
+
+    // 홀 정보 및 이미지 수정
+    @PostMapping("/data/hall/update")
+    public Map<String,Object> hallDataUpdate(HallDataVO hallDataVO, HttpServletRequest req){
+        log.error("HallDataUpdate Join!!");
+        HttpSession session = req.getSession(false);
+        MemberVO mvo = (MemberVO) session.getAttribute("loginSession");
+        int uidx = mvo.getUIdx();
+        // TODO 폼 데이터 받아오기
+        // TODO
+        log.error("input form data ==> {}",hallDataVO);
+
+        return null;
+    }
+    // DB에서 불러온 홀 이미지 삭제
+    @GetMapping("/data/photo/deleteImg")
+    public void hallDbImgDelete(HttpServletRequest req, Model model,@RequestParam String imgsrc){
+        HttpSession session = req.getSession(false);
+        MemberVO mvo =  (MemberVO) session.getAttribute("loginSession");
+        int uidx = mvo.getUIdx();
+        imgsrc = imgsrc.split("/")[4];
+        log.error(imgsrc);
+        imgsrc = aes.decrypt(imgsrc);
+        log.error(imgsrc);
+        imgsrc = imgsrc.substring(7,imgsrc.length());
+        log.error(imgsrc);
+        // TODO 파일 경로로 DB에서 삭제하기
+        //  로컬 디렉토리에서도 파일 삭제하기
+
+
+    }
 }
 
 

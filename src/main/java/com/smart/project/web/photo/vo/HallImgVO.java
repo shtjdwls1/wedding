@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class HallImgVO {
+    private int hImgIdx;
     private int uIdx;
     private String hImgName;
     private String hImgPath;
