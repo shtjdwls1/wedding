@@ -340,7 +340,7 @@ public class PhotoDataAct {
     }
     // DB에서 불러온 홀 이미지 삭제
     @GetMapping("/data/photo/deleteImg")
-    public void hallDbImgDelete(HttpServletRequest req, Model model,@RequestParam String imgsrc){
+    public int hallDbImgDelete(HttpServletRequest req, Model model,@RequestParam String imgsrc){
         HttpSession session = req.getSession(false);
         MemberVO mvo =  (MemberVO) session.getAttribute("loginSession");
         int uidx = mvo.getUIdx();
@@ -351,8 +351,24 @@ public class PhotoDataAct {
         imgsrc = imgsrc.substring(7,imgsrc.length());
         log.error(imgsrc);
         // TODO 파일 경로로 DB에서 삭제하기
-        //  로컬 디렉토리에서도 파일 삭제하기
-
+        // 1. DB에서 삭제하기
+        int cnt = pm.deleteHallImg(imgsrc);
+        cnt += pm.deleteHallImg(imgsrc.replace("thumbnail","common"));
+        cnt += pm.deleteHallImg(imgsrc.replace("thumbnail","small"));
+        // TODO 로컬 디렉토리에서도 파일 삭제하기
+        File thumbImg = new File("C:/test"+imgsrc);
+        if(thumbImg.exists()){
+            thumbImg.delete();
+        }
+        File commonImg = new File("C:/test"+imgsrc.replace("thumbnail","common"));
+        if(commonImg.exists()){
+            commonImg.delete();
+        }
+        File smallImg = new File("C:/test"+imgsrc.replace("thumbnail","small"));
+        if(smallImg.exists()){
+            smallImg.delete();
+        }
+        return cnt;
 
     }
 }

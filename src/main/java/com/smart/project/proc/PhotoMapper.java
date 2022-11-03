@@ -36,4 +36,5 @@ public interface PhotoMapper {
     
     int updateHall(HallVO hallVO); // 홀 정보 수정
     int updateHallTime(HallTimeVO hallTimeVO); // 홀 시간 수정
+    int deleteHallImg(String hImgPath); // 홀 이미지 삭제
 }

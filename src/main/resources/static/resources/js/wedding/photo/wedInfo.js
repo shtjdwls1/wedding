@@ -202,6 +202,7 @@ export class wedInfo {
             let id = $(e.target).closest('div').attr('id') // 인덱스를 갖고있는 id가져오기
             let idlen = id.length // 길이확인 2자리일수도 있으니까
             let idx = id.substring(6,idlen+1) //filexx 뒤에서부터 자르기
+            console.log(idx)
             deleteDbFile(idx)
         })
         function deleteDbFile(num) {
@@ -209,8 +210,9 @@ export class wedInfo {
             let imgsrc = document.querySelector("#dbfile" + num).querySelector('img').src;
             console.log(imgsrc)
             axios.get('/data/photo/deleteImg',{params :{'imgsrc':imgsrc}}).then((result)=>{
-                if(result.data===1) {
+                if(result.data>0) {
                     console.log("삭제 성공")
+                    document.querySelector("#dbfile" + num).remove();
                 }else{
                     console.log("삭제 실패")
                 }

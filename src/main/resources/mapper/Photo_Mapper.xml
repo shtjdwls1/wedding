@@ -67,4 +67,7 @@
     <update id="updateHallTime">
         UPDATE hall_time SET s_time=#{sTime}, e_time=#{eTime} WHERE h_time_idx=#{hTimeIdx};
     </update>
+    <delete id="deleteHallImg">
+        DELETE FROM hall_img WHERE h_img_path=#{hImgPath};
+    </delete>
 </mapper>
