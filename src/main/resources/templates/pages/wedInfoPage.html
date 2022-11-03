@@ -195,6 +195,7 @@
 		</div>
 		<div class="collapse updateHallForm mx-3" th:id="'collapse'+${i.count}">
 			<form class="mx-4 mt-2" th:id="'updateHallDataForm'+${i.count}">
+				<input type="text" th:value="${hall.hIdx}" name="hIdx" hidden>
 			<div>
 				<label class="form-label" for="hallName">홀 이름</label>
 				<input class="form-control" id="hallName" type="text" th:value="${hall.hName}" name="hName">
@@ -225,6 +226,7 @@
 					<tr>
 						<th scope="row" th:text="${i.count}+'회차 : '"></th>
 						<td>
+							<input th:value="${hallTime.hTimeIdx}" name="hTimeIdx" hidden>
 							<div class="inputParent">
 								<input class="timeInput" placeholder="-- : --" th:value="${hallTime.sTime}" name="sTime">
 								<i class="bi bi-clock"></i>

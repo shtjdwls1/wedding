@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class HallVO {
+    private int hIdx;
     private String hName;
     private int hPrice;
     private int hMin;

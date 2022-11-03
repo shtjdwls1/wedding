@@ -277,11 +277,65 @@ public class PhotoDataAct {
         log.error("HallDataUpdate Join!!");
         HttpSession session = req.getSession(false);
         MemberVO mvo = (MemberVO) session.getAttribute("loginSession");
-        int uidx = mvo.getUIdx();
-        // TODO 폼 데이터 받아오기
-        // TODO
+        int uIdx = mvo.getUIdx();
+        // TODO 폼 데이터 확인
         log.error("input form data ==> {}",hallDataVO);
+        HallVO hallVO = new HallVO();
+        hallVO.setHIdx(hallDataVO.getHIdx());
+        hallVO.setHName(hallDataVO.getHName());
+        hallVO.setHPrice(hallDataVO.getHPrice());
+        hallVO.setHMin(hallDataVO.getHMin());
+        hallVO.setHMax(hallDataVO.getHMax());
+        hallVO.setUIdx(uIdx);
+        pm.updateHall(hallVO);
+        log.error("hallVO Test ==> {}",hallVO);
+        // TODO 홀정보, 시간정보, 이미지정보 나눠서 저장하기
+        for(int i =0; i<hallDataVO.getSTime().size();i++){
+            if(!Objects.equals(hallDataVO.getSTime().get(i), "")){
+                HallTimeVO hallTimeVO = new HallTimeVO();
+                hallTimeVO.setHTimeIdx(hallDataVO.getHTimeIdx().get(i));
+                hallTimeVO.setSTime(hallDataVO.getSTime().get(i));
+                hallTimeVO.setETime(hallDataVO.getETime().get(i));
+                hallTimeVO.setHName(hallDataVO.getHName());
+                hallTimeVO.setUIdx(uIdx);
+                pm.updateHallTime(hallTimeVO);
+                log.error("hallTimeVO Test ==> {}",hallTimeVO);
+            }
+        }
+        log.error("photo ==>{}",hallDataVO.getFiles());
 
+        Map<String,Object> data = new HashMap<>();
+        List<HallImgVO> files = null;
+        if(hallDataVO.getFiles()!=null){
+            try{
+                // 파일형식으로 저장하기
+                for(MultipartFile photo : hallDataVO.getFiles()){
+                    log.error("file ==>{}",photo.getOriginalFilename());
+                    log.error("file ==>{}",photo.getContentType());
+                }
+
+                files = hh.saveFile(uIdx,hallDataVO.getHName(),"common",hallDataVO.getFiles());
+
+                List<HallImgVO> temp = new ArrayList<>();
+                for (HallImgVO photo : files) {
+                    HallImgVO thumbnail;
+                    HallImgVO small;
+                    thumbnail = hh.sizeChange(uIdx,photo, 108, "thumbnail");
+                    small = hh.sizeChange(uIdx,photo, 180, "small");
+                    if (thumbnail != null) {
+                        temp.add(thumbnail);
+                    }
+                    if (small != null) {
+                        temp.add(small);
+                    }
+                }
+                files.addAll(temp);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            hh.save(uIdx,files); // DB에 저장
+            data.put("imgs",files);
+        }
         return null;
     }
     // DB에서 불러온 홀 이미지 삭제

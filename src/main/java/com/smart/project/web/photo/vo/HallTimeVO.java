@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class HallTimeVO {
+    private int hTimeIdx;
     private String sTime;
     private String eTime;
     private String hName;

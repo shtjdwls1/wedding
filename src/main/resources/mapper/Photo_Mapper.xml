@@ -58,6 +58,13 @@
         INSERT INTO hall_time(s_time, e_time, h_name, u_idx) VALUES (#{sTime},#{eTime},#{hName},#{uIdx});
     </insert>
     <!--홀 이미지 수정-->
+
     <!--홀 정보 수정-->
+    <update id="updateHall">
+        UPDATE hall set h_name=#{hName}, h_price=#{hPrice}, h_min=#{hMin},h_price=#{hPrice} WHERE h_idx=#{hIdx};
+    </update>
     <!--홀 시간 수정-->
+    <update id="updateHallTime">
+        UPDATE hall_time SET s_time=#{sTime}, e_time=#{eTime} WHERE h_time_idx=#{hTimeIdx};
+    </update>
 </mapper>

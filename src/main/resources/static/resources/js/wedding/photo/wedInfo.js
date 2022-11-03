@@ -55,8 +55,9 @@ export class wedInfo {
                 modalOn();
                 $('#hallInfoModalClose').off('click').on('click',()=>{
                     axios.post("/data/hall/update",uhdFormData).then((result)=>{
-                        if(result.data===1) {
+                        if(result.data!==null) {
                             console.log("수정 성공")
+                            location.href="/chkWedInfo";
                         }else{
                             console.log("수정 실패")
                         }
@@ -144,9 +145,9 @@ export class wedInfo {
                         filesArr.push(file);
 
                         let htmlData = '';
-                        htmlData = `<div id="file${fileNo}" class="filebox">
+                        htmlData = `<div><div id="file${fileNo}" class="filebox">
                                     <a class="delete">x<img src="${e.target.result}" data-file="${file.name}" class="selProductFile" title="Click to remove" ><i class="fa fa-minus-square"></i></a>
-                                </div>`
+                                </div></div>`
                         $('#file-list'+idx).append(htmlData);
                         fileNo++;
 

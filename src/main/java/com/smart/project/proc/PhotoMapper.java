@@ -33,4 +33,7 @@ public interface PhotoMapper {
     List<HallVO> selectHall(int uidx); // 홀 정보 불러오기
     List<HallTimeVO> selectHallTime(SelectVO selectVO); // 홀 시간 불러오기
     List<HallImgVO> selectHallImg(SelectVO selectVO); // 홀 이미지 불러오기
+    
+    int updateHall(HallVO hallVO); // 홀 정보 수정
+    int updateHallTime(HallTimeVO hallTimeVO); // 홀 시간 수정
 }
